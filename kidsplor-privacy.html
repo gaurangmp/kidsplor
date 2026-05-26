@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Kidsplor</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- ── Analytics ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","CLARITY_PROJECT_ID");</script>
+<!-- ── Open Graph ── -->
+<meta name="description" content="How Kidsplor collects, uses and protects your personal information in accordance with Australian privacy law.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kidsplor">
+<meta property="og:title" content="Privacy Policy — Kidsplor">
+<meta property="og:description" content="How Kidsplor collects, uses and protects your personal information in accordance with Australian privacy law.">
+<meta property="og:image" content="https://kidsplor.com.au/og-image.png">
+<meta property="og:url" content="https://kidsplor.com.au/privacy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Privacy Policy — Kidsplor">
+<meta name="twitter:description" content="How Kidsplor collects, uses and protects your personal information.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F6F7FF; --surface: #FFFFFF; --brand: #4338CA; --brand-dk: #3730A3;
+    --brand-xdk: #1E1B4B; --brand-lt: #EEF2FF; --brand-mid: #818CF8;
+    --orange: #F97316; --txt: #0F172A; --txt-sub: #334155; --txt-muted: #64748B;
+    --border: #DDE3F5; --shadow: rgba(30,27,75,0.07); --shadow-lg: rgba(30,27,75,0.18);
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--txt); line-height: 1.6; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 24px; padding: 0 44px; height: 66px; background: rgba(246,247,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { text-decoration: none; flex-shrink: 0; }
+  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.28rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .ih { position: relative; display: inline-block; line-height: inherit; }
+  .heart { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(130%); width: .32em; height: .28em; overflow: visible; }
+  .compass { display: inline-block; height: .76em; width: .76em; flex-shrink: 0; vertical-align: baseline; position: relative; top: .07em; }
+  .nav-links { list-style: none; display: flex; gap: 6px; margin-left: 8px; }
+  .nav-links a { color: var(--txt-sub); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 6px 12px; border-radius: 9px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--brand-lt); color: var(--brand); }
+  .nav-spacer { flex: 1; }
+  .nav-cta { background: var(--brand-xdk); color: #fff; text-decoration: none; font-size: 0.86rem; font-weight: 700; padding: 9px 18px; border-radius: 50px; transition: background 0.15s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--brand); }
+
+  /* PAGE HERO */
+  .page-hero { background: var(--brand-xdk); padding: 64px 24px 56px; text-align: center; position: relative; overflow: hidden; }
+  .page-hero::before { content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(129,140,248,0.14) 0%, transparent 70%); top: -150px; left: 50%; transform: translateX(-50%); pointer-events: none; }
+  .page-pill { display: inline-block; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.16); margin-bottom: 16px; }
+  .page-h1 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: #fff; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; }
+  .page-updated { font-size: 0.82rem; color: rgba(255,255,255,0.42); }
+
+  /* LEGAL CONTENT */
+  .legal-wrap { max-width: 820px; margin: 0 auto; padding: 56px 24px 96px; }
+
+  .legal-toc { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 32px; margin-bottom: 48px; box-shadow: 0 2px 12px var(--shadow); }
+  .legal-toc h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem; color: var(--brand-xdk); margin-bottom: 14px; }
+  .legal-toc ol { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .legal-toc a { color: var(--brand); text-decoration: none; font-size: 0.88rem; font-weight: 500; }
+  .legal-toc a:hover { text-decoration: underline; }
+
+  .legal-section { margin-bottom: 44px; }
+  .legal-section h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--brand-xdk); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .legal-section p { font-size: 0.93rem; color: var(--txt-sub); line-height: 1.75; margin-bottom: 12px; }
+  .legal-section ul, .legal-section ol { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+  .legal-section li { font-size: 0.93rem; color: var(--txt-sub); line-height: 1.65; }
+  .legal-section strong { color: var(--txt); font-weight: 600; }
+  .legal-section a { color: var(--brand); }
+
+  .disclaimer-box { background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 14px; padding: 24px 28px; margin-bottom: 44px; }
+  .disclaimer-box h2 { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem; color: #9A3412; margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .disclaimer-box p, .disclaimer-box li { font-size: 0.88rem; color: #7C2D12; line-height: 1.68; margin-bottom: 8px; }
+  .disclaimer-box ul { padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+
+  .defined-terms dt { font-weight: 700; font-size: 0.9rem; color: var(--txt); margin-bottom: 2px; margin-top: 12px; }
+  .defined-terms dd { font-size: 0.88rem; color: var(--txt-sub); line-height: 1.65; margin-left: 0; padding-left: 16px; border-left: 2px solid var(--border); }
+
+  /* FOOTER */
+  footer { background: var(--brand-xdk); padding: 52px 52px 32px; }
+  .foot-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .foot-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.42); max-width: 240px; line-height: 1.55; margin-top: 10px; }
+  .foot-links { display: flex; gap: 52px; }
+  .foot-col-lbl { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+  .foot-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.48); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+  .foot-col a:hover { color: white; }
+  .foot-bottom { padding-top: 24px; font-size: 0.75rem; color: rgba(255,255,255,0.28); display: flex; justify-content: space-between; align-items: center; }
+  .socials { display:flex; gap:10px; margin-top:12px; }
+  .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
+  .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="Kidsplor home">
+    <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="kidsplor-parents-faq.html">FAQ</a></li>
+    <li><a href="kidsplor-pricing.html">Pricing</a></li>
+    <li><a href="kidsplor-about.html">About Us</a></li>
+  </ul>
+  <div class="nav-spacer"></div>
+  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-pill">Legal</div>
+  <h1 class="page-h1">Privacy Policy</h1>
+  <div class="page-updated">Last updated: May 2026</div>
+</div>
+
+<div class="legal-wrap">
+
+  <!-- Table of contents -->
+  <div class="legal-toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#disclaimer">Disclaimer</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#what-we-collect">The Personal Information We Collect</a></li>
+      <li><a href="#why-we-use">Why We Use and Disclose Personal Information</a></li>
+      <li><a href="#storage">Storage and Security</a></li>
+      <li><a href="#retention">How Long We Keep Your Information</a></li>
+      <li><a href="#rights">Other Data Protection Rights</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+      <li><a href="#definitions">Defined Terms</a></li>
+    </ol>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer-box" id="disclaimer">
+    <h2>Disclaimer</h2>
+    <p>Please note that the content in this Web App is added and modified by users and activity providers. Kidsplor takes no responsibility for any content available on Kidsplor, including but not limited to content added or modified by users or providers, and gives no guarantee as to its accuracy. We take no responsibility for any damages or expenses incurred due to the use of this Web App or the information contained within it.</p>
+    <p>It is the user's responsibility to confirm the accuracy of any activity details, location, pricing, or event information before attending. If you find anything that is incorrect or inappropriate, please report it through the Web App.</p>
+    <p>All content added by users, including reviews, photos, and descriptions, is the opinion of that user and does not represent that of Kidsplor. Prices listed on Kidsplor are a guide only and cannot be used as quotes. All content added by users grants Kidsplor royalty-free rights to use that content worldwide, in any way.</p>
+    <p>Kidsplor reserves the right to limit or disable user access and functionality to some or all of Kidsplor without a refund. This Web App or any part of the Kidsplor database may not be copied or reproduced without the express permission of Kidsplor. Any changes to this disclaimer will be posted on this page.</p>
+  </div>
+
+  <!-- Privacy Policy -->
+  <div class="legal-section" id="privacy">
+    <h2>Privacy Policy</h2>
+    <p>We are committed to protecting the personal information that we hold, and to collecting, using and disclosing it in accordance with applicable privacy laws, including the Australian Privacy Principles in the <em>Privacy Act 1988</em> (Cth) (<strong>Privacy Act</strong>).</p>
+    <p>'We', 'us' or 'our' means <strong>Kidsplor Pty Ltd</strong> (Kidsplor). We respect the confidentiality of the personal information held by Kidsplor and take steps to protect the privacy of Kidsplor users and their families as outlined below. We recognise the sensitivity of personal information — particularly in relation to families and children — and have specifically limited the information we gather, making as much as possible optional.</p>
+    <p>We will only use or disclose personal information as outlined in this Privacy Policy, or where we have your consent. This Privacy Policy explains how we handle the personal information we hold, including how we collect, use and disclose it.</p>
+  </div>
+
+  <!-- What we collect -->
+  <div class="legal-section" id="what-we-collect">
+    <h2>The Personal Information We Collect (and Why)</h2>
+    <p>To provide you with the Web App Services and for other purposes as described in this Privacy Policy, we may collect the following personal information:</p>
+    <ul>
+      <li><strong>Account registration:</strong> When you register an Account, we collect limited personal information including your name, email address, and any photos you choose to upload. The name you select does not need to include your real name or any information that identifies you.</li>
+      <li><strong>Optional family details:</strong> You may optionally provide details about your children (such as first names and approximate ages) to improve activity filtering and recommendations. These details do not need to be exact or identifiable.</li>
+      <li><strong>User-generated content:</strong> We collect personal information you choose to post within the App, including reviews and photos. Please be aware that reviews and photos posted within the App will be visible to others. We recommend you do not post sensitive or private information about yourself or others.</li>
+      <li><strong>Payment information:</strong> All payments are processed via your payment service provider (such as the app store or a third-party payment processor). We maintain access to transactional account information only via these services and do not have access to your credit card details.</li>
+    </ul>
+
+    <p><strong>Cookies and similar technologies</strong></p>
+    <p>We may collect information relating to your Web App activity to help us improve the experience and customise content. This includes functional cookies (which remember your preferences) and strictly necessary cookies (required for the Web App to operate). We may also use resettable device identifiers on mobile devices for analytics, feed personalisation, and push notifications. You can opt out of some push notification types from within the Web App.</p>
+
+    <p><strong>Location data</strong></p>
+    <p>With your permission, we may collect your device's physical location to provide nearby activity recommendations. You can withdraw this consent at any time via your device settings, though doing so will limit the Web App's core discovery functionality.</p>
+  </div>
+
+  <!-- Why we use -->
+  <div class="legal-section" id="why-we-use">
+    <h2>Why We Use and/or Disclose the Personal Information We Hold</h2>
+
+    <p><strong>To provide you with Web App Services</strong></p>
+    <p>We use your email address to register and manage your Account. We may contact you, or ask a Service Provider to contact you on our behalf, about your Account or to assist in improving the Web App Services. We use device data (with your permission) to provide location-relevant activity suggestions.</p>
+
+    <p><strong>For marketing analytics</strong></p>
+    <p>We may use de-identified, aggregated data — including location data — to better understand user preferences and improve our products. We may provide this aggregated, de-identified data to third parties to assist them in understanding general trends. We do not sell personal data to third parties for advertising purposes.</p>
+
+    <p><strong>To meet our legal obligations</strong></p>
+    <ul>
+      <li>Complying with applicable laws, including the Australian Consumer Law and the <em>Corporations Act 2001</em> (Cth);</li>
+      <li>Fulfilling our obligations under contracts with you or third parties;</li>
+      <li>Protecting our rights or the rights of others, including for fraud or risk management purposes; and</li>
+      <li>Complying with requests from government authorities and/or enforcement bodies.</li>
+    </ul>
+
+    <p><strong>When engaging with Service Providers</strong></p>
+    <p>We use third-party suppliers (Service Providers) to support our business, including IT services, servers, payment processing, and marketing analytics. These Service Providers may access your personal information to the extent required to provide their services, and we only disclose personal information to them in accordance with this Privacy Policy and applicable privacy laws.</p>
+
+    <p><strong>For marketing</strong></p>
+    <p>We may use personal information to contact you about offers or promotions relevant to you, where we have a lawful basis to do so. You may opt out of marketing communications at any time.</p>
+
+    <p><strong>Social media</strong></p>
+    <p>If you interact with us via a social media account, your information will also be subject to the privacy policy of that social media platform. We may use your data to display targeted ads about our products on social media platforms you are registered with.</p>
+
+    <p><strong>Reviews</strong></p>
+    <p>Reviews you post via the Web App may be displayed within the Web App and may be shared with our Business Partners, Service Providers, and related entities for promotional purposes.</p>
+  </div>
+
+  <!-- Storage -->
+  <div class="legal-section" id="storage">
+    <h2>Storage and Security of Personal Information</h2>
+    <p>We take all reasonable steps to protect the personal information we hold from misuse, interference, loss, and unauthorised access, modification, or disclosure. Our security measures include:</p>
+    <ul>
+      <li>Storing personal information on secure networks consistent with industry standards;</li>
+      <li>Using encryption when transferring personal information between servers;</li>
+      <li>Restricting access to personal information to employees, contractors, and agents who need it to process it for us; and</li>
+      <li>Authenticating Web App users before providing access to their Accounts.</li>
+    </ul>
+  </div>
+
+  <!-- Retention -->
+  <div class="legal-section" id="retention">
+    <h2>How Long Do We Keep Your Personal Information?</h2>
+    <p>If we no longer need personal information we hold about you, we take steps to delete, destroy, or de-identify it. We may retain personal information for insurance and/or audit purposes, or to comply with legal obligations including under the Australian Consumer Law and the <em>Corporations Act 2001</em> (Cth).</p>
+    <p><strong>Account deletion:</strong> To request deletion of your account and associated personal data, please contact us at <a href="mailto:hello@kidsplor.com.au">hello@kidsplor.com.au</a>. We will process your request in accordance with this Privacy Policy and our obligations under the Privacy Act.</p>
+  </div>
+
+  <!-- Rights -->
+  <div class="legal-section" id="rights">
+    <h2>Other Data Protection Rights</h2>
+    <p>In some circumstances, depending on your jurisdiction, you may have additional rights in relation to your personal data:</p>
+    <ul>
+      <li><strong>Right to object:</strong> You can object at any time to your personal data being processed for direct marketing purposes, or for targeted advertising on social media.</li>
+      <li><strong>Right to withdraw consent:</strong> Where processing is based on your consent, you may withdraw that consent at any time.</li>
+      <li><strong>Right to restriction:</strong> You can request restriction of the processing of your personal data in certain circumstances.</li>
+      <li><strong>Right to data portability:</strong> You may request portability of your personal data where processing is based on consent or the performance of a contract.</li>
+      <li><strong>Right to erasure:</strong> You can request erasure of your personal data where it is no longer necessary for the purpose of the data processing.</li>
+    </ul>
+  </div>
+
+  <!-- Contact -->
+  <div class="legal-section" id="contact">
+    <h2>Contact Us</h2>
+    <p>You can:</p>
+    <ul>
+      <li>Request access to, or correction of, the personal information we hold about you;</li>
+      <li>Request to opt out of or unsubscribe from communications from us; or</li>
+      <li>Make a privacy complaint or inquiry — including regarding applicable data protection rights — by contacting us at <a href="mailto:hello@kidsplor.com.au">hello@kidsplor.com.au</a>.</li>
+    </ul>
+    <p><strong>How to make a privacy complaint</strong></p>
+    <p>If you have concerns about how we have handled your personal information and wish to make a privacy complaint, please contact us using the details above. If we are unable to resolve your complaint, you may contact the Office of the Australian Information Commissioner at: GPO Box 5218, Sydney NSW 2001, <a href="https://www.oaic.gov.au" target="_blank" rel="noopener">www.oaic.gov.au</a> (telephone 1300 363 992).</p>
+  </div>
+
+  <!-- Definitions -->
+  <div class="legal-section" id="definitions">
+    <h2>Defined Terms</h2>
+    <dl class="defined-terms">
+      <dt>Web App</dt>
+      <dd>Any application for use on a mobile device (e.g. phone, tablet, or similar) operated by Kidsplor Pty Ltd, including the Kidsplor activity discovery and booking platform.</dd>
+      <dt>Web App Services</dt>
+      <dd>Services provided via the Web App to users, including activity discovery, booking, availability management, family calendar, notifications, reviews, and related features.</dd>
+      <dt>Account</dt>
+      <dd>An account registered via the Web App using an email address.</dd>
+      <dt>Business Partner</dt>
+      <dd>A third party that we collaborate with to offer joint promotions, products, or services.</dd>
+      <dt>Media Service Provider</dt>
+      <dd>A Service Provider that provides media or social media services, including but not limited to Facebook, Meta Platforms Inc, and Google.</dd>
+      <dt>Service Provider</dt>
+      <dd>A third party that provides us with services to support our business, including the provision of the App Services.</dd>
+      <dt>We / Us / Kidsplor</dt>
+      <dd>Kidsplor Pty Ltd, the company operating the Kidsplor platform.</dd>
+    </dl>
+  </div>
+
+</div>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <span style="display:inline-flex;align-items:baseline;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;line-height:1;color:white;letter-spacing:-0.025em;white-space:nowrap;">k<span style="position:relative;display:inline-block;line-height:inherit;">&#305;<svg style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(130%);width:0.32em;height:0.28em;overflow:visible;" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg style="display:inline-block;height:0.76em;width:0.76em;flex-shrink:0;vertical-align:baseline;position:relative;top:0.07em;" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="rgba(255,255,255,0.15)"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="rgba(30,27,75,.9)"/></svg>r</span>
+      <p class="foot-tagline">Helping Australian families discover their child's potential — one activity at a time.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/kidsplor" id="fb-link" aria-label="Facebook (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.1c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kidsplor" id="ig-link" aria-label="Instagram (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm8 3.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col">
+        <div class="foot-col-lbl">Platform</div>
+        <a href="index.html">For Parents</a>
+        <a href="kidsplor-parents-faq.html">Parents FAQ</a>
+        <a href="kidsplor-for-business.html">For Providers</a>
+        <a href="kidsplor-pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Community</div>
+        <a href="kidsplor-parent-stories.html">Parent Stories</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Legal</div>
+        <a href="kidsplor-privacy.html">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Kidsplor Pty Ltd &nbsp;·&nbsp; Australia</span>
+    <span>Built with care for Australian families</span>
+  </div>
+</footer>
+
+</body>
+</html>

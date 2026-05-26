@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kidsplor Discover — Find kids activities near you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    :root {
+      --bg:#F6F7FF; --surface:#FFFFFF;
+      --brand:#4338CA; --brand-dk:#3730A3; --brand-xdk:#1E1B4B;
+      --brand-lt:#EEF2FF; --brand-mid:#818CF8;
+      --orange:#F97316; --txt:#0F172A; --txt-sub:#334155; --txt-muted:#64748B;
+      --border:#DDE3F5; --shadow:rgba(30,27,75,0.07); --shadow-lg:rgba(30,27,75,0.18);
+    }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--txt); overflow-x:hidden; }
+
+    /* WORDMARK */
+    .wm { font-family:'Outfit',sans-serif; font-weight:800; letter-spacing:-0.025em; line-height:1; display:inline-flex; align-items:baseline; white-space:nowrap; color:var(--brand-xdk); }
+    .wm .ih { display:inline-block; position:relative; line-height:inherit; }
+    .wm .ih svg.heart { position:absolute; bottom:100%; left:50%; transform:translateX(-50%) translateY(130%); width:0.32em; height:0.28em; overflow:visible; display:block; }
+    .wm svg.compass { display:inline-block; height:0.76em; width:0.76em; flex-shrink:0; vertical-align:baseline; position:relative; top:0.07em; }
+
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; background:rgba(246,247,255,0.96); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); }
+    .nav-row { height:62px; display:flex; align-items:center; padding:0 48px; gap:20px; }
+    .nav-logo { font-size:1.4rem; text-decoration:none; flex-shrink:0; }
+
+    /* NL search bar */
+    .nav-nl-wrap { flex:1; max-width:640px; display:flex; align-items:center; gap:0; background:var(--surface); border:1.5px solid var(--border); border-radius:100px; padding:5px 5px 5px 18px; box-shadow:0 2px 10px var(--shadow); transition:border-color .2s, box-shadow .2s; }
+    .nav-nl-wrap:focus-within { border-color:var(--brand); box-shadow:0 4px 18px rgba(67,56,202,0.14); }
+    .nl-icon { color:var(--txt-muted); flex-shrink:0; margin-right:10px; opacity:.5; }
+    .nl-input { flex:1; border:none; outline:none; background:transparent; font-family:'Inter',sans-serif; font-size:0.88rem; color:var(--txt); }
+    .nl-input::placeholder { color:var(--txt-muted); }
+    .nl-btn { flex-shrink:0; background:var(--brand); color:white; border:none; border-radius:100px; padding:9px 20px; font-family:'Outfit',sans-serif; font-weight:700; font-size:0.82rem; cursor:pointer; white-space:nowrap; transition:background .15s; }
+    .nl-btn:hover { background:var(--brand-dk); }
+
+    .nav-spacer { flex:1; }
+    .nav-links { display:flex; gap:2px; list-style:none; }
+    .nav-links a { font-size:0.875rem; font-weight:500; color:var(--txt-sub); text-decoration:none; padding:7px 13px; border-radius:8px; transition:color .15s, background .15s; }
+    .nav-links a:hover { color:var(--brand); background:var(--brand-lt); }
+    .nav-links a.cur { color:var(--brand); background:var(--brand-lt); }
+    .nav-prov-btn { display:inline-flex; align-items:center; padding:9px 20px; border-radius:50px; font-family:'Inter',sans-serif; font-weight:600; font-size:0.875rem; text-decoration:none; background:var(--brand); color:white; box-shadow:0 4px 14px var(--shadow); transition:all .18s; margin-left:4px; }
+    .nav-prov-btn:hover { background:var(--brand-dk); transform:translateY(-1px); }
+
+    /* SUGGESTION PILLS BAR */
+    .suggest-bar { padding:8px 48px; display:flex; align-items:center; gap:8px; overflow-x:auto; border-bottom:1px solid var(--border); background:var(--surface); scrollbar-width:none; }
+    .suggest-bar::-webkit-scrollbar { display:none; }
+    .suggest-label { font-size:0.7rem; font-weight:600; color:var(--txt-muted); white-space:nowrap; flex-shrink:0; }
+    .suggest-pill { flex-shrink:0; display:inline-flex; align-items:center; gap:5px; padding:5px 13px; border-radius:100px; border:1.5px solid var(--border); background:var(--bg); font-size:0.76rem; font-weight:500; color:var(--txt-sub); cursor:pointer; transition:all .15s; white-space:nowrap; }
+    .suggest-pill:hover { border-color:var(--brand); color:var(--brand); background:var(--brand-lt); }
+
+    /* LAYOUT */
+    .page-body { display:flex; }
+
+    /* SIDEBAR */
+    .sidebar { width:248px; flex-shrink:0; padding:18px 16px; border-right:1px solid var(--border); position:sticky; top:106px; height:calc(100vh - 106px); overflow-y:auto; background:var(--surface); }
+    .sidebar::-webkit-scrollbar { width:3px; } .sidebar::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+    .sf-section { margin-bottom:20px; }
+    .sf-title { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--txt-muted); margin-bottom:8px; }
+    .sf-options { display:flex; flex-direction:column; gap:5px; }
+    .sf-opt { display:flex; align-items:center; gap:7px; cursor:pointer; }
+    .sf-opt input[type="checkbox"] { width:15px; height:15px; accent-color:var(--brand); cursor:pointer; flex-shrink:0; }
+    .sf-opt label { font-size:0.81rem; color:var(--txt-sub); cursor:pointer; flex:1; }
+    .sf-opt .sf-count { font-size:0.68rem; color:var(--txt-muted); }
+    .sf-range { display:flex; flex-direction:column; gap:5px; }
+    .sf-range-row { display:flex; justify-content:space-between; font-size:0.74rem; color:var(--txt-muted); }
+    .sf-range input[type="range"] { width:100%; accent-color:var(--brand); cursor:pointer; }
+    .sf-age-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+    .sf-age-btn { padding:5px 4px; border-radius:8px; border:1.5px solid var(--border); background:white; font-size:0.71rem; font-weight:600; color:var(--txt-sub); cursor:pointer; text-align:center; transition:all .15s; }
+    .sf-age-btn:hover, .sf-age-btn.on { border-color:var(--brand); background:var(--brand-lt); color:var(--brand); }
+    .sf-day-row { display:flex; gap:4px; flex-wrap:wrap; }
+    .sf-day { padding:5px 8px; border-radius:7px; border:1.5px solid var(--border); background:white; font-size:0.69rem; font-weight:600; color:var(--txt-sub); cursor:pointer; transition:all .15s; }
+    .sf-day:hover, .sf-day.on { border-color:var(--brand); background:var(--brand-lt); color:var(--brand); }
+    .sf-clear { width:100%; padding:7px; border:1.5px solid var(--border); border-radius:10px; background:white; font-family:'Inter',sans-serif; font-size:0.76rem; font-weight:600; color:var(--txt-muted); cursor:pointer; transition:all .15s; margin-top:4px; }
+    .sf-clear:hover { border-color:var(--brand); color:var(--brand); }
+
+    /* RESULTS */
+    .results { flex:1; padding:18px 24px; min-width:0; }
+    .active-query { display:inline-flex; align-items:center; gap:6px; background:var(--brand-lt); border:1.5px solid rgba(67,56,202,0.18); color:var(--brand); border-radius:100px; padding:5px 12px 5px 10px; font-size:0.77rem; font-weight:600; margin-bottom:12px; }
+    .active-query button { background:none; border:none; cursor:pointer; color:var(--brand); display:flex; align-items:center; padding:0; margin-left:2px; }
+    .results-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+    .results-count { font-size:0.86rem; color:var(--txt-muted); }
+    .results-count strong { color:var(--txt); font-weight:700; }
+    .sort-row { display:flex; align-items:center; gap:7px; }
+    .sort-label { font-size:0.77rem; color:var(--txt-muted); }
+    .sort-select { border:1.5px solid var(--border); border-radius:8px; padding:5px 10px; font-family:'Inter',sans-serif; font-size:0.77rem; color:var(--txt-sub); background:white; cursor:pointer; outline:none; }
+    .sort-select:focus { border-color:var(--brand); }
+
+    /* FEATURED BANNER */
+    .feat-banner { margin-bottom:18px; border-radius:18px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; min-height:155px; background:linear-gradient(135deg,var(--brand-xdk) 0%,var(--brand) 100%); }
+    .feat-banner-left { padding:22px 26px; display:flex; flex-direction:column; justify-content:center; gap:7px; }
+    .feat-banner-tag { font-size:0.6rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+    .feat-banner-h { font-family:'Outfit',sans-serif; font-weight:900; font-size:1.15rem; color:white; letter-spacing:-0.025em; line-height:1.2; }
+    .feat-banner-sub { font-size:0.76rem; color:rgba(255,255,255,0.58); }
+    .feat-banner-btn { display:inline-flex; align-items:center; gap:4px; padding:7px 16px; border-radius:100px; background:var(--orange); color:white; font-family:'Outfit',sans-serif; font-weight:700; font-size:0.78rem; border:none; cursor:pointer; width:fit-content; transition:transform .15s; }
+    .feat-banner-btn:hover { transform:translateY(-1px); }
+    .feat-banner-right { position:relative; overflow:hidden; }
+    .feat-banner-right img { width:100%; height:100%; object-fit:cover; opacity:0.55; }
+
+    /* CARDS */
+    .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media(max-width:1100px){ .cards-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:700px){ .cards-grid { grid-template-columns:1fr; } .sidebar { display:none; } }
+
+    .activity-card { background:var(--surface); border-radius:16px; overflow:hidden; border:1px solid var(--border); box-shadow:0 2px 8px var(--shadow); transition:transform .2s, box-shadow .2s; display:flex; flex-direction:column; }
+    .activity-card:hover { transform:translateY(-4px); box-shadow:0 16px 44px var(--shadow-lg); }
+    .card-img-wrap { position:relative; overflow:hidden; }
+    .card-img { width:100%; height:162px; object-fit:cover; display:block; transition:transform .35s; }
+    .activity-card:hover .card-img { transform:scale(1.04); }
+    .card-badge { position:absolute; top:9px; left:9px; padding:3px 9px; border-radius:50px; font-size:0.61rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; }
+    .card-fav { position:absolute; top:9px; right:9px; width:29px; height:29px; border-radius:50%; background:rgba(255,255,255,0.9); backdrop-filter:blur(6px); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+    .card-fav:hover { background:white; }
+    .card-fav svg { stroke:var(--txt-muted); transition:stroke .15s, fill .15s; }
+    .card-fav.liked svg { stroke:#EF4444; fill:#EF4444; }
+    .card-body { padding:11px 13px; flex:1; display:flex; flex-direction:column; gap:4px; }
+    .card-title { font-family:'Outfit',sans-serif; font-weight:800; font-size:0.9rem; color:var(--txt); letter-spacing:-0.02em; }
+    .card-provider { font-size:0.73rem; color:var(--txt-muted); }
+    .card-meta-row { display:flex; flex-wrap:wrap; gap:4px; margin-top:1px; }
+    .card-meta { display:flex; align-items:center; gap:3px; font-size:0.7rem; color:var(--txt-muted); }
+    .card-rating { display:flex; align-items:center; gap:4px; font-size:0.74rem; font-weight:700; color:var(--txt); margin-top:auto; padding-top:5px; }
+    .card-stars { color:#FBBF24; font-size:0.76rem; }
+    .card-reviews { color:var(--txt-muted); font-weight:400; font-size:0.68rem; }
+    .card-footer { padding:8px 13px 11px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .card-price { font-family:'Outfit',sans-serif; font-weight:900; font-size:0.93rem; color:var(--txt); letter-spacing:-0.02em; }
+    .card-price-note { font-size:0.63rem; font-weight:500; color:var(--txt-muted); display:block; margin-top:1px; }
+    .card-cta { background:var(--brand); color:white; border:none; border-radius:100px; padding:7px 15px; font-family:'Outfit',sans-serif; font-weight:700; font-size:0.76rem; cursor:pointer; transition:background .18s, transform .15s; text-decoration:none; display:inline-block; }
+    .card-cta:hover { background:var(--brand-dk); transform:translateY(-1px); }
+
+    .badge-dance { background:rgba(67,56,202,0.12); color:var(--brand-dk); }
+    .badge-sport { background:rgba(5,150,105,0.12); color:#065F46; }
+    .badge-arts  { background:rgba(139,92,246,0.12); color:#6D28D9; }
+    .badge-stem  { background:rgba(37,99,235,0.12); color:#1D4ED8; }
+    .badge-music { background:rgba(245,158,11,0.12); color:#B45309; }
+    .badge-swim  { background:rgba(14,165,233,0.12); color:#0369A1; }
+    .badge-gym   { background:rgba(236,72,153,0.12); color:#BE185D; }
+
+    .load-more-wrap { text-align:center; padding:26px 0 38px; }
+    .load-more-btn { display:inline-flex; align-items:center; gap:7px; padding:10px 26px; border-radius:100px; border:2px solid var(--border); background:var(--surface); font-family:'Outfit',sans-serif; font-weight:700; font-size:0.86rem; color:var(--brand); cursor:pointer; transition:all .18s; }
+    .load-more-btn:hover { border-color:var(--brand); background:var(--brand-lt); }
+    /* FOOTER (canonical from landing) */
+    footer { background: var(--brand-xdk); padding: 52px 52px 32px; }
+    .foot-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .foot-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.42); max-width: 240px; line-height: 1.55; margin-top: 10px; }
+    .foot-links { display: flex; gap: 52px; }
+    .foot-col-lbl { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+    .foot-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.48); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+    .foot-col a:hover { color: white; }
+    .foot-bottom { padding-top: 24px; font-size: 0.75rem; color: rgba(255,255,255,0.28); display: flex; justify-content: space-between; align-items: center; }
+    .socials { display:flex; gap:10px; margin-top:12px; }
+    .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
+    .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+    .socials a:hover svg { transform:translateY(-2px); opacity:1; }
+    @media(max-width:760px){ .foot-top{flex-direction:column;gap:28px}.foot-links{flex-wrap:wrap;gap:24px} }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo wm" style="font-size:1.4rem;">
+      k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r
+    </a>
+
+    <div class="nav-nl-wrap">
+      <svg class="nl-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" class="nl-input" id="mainSearch" placeholder='Try: "dance for my 3 year old near Bondi"' value="dance classes, ages 3&ndash;6, near Bondi">
+      <button class="nl-btn" onclick="applySearch()">Search</button>
+    </div>
+
+    <div class="nav-spacer"></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#" class="cur">Discover</a></li>
+    </ul>
+    <a href="kidsplor-for-business.html" class="nav-prov-btn">For Providers</a>
+  </div>
+
+  <!-- Suggestion pills -->
+  <div class="suggest-bar">
+    <span class="suggest-label">Try:</span>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="soccer for my 5 year old on weekends">&#x26BD; Soccer, age 5, weekends</button>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="coding class for kids under $50 near Melbourne">&#x1F4BB; Coding, under $50</button>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="swimming lessons for toddlers in Sydney">&#x1F3CA; Swimming for toddlers</button>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="music lessons for kids on Thursday afternoons">&#x1F3B5; Music, Thursday arvo</button>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="gymnastics for girls age 6 to 9">&#x1F93C; Gymnastics, girls 6&ndash;9</button>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="art and craft class for kids near me">&#x1F3A8; Arts &amp; Crafts, near me</button>
+    <button class="suggest-pill" onclick="setSearch(this.dataset.q)" data-q="karate or martial arts for kids under 10">&#x1F94B; Martial Arts, under 10</button>
+  </div>
+</nav>
+
+
+<!-- PAGE BODY -->
+<div class="page-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sf-section">
+      <div class="sf-title">Age Group</div>
+      <div class="sf-age-grid">
+        <button class="sf-age-btn">0&ndash;2</button>
+        <button class="sf-age-btn on">2&ndash;4</button>
+        <button class="sf-age-btn on">4&ndash;6</button>
+        <button class="sf-age-btn on">6&ndash;8</button>
+        <button class="sf-age-btn">8&ndash;10</button>
+        <button class="sf-age-btn">10&ndash;12</button>
+      </div>
+    </div>
+    <div class="sf-section">
+      <div class="sf-title">Day of Week</div>
+      <div class="sf-day-row">
+        <button class="sf-day">Mon</button>
+        <button class="sf-day">Tue</button>
+        <button class="sf-day">Wed</button>
+        <button class="sf-day">Thu</button>
+        <button class="sf-day">Fri</button>
+        <button class="sf-day on">Sat</button>
+        <button class="sf-day on">Sun</button>
+      </div>
+    </div>
+    <div class="sf-section">
+      <div class="sf-title">Price per class</div>
+      <div class="sf-range">
+        <input type="range" min="0" max="100" value="60" id="priceRange" oninput="updatePrice(this.value)">
+        <div class="sf-range-row"><span>$0</span><span id="priceLabel">Up to $60</span></div>
+      </div>
+    </div>
+    <div class="sf-section">
+      <div class="sf-title">Distance</div>
+      <div class="sf-range">
+        <input type="range" min="1" max="30" value="10" id="distRange" oninput="updateDist(this.value)">
+        <div class="sf-range-row"><span>1 km</span><span id="distLabel">Within 10 km</span></div>
+      </div>
+    </div>
+    <div class="sf-section">
+      <div class="sf-title">Minimum rating</div>
+      <div class="sf-options">
+        <div class="sf-opt"><input type="checkbox" id="r49" checked><label for="r49">&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50; 4.9+</label><span class="sf-count">4</span></div>
+        <div class="sf-opt"><input type="checkbox" id="r47" checked><label for="r47">&#x2B50;&#x2B50;&#x2B50;&#x2B50; 4.7+</label><span class="sf-count">11</span></div>
+        <div class="sf-opt"><input type="checkbox" id="r44"><label for="r44">&#x2B50;&#x2B50;&#x2B50;&#x2B50; 4.4+</label><span class="sf-count">18</span></div>
+      </div>
+    </div>
+    <div class="sf-section">
+      <div class="sf-title">Class format</div>
+      <div class="sf-options">
+        <div class="sf-opt"><input type="checkbox" id="t-grp" checked><label for="t-grp">Group classes</label><span class="sf-count">26</span></div>
+        <div class="sf-opt"><input type="checkbox" id="t-ind" checked><label for="t-ind">Individual lessons</label><span class="sf-count">9</span></div>
+        <div class="sf-opt"><input type="checkbox" id="t-hol"><label for="t-hol">Holiday programs</label><span class="sf-count">7</span></div>
+        <div class="sf-opt"><input type="checkbox" id="t-cmp"><label for="t-cmp">Camps</label><span class="sf-count">5</span></div>
+      </div>
+    </div>
+    <button class="sf-clear">Clear all filters</button>
+  </aside>
+
+  <!-- RESULTS -->
+  <main class="results">
+
+    <div class="active-query" id="activeQueryChip">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <span id="activeQueryText">dance classes, ages 3&ndash;6, near Bondi</span>
+      <button onclick="clearSearch()" aria-label="Clear">
+        <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+      </button>
+    </div>
+
+    <div class="results-header">
+      <p class="results-count"><strong>47 activities</strong> found near Bondi &middot; ages 3&ndash;6</p>
+      <div class="sort-row">
+        <span class="sort-label">Sort by</span>
+        <select class="sort-select">
+          <option>Relevance</option><option>Highest rated</option>
+          <option>Price: low to high</option><option>Price: high to low</option>
+          <option>Distance</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Featured banner -->
+    <div class="feat-banner">
+      <div class="feat-banner-left">
+        <div class="feat-banner-tag">&#x2736; Featured provider</div>
+        <div class="feat-banner-h">Steps Dance Academy<br>Bondi Junction</div>
+        <div class="feat-banner-sub">Ballet, Jazz &amp; Hip-Hop for ages 2&ndash;14 &middot; 6 classes this term</div>
+        <button class="feat-banner-btn">View all classes &#x2192;</button>
+      </div>
+      <div class="feat-banner-right">
+        <img src="https://images.unsplash.com/photo-1545224144-b38cd309ef69?w=600&h=310&fit=crop&auto=format" alt="Children dance class" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+      </div>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="cards-grid" id="cardsGrid">
+
+      <div class="activity-card" data-cat="dance">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=480&h=300&fit=crop&auto=format" alt="Kids ballet" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-dance">Dance</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Little Ballerinas</div>
+          <div class="card-provider">Steps Dance Academy</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bondi Jcn &middot; 0.8km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tue &amp; Thu &middot; 9am</span>
+            <span class="card-meta">Ages 3&ndash;6</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.9 <span class="card-reviews">(84 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$250<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/term</span></div><span class="card-price-note">or $28/casual</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="dance">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=480&h=300&fit=crop&auto=format" alt="Kids dance class" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-dance">Dance</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Tiny Twirlers</div>
+          <div class="card-provider">Bondi Movement Studio</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Coogee &middot; 2.1km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Sat &middot; 10am</span>
+            <span class="card-meta">Ages 2&ndash;5</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.8 <span class="card-reviews">(61 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$28<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/class</span></div><span class="card-price-note">No term commitment</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="sport">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?w=480&h=300&fit=crop&auto=format" alt="Kids soccer" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-sport">Sport</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Goals Soccer Academy</div>
+          <div class="card-provider">Eastside Sports Club</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Centennial Pk &middot; 3.2km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Sat &middot; 8am</span>
+            <span class="card-meta">Ages 4&ndash;8</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.7 <span class="card-reviews">(112 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$180<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/term</span></div><span class="card-price-note">10-week term</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="stem">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1610465299993-e6675c9f9efa?w=480&h=300&fit=crop&auto=format" alt="Kids coding" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-stem">STEM</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Code Explorers</div>
+          <div class="card-provider">Brainwave Learning</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Surry Hills &middot; 4.5km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Mon &middot; 4pm</span>
+            <span class="card-meta">Ages 6&ndash;12</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.9 <span class="card-reviews">(47 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$45<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/class</span></div><span class="card-price-note">or $380/10-wk term</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="swim">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1560090294-f5c4e1a81c77?w=480&h=300&fit=crop&auto=format" alt="Kids swimming" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-swim">Swimming</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Splash Academy</div>
+          <div class="card-provider">Lane Cove Aquatic Centre</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lane Cove &middot; 6.8km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Wed &amp; Fri &middot; 9am</span>
+            <span class="card-meta">Ages 4&ndash;10</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.6 <span class="card-reviews">(203 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$320<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/term</span></div><span class="card-price-note">8-wk term &middot; 2x/week</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="music">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=480&h=300&fit=crop&auto=format" alt="Kids music lesson" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-music">Music</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Rock &amp; Strum Juniors</div>
+          <div class="card-provider">Newtown Music School</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Newtown &middot; 5.2km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Thu &middot; 4:30pm</span>
+            <span class="card-meta">Ages 6&ndash;14</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.9 <span class="card-reviews">(38 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$50<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/class</span></div><span class="card-price-note">30-min individual lesson</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="arts">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1551966775-a4ddc8df052b?w=480&h=300&fit=crop&auto=format" alt="Children arts and crafts" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-arts">Arts &amp; Crafts</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Young Artists Studio</div>
+          <div class="card-provider">Glebe Community Arts</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Glebe &middot; 4.1km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Sat &middot; 11am</span>
+            <span class="card-meta">Ages 5&ndash;12</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.8 <span class="card-reviews">(56 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$40<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/class</span></div><span class="card-price-note">All materials included</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="gym">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1566351422894-ac3e2d4d36f1?w=480&h=300&fit=crop&auto=format" alt="Kids gymnastics" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-gym">Gymnastics</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Mini Movers Gym</div>
+          <div class="card-provider">Alexandria Gymnastics</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Alexandria &middot; 3.8km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Tue &middot; 5pm</span>
+            <span class="card-meta">Ages 3&ndash;7</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.7 <span class="card-reviews">(91 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$220<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/term</span></div><span class="card-price-note">8-week term</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+      <div class="activity-card" data-cat="sport">
+        <div class="card-img-wrap">
+          <img class="card-img" src="https://images.unsplash.com/photo-1555597673-b21d5c935865?w=480&h=300&fit=crop&auto=format" alt="Kids karate" onerror="this.onerror=null;this.parentNode.style.background='linear-gradient(135deg,#EEF2FF,#DDE3F5)';this.style.display='none'">
+          <span class="card-badge badge-sport">Martial Arts</span>
+          <button class="card-fav" onclick="toggleFav(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+        </div>
+        <div class="card-body">
+          <div class="card-title">Tiger Dojo Karate</div>
+          <div class="card-provider">Eastern Suburbs Martial Arts</div>
+          <div class="card-meta-row">
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Randwick &middot; 2.6km</span>
+            <span class="card-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Wed &amp; Fri &middot; 4:30pm</span>
+            <span class="card-meta">Ages 5&ndash;12</span>
+          </div>
+          <div class="card-rating"><span class="card-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span> 4.8 <span class="card-reviews">(74 reviews)</span></div>
+        </div>
+        <div class="card-footer">
+          <div><div class="card-price">$195<span style="font-size:.68rem;font-weight:500;color:var(--txt-muted)">/term</span></div><span class="card-price-note">Uniform included</span></div>
+          <a href="#" class="card-cta">View &amp; Book</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="load-more-btn">Show more activities <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function setSearch(q) {
+    document.getElementById('mainSearch').value = q;
+    document.getElementById('activeQueryText').textContent = q;
+    document.getElementById('activeQueryChip').style.display = 'inline-flex';
+  }
+  function clearSearch() {
+    document.getElementById('mainSearch').value = '';
+    document.getElementById('activeQueryChip').style.display = 'none';
+  }
+  function applySearch() {
+    const q = document.getElementById('mainSearch').value.trim();
+    if (q) { document.getElementById('activeQueryText').textContent = q; document.getElementById('activeQueryChip').style.display = 'inline-flex'; }
+  }
+  const params = new URLSearchParams(window.location.search);
+  const qp = params.get('q');
+  if (qp) { document.getElementById('mainSearch').value = qp; document.getElementById('activeQueryText').textContent = qp; }
+  document.querySelectorAll('.sf-age-btn').forEach(b => b.addEventListener('click', function(){ this.classList.toggle('on'); }));
+  document.querySelectorAll('.sf-day').forEach(b => b.addEventListener('click', function(){ this.classList.toggle('on'); }));
+  function updatePrice(v){ document.getElementById('priceLabel').textContent = 'Up to $' + v; }
+  function updateDist(v){ document.getElementById('distLabel').textContent = 'Within ' + v + ' km'; }
+  function toggleFav(btn){ btn.classList.toggle('liked'); }
+  document.getElementById('mainSearch').addEventListener('keydown', e => { if(e.key === 'Enter') applySearch(); });
+
+  /* ── Under Construction Popup ─────────────────── */
+  function showUC() {
+    document.getElementById('uc-overlay').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeUC() {
+    document.getElementById('uc-overlay').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('#uc-overlay')) return;        // inside modal = fine
+    if (e.target.closest('nav')) return;                // nav links = fine
+    const hit = e.target.closest('button, a, .activity-card, .feat-banner, select, .sf-age-btn, .sf-day, .filter-tag');
+    if (hit) { e.preventDefault(); e.stopImmediatePropagation(); showUC(); }
+  }, true);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeUC(); });
+</script>
+
+<!-- ── Under Construction Popup ── -->
+<div id="uc-overlay" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,0.72);backdrop-filter:blur(6px);z-index:9999;align-items:center;justify-content:center;padding:20px;" role="dialog" aria-modal="true" aria-labelledby="uc-title">
+  <div style="background:#fff;border-radius:22px;max-width:420px;width:100%;padding:40px 36px 32px;position:relative;box-shadow:0 32px 80px rgba(15,23,42,0.35);text-align:center;">
+    <button onclick="closeUC()" aria-label="Close" style="position:absolute;top:14px;right:16px;background:none;border:none;cursor:pointer;font-size:1.1rem;color:#94A3B8;line-height:1;padding:4px 8px;">✕</button>
+    <div style="font-size:2.8rem;margin-bottom:14px;">🔨</div>
+    <h3 id="uc-title" style="font-family:Outfit,sans-serif;font-size:1.3rem;font-weight:800;color:#0F172A;margin:0 0 10px;">Oops — you found a work in progress!</h3>
+    <p style="font-family:Inter,sans-serif;font-size:0.88rem;color:#334155;line-height:1.65;margin:0 0 26px;">Our builders are caffeinated, our code is clean (mostly), and this feature is almost ready. Be first through the doors when we launch.</p>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:#4338CA;color:#fff;text-decoration:none;border-radius:50px;padding:13px 30px;font-family:Inter,sans-serif;font-weight:700;font-size:0.95rem;transition:background .15s;" onmouseover="this.style.background='#3730A3'" onmouseout="this.style.background='#4338CA'">Join the Waitlist →</a>
+    <p style="font-family:Inter,sans-serif;font-size:0.73rem;color:#94A3B8;margin:14px 0 0;">Free &middot; No spam &middot; Spring 2026</p>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER (matching landing page) -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <span style="display:inline-flex;align-items:baseline;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;line-height:1;color:white;letter-spacing:-0.025em;white-space:nowrap;">
+        k<span style="position:relative;display:inline-block;line-height:inherit;">&#305;<svg style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(130%);width:0.32em;height:0.28em;overflow:visible;" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg style="display:inline-block;height:0.76em;width:0.76em;flex-shrink:0;vertical-align:baseline;position:relative;top:0.07em;" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="rgba(255,255,255,0.15)"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="rgba(30,27,75,.9)"/></svg>r
+      </span>
+      <p class="foot-tagline">Helping Australian families discover their child's potential — one activity at a time.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/kidsplor" id="fb-link" aria-label="Facebook (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.1c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kidsplor" id="ig-link" aria-label="Instagram (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm8 3.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-links">
+      <div class="foot-col">
+        <div class="foot-col-lbl">Platform</div>
+        <a href="index.html">For Parents</a>
+        <a href="kidsplor-parents-faq.html">Parents FAQ</a>
+        <a href="kidsplor-for-business.html">For Providers</a>
+        <a href="kidsplor-pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Community</div>
+        <a href="kidsplor-parent-stories.html">Parent Stories</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Legal</div>
+        <a href="kidsplor-privacy.html">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Kidsplor Pty Ltd &nbsp;·&nbsp; Australia</span>
+    <span>Built with care for Australian families</span>
+  </div>
+</footer>
+</body>
+</html>

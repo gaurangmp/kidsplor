@@ -1,0 +1,533 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Kidsplor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ── Analytics ── -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","CLARITY_PROJECT_ID");</script>
+  <!-- ── Open Graph ── -->
+  <meta name="description" content="We're a Melbourne team on a mission to make kids' activity discovery effortless for every Australian family.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kidsplor">
+  <meta property="og:title" content="About Us — Kidsplor">
+  <meta property="og:description" content="We're a Melbourne team on a mission to make kids' activity discovery effortless for every Australian family.">
+  <meta property="og:image" content="https://kidsplor.com.au/og-image.png">
+  <meta property="og:url" content="https://kidsplor.com.au/about">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Us — Kidsplor">
+  <meta name="twitter:description" content="We're a Melbourne team on a mission to make kids' activity discovery effortless for every Australian family.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F6F7FF;
+      --surface:     #FFFFFF;
+      --surface-2:   #EEF0FE;
+      --brand:       #4338CA;
+      --brand-dk:    #3730A3;
+      --brand-xdk:   #1E1B4B;
+      --brand-lt:    #EEF2FF;
+      --brand-mid:   #818CF8;
+      --orange:      #F97316;
+      --coral:       #EF4444;
+      --txt:         #0F172A;
+      --txt-sub:     #334155;
+      --txt-muted:   #64748B;
+      --border:      #DDE3F5;
+      --shadow:      rgba(30,27,75,0.07);
+      --shadow-lg:   rgba(30,27,75,0.18);
+      --green:       #059669;
+      --green-bg:    #ECFDF5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,247,255,0.93);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 68px; display: flex; align-items: center; padding: 0 52px; gap: 20px;
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.82rem; font-weight: 600; color: var(--txt-muted);
+      text-decoration: none; padding: 6px 12px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s; flex-shrink: 0;
+    }
+    .back-link:hover { color: var(--brand); background: var(--brand-lt); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .wm {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1;
+      display: inline-flex; align-items: baseline; white-space: nowrap;
+      font-size: 1.5rem; color: var(--brand-xdk);
+    }
+    .wm svg.compass {
+      display: inline-block; height: 0.76em; width: 0.76em; flex-shrink: 0;
+      vertical-align: baseline; position: relative; top: 0.07em;
+    }
+    .wm .ih { display: inline-block; position: relative; line-height: inherit; }
+    .wm .ih svg.heart {
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%) translateY(130%);
+      width: 0.32em; height: 0.28em; overflow: visible; display: block;
+    }
+    .nav-links { display:flex; gap:2px; list-style:none; margin-left:24px; }
+    .nav-links a { font-size:0.875rem; font-weight:500; color:var(--txt-sub); text-decoration:none; padding:6px 13px; border-radius:8px; transition:color 0.15s,background 0.15s; }
+    .nav-links a:hover { color:var(--brand); background:var(--brand-lt); }
+    .nav-links a.active { color:var(--brand); font-weight:600; }
+    .nav-spacer { flex: 1; }
+    .nav-cta {
+      display: inline-flex; align-items: center;
+      padding: 10px 24px; border-radius: 50px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem;
+      background: var(--brand); color: #fff; text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.15s;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+    .nav-cta:hover { background: var(--brand-dk); transform: translateY(-1px); box-shadow: 0 8px 24px var(--shadow-lg); }
+
+    /* ── PAGE HERO ── */
+    .about-hero {
+      padding: 88px 52px 72px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(99,102,241,0.1) 0%, transparent 70%);
+    }
+    .hero-eyebrow {
+      display: inline-block; background: var(--brand-lt);
+      color: var(--brand); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 50px; margin-bottom: 22px;
+      border: 1px solid rgba(67,56,202,0.15);
+    }
+    .about-hero h1 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.08; letter-spacing: -0.04em;
+      color: var(--brand-xdk); max-width: 700px; margin: 0 auto 22px;
+    }
+    .about-hero h1 em { font-style: normal; color: var(--brand); }
+    .about-hero p {
+      font-size: 1.1rem; color: var(--txt-sub); max-width: 580px;
+      margin: 0 auto; line-height: 1.7;
+    }
+
+    /* ── STORY BAND ── */
+    .story-band {
+      background: var(--brand-xdk);
+      padding: 72px 52px;
+      position: relative; overflow: hidden;
+    }
+    .story-band::before {
+      content: '';
+      position: absolute; right: -80px; top: -80px; width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .story-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; gap: 52px;
+      position: relative; z-index: 1;
+    }
+    .story-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--brand-mid); margin-bottom: 20px;
+    }
+    .story-inner blockquote {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem); line-height: 1.45; letter-spacing: -0.02em;
+      color: #fff; margin-bottom: 28px;
+    }
+    .story-inner blockquote strong { color: var(--brand-mid); font-weight: 900; }
+    .story-body {
+      font-size: 0.97rem; color: rgba(255,255,255,0.55); line-height: 1.75;
+    }
+    .story-compass {
+      flex-shrink: 0;
+      filter: drop-shadow(0 0 22px rgba(129,140,248,0.55));
+      opacity: 0.88;
+    }
+    .story-content { flex: 1; }
+
+    /* ── TEAM GRID ── */
+    .team-section {
+      padding: 96px 52px 72px;
+    }
+    .team-intro {
+      text-align: center; margin-bottom: 64px;
+    }
+    .team-intro h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em;
+      color: var(--brand-xdk); margin-bottom: 12px;
+    }
+    .team-intro p { font-size: 0.97rem; color: var(--txt-muted); }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      max-width: 1120px; margin: 0 auto;
+    }
+
+    .founder-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 32px 36px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .founder-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      border-radius: 24px 24px 0 0;
+    }
+    .founder-card:nth-child(1)::before { background: linear-gradient(90deg, #4338CA, #818CF8); }
+    .founder-card:nth-child(2)::before { background: linear-gradient(90deg, #EC4899, #F97316); }
+    .founder-card:nth-child(3)::before { background: linear-gradient(90deg, #059669, #06B6D4); }
+    .founder-card:nth-child(4)::before { background: linear-gradient(90deg, #F59E0B, #F97316); }
+
+    .founder-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px var(--shadow-lg); }
+
+    .avatar-wrap {
+      width: 120px; height: 120px; border-radius: 50%;
+      overflow: hidden; margin-bottom: 22px; flex-shrink: 0;
+      border: 3px solid var(--border);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+    .avatar-wrap img,
+    .avatar-wrap svg {
+      width: 100%; height: 100%; display: block; object-fit: cover;
+    }
+
+    .founder-role {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 50px; margin-bottom: 10px;
+    }
+    .founder-card:nth-child(1) .founder-role { background: var(--brand-lt); color: var(--brand); }
+    .founder-card:nth-child(2) .founder-role { background: #FCE7F3; color: #BE185D; }
+    .founder-card:nth-child(3) .founder-role { background: #D1FAE5; color: #065F46; }
+    .founder-card:nth-child(4) .founder-role { background: #FEF3C7; color: #92400E; }
+
+    .founder-name {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 1.5rem; letter-spacing: -0.03em; color: var(--brand-xdk);
+      margin-bottom: 16px;
+    }
+    .founder-blurb {
+      font-size: 0.88rem; color: var(--txt-sub); line-height: 1.75; flex: 1;
+      margin-bottom: 22px;
+    }
+    .founder-blurb em { font-style: normal; color: var(--txt); font-weight: 600; }
+
+    .founder-quirks {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 7px;
+      margin-top: auto;
+    }
+    .quirk-tag {
+      font-size: 0.72rem; font-weight: 600;
+      background: var(--bg); border: 1px solid var(--border);
+      color: var(--txt-muted); padding: 4px 11px; border-radius: 50px;
+    }
+
+    /* ── VALUES STRIP ── */
+    .values-strip {
+      background: var(--brand-lt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 52px;
+    }
+    .values-inner {
+      max-width: 1000px; margin: 0 auto;
+    }
+    .values-inner h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 1.6rem; letter-spacing: -0.03em; color: var(--brand-xdk);
+      text-align: center; margin-bottom: 40px;
+    }
+    .values-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;
+    }
+    .value-item { text-align: center; }
+    .value-icon {
+      font-size: 2rem; margin-bottom: 10px; display: block;
+    }
+    .value-item h3 {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 0.98rem;
+      color: var(--brand-xdk); margin-bottom: 6px;
+    }
+    .value-item p { font-size: 0.82rem; color: var(--txt-muted); line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--brand-xdk); padding: 52px 52px 32px; }
+    .foot-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .foot-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.42); max-width: 240px; line-height: 1.55; margin-top: 10px; }
+    .foot-links { display: flex; gap: 52px; }
+    .foot-col-lbl { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+    .foot-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.48); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+    .foot-col a:hover { color: white; }
+    .foot-bottom { padding-top: 24px; font-size: 0.75rem; color: rgba(255,255,255,0.28); display: flex; justify-content: space-between; align-items: center; }
+    .socials { display:flex; gap:10px; margin-top:12px; }
+    .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
+    .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+    .socials a:hover svg { transform:translateY(-2px); opacity:1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .about-hero, .story-band, .team-section, .values-strip { padding-left: 20px; padding-right: 20px; }
+      footer { padding: 40px 20px 32px; }
+      .foot-top { flex-direction: column; gap: 28px; }
+      .foot-links { flex-wrap: wrap; gap: 24px; }
+      .team-grid { grid-template-columns: 1fr; }
+      .story-compass { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="Kidsplor home">
+    <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="kidsplor-discover.html">Discover</a></li>
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="kidsplor-about.html" class="active">About Us</a></li>
+  </ul>
+  <div class="nav-spacer"></div>
+  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+</nav>
+
+
+<!-- ── PAGE HERO ── -->
+<section class="about-hero">
+  <div class="hero-eyebrow">Our Story</div>
+  <h1>Four parents-at-heart<br>on a <em>mission</em></h1>
+  <p>We're not a faceless startup. We're four people who got frustrated with the same problem every Australian parent knows too well — and decided to actually fix it.</p>
+</section>
+
+
+<!-- ── STORY BAND ── -->
+<section class="story-band" aria-label="Our mission">
+  <div class="story-inner">
+
+    <!-- Compass decoration -->
+    <div class="story-compass" aria-hidden="true">
+      <svg viewBox="0 0 100 100" width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+        <!-- outer ring -->
+        <circle cx="50" cy="50" r="46" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+        <!-- inner ring -->
+        <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+        <!-- cardinal ticks -->
+        <line x1="50" y1="4" x2="50" y2="14" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="96" y1="50" x2="86" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="50" y1="96" x2="50" y2="86" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="4" y1="50" x2="14" y2="50" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- N label -->
+        <text x="50" y="29" fill="white" font-size="7" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle" opacity="0.8">N</text>
+        <!-- N &amp; W arrows (white, solid) -->
+        <polygon points="50,16 45,53 55,53" fill="white"/>
+        <polygon points="16,50 53,45 53,55" fill="white"/>
+        <!-- S &amp; E arrows (white, 28% opacity) -->
+        <polygon points="50,84 45,47 55,47" fill="white" opacity="0.28"/>
+        <polygon points="84,50 47,45 47,55" fill="white" opacity="0.28"/>
+        <!-- center -->
+        <circle cx="50" cy="50" r="7" fill="#1E1B4B"/>
+        <circle cx="50" cy="50" r="3" fill="rgba(255,255,255,0.65)"/>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="story-content">
+      <div class="story-label">Why we built Kidsplor</div>
+      <blockquote>
+        "There are thousands of brilliant activity providers across Australia. Parents have <strong>no good way</strong> to find them."
+      </blockquote>
+      <p class="story-body">
+        Swim schools buried on page four of Google. Dance studios discoverable only by someone's mum on Facebook. Coding camps that fill up before the word even spreads. We kept hearing the same story from parents everywhere: too many tabs open, too many WhatsApp threads, and still ending up with the same three results.
+        Meanwhile, kids deserve to explore the things they love &mdash; beyond whatever the algorithm decides to show that day. Kidsplor exists to change that. A calendar that runs itself. Activities that find you. A family life that actually feels manageable.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── TEAM GRID ── -->
+<section class="team-section" aria-labelledby="team-h">
+  <div class="team-intro">
+    <h2 id="team-h">The founding team</h2>
+    <p>Collectively over-caffeinated, occasionally over-opinionated, and 100% committed to making your Tuesdays less chaotic.</p>
+  </div>
+
+  <div class="team-grid">
+
+    <!-- Gaurang -->
+    <article class="founder-card">
+      <div class="avatar-wrap"><img src="assets/gaurang.png" alt="Gaurang" onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback')?.style.display='flex';"><div class="avatar-fallback" style="display:none;align-items:center;justify-content:center;font-size:2rem;">👨‍💻</div></div>
+      <span class="founder-role">Co-founder &amp; Product</span>
+      <h3 class="founder-name">Gaurang</h3>
+      <p class="founder-blurb">
+        On a lifelong quest to find Melbourne's best burger — <em>47 suburbs down, a few still to go.</em> Gaurang brings that same obsessive attention to detail to product design. He's eaten his way through countless city neighbourhoods and cooked through every continent, which means he understands discovery better than most. Building Kidsplor because he believes every family deserves a find-of-the-week as good as his best burger spot.
+      </p>
+      <div class="founder-quirks">
+        <span class="quirk-tag">🍔 Burger hunter</span>
+        <span class="quirk-tag">✈️ Avid traveller</span>
+        <span class="quirk-tag">🍳 Home chef</span>
+      </div>
+    </article>
+
+    <!-- Varsha -->
+    <article class="founder-card">
+      <div class="avatar-wrap"><img src="assets/varsha.png" alt="Varsha" onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback')?.style.display='flex';"><div class="avatar-fallback" style="display:none;align-items:center;justify-content:center;font-size:2rem;">👩‍👧‍👦</div></div>
+      <span class="founder-role">Co-founder &amp; Operations</span>
+      <h3 class="founder-name">Varsha</h3>
+      <p class="founder-blurb">
+        The person who keeps us all from scheduling three things at once — and doing it with a smile that could disarm a boardroom. Mum of two, operator extraordinaire, and the one who built Kidsplor because she <em>desperately needed it herself.</em> Varsha knows that a parent's time is the scarcest resource in the universe, and she's on a mission to give a little bit of it back — starting with her own Tuesday afternoons.
+      </p>
+      <div class="founder-quirks">
+        <span class="quirk-tag">👩‍👧‍👦 Mum of two</span>
+        <span class="quirk-tag">📋 Master organiser</span>
+        <span class="quirk-tag">☕ Powered by coffee</span>
+      </div>
+    </article>
+
+    <!-- Amitoj -->
+    <article class="founder-card">
+      <div class="avatar-wrap"><img src="assets/amitoj.png" alt="Amitoj" onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback')?.style.display='flex';"><div class="avatar-fallback" style="display:none;align-items:center;justify-content:center;font-size:2rem;">🍛</div></div>
+      <span class="founder-role">Co-founder &amp; Growth</span>
+      <h3 class="founder-name">Amitoj</h3>
+        <p class="founder-blurb">
+          Amitoj is an entrepreneur who noticed the same gap every time he tried to help friends and family find local kids’ activities: great providers exist, but discovery is a mess. As a father who loves cooking for the team and connecting founders to partners across India and Australia, he turned that frustration into action. At Kidsplor Amitoj drives growth and partnerships — turning curiosity, capital and cross‑border experience into products that help families find the right classes faster.
+        </p>
+      <div class="founder-quirks">
+        <span class="quirk-tag">📈 Active investor</span>
+        <span class="quirk-tag">🌏 India &amp; AU</span>
+        <span class="quirk-tag">🍛 Foodie</span>
+      </div>
+    </article>
+
+    <!-- Vasav -->
+    <article class="founder-card">
+      <div class="avatar-wrap"><img src="assets/vasav.png" alt="Vasav" onerror="this.style.display='none'; this.parentElement.querySelector('.avatar-fallback')?.style.display='flex';"><div class="avatar-fallback" style="display:none;align-items:center;justify-content:center;font-size:2rem;">📊</div></div>
+      <span class="founder-role">Strategy &amp; GTM</span>
+      <h3 class="founder-name">Vasav</h3>
+        <p class="founder-blurb">
+          For Vasav, father to two daughters, juggling multiple kids’ activities taught him how family logistics quietly eat time — and inspired a practical mission: reduce the admin so families get more of the stuff that matters. At Kidsplor he leads strategy and GTM, focusing on reliable, fast booking flows and partnerships that bring quality local activities to more suburbs. He obsessively simplifies complexity so parents can spend less time planning and more time with their kids.
+        </p>
+      <div class="founder-quirks">
+        <span class="quirk-tag">🏦 Finance &amp; tech</span>
+        <span class="quirk-tag">🗺️ World explorer</span>
+        <span class="quirk-tag">📊 Strategy nerd</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- ── VALUES STRIP ── -->
+<section class="values-strip" aria-labelledby="values-h">
+  <div class="values-inner">
+    <h2 id="values-h">What we actually believe</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <span class="value-icon">🗓️</span>
+        <h3>Parents deserve their time back</h3>
+        <p>Coordinating kids' activities shouldn't feel like a second job. We think five minutes should be enough.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">🔍</span>
+        <h3>Discovery shouldn't stop at Google</h3>
+        <p>The best swim school, drama class or coding camp in your suburb probably isn't on page one. We're changing that.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">🌱</span>
+        <h3>Kids grow through exploration</h3>
+        <p>The things children try and love shape who they become. That's worth making easy.</p>
+      </div>
+      <div class="value-item">
+        <span class="value-icon">🤝</span>
+        <h3>Providers deserve better tools</h3>
+        <p>Activity businesses run on passion, not admin. We're here to take the admin off their plate too.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── FOOTER (matching landing page) ── -->
+<footer id="about">
+  <div class="foot-top">
+    <div>
+      <!-- compass-o wordmark in white on dark -->
+      <span style="display:inline-flex;align-items:baseline;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;line-height:1;color:white;letter-spacing:-0.025em;white-space:nowrap;">
+        k<span style="position:relative;display:inline-block;line-height:inherit;">&#305;<svg style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(130%);width:0.32em;height:0.28em;overflow:visible;" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg style="display:inline-block;height:0.76em;width:0.76em;flex-shrink:0;vertical-align:baseline;position:relative;top:0.07em;" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="rgba(255,255,255,0.15)"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="rgba(30,27,75,.9)"/></svg>r
+      </span>
+      <p class="foot-tagline">Helping Australian families discover their child's potential — one activity at a time.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/kidsplor" id="fb-link" aria-label="Facebook (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.1c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kidsplor" id="ig-link" aria-label="Instagram (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm8 3.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-links">
+      <div class="foot-col">
+        <div class="foot-col-lbl">Platform</div>
+        <a href="index.html">For Parents</a>
+        <a href="kidsplor-parents-faq.html">Parents FAQ</a>
+        <a href="kidsplor-for-business.html">For Providers</a>
+        <a href="kidsplor-pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col" id="community">
+        <div class="foot-col-lbl">Community</div>
+        <a href="kidsplor-parent-stories.html">Parent Stories</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Legal</div>
+        <a href="kidsplor-privacy.html">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Kidsplor Pty Ltd &nbsp;·&nbsp; Australia</span>
+    <span>Built with care for Australian families</span>
+  </div>
+</footer>
+</body>
+</html>

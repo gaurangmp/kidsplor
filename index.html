@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kidsplor — Discover Your Child's Potential</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ── Analytics: replace the two placeholder IDs before going live ──────────────────── -->
+  <!-- GA4 → analytics.google.com : Admin > Data Streams > copy Measurement ID (G-XXXXXXXXXX) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+  <!-- Clarity → clarity.microsoft.com : New Project > copy Project ID (free heatmaps + session recordings) -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","CLARITY_PROJECT_ID");</script>
+  <!-- ── Open Graph / Social sharing ── upload og-image.png to your domain root to complete this ── -->
+  <meta name="description" content="Find, book and manage your child's activities across Australia. 400+ parents already on the waitlist. Free for families, always.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Kidsplor">
+  <meta property="og:title" content="Kidsplor — Discover Your Child's Potential">
+  <meta property="og:description" content="Find, book and manage your child's activities across Australia. 400+ parents already on the waitlist. Free for families, always.">
+  <meta property="og:image" content="https://kidsplor.com.au/og-image.png">
+  <meta property="og:url" content="https://kidsplor.com.au">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kidsplor — Discover Your Child's Potential">
+  <meta name="twitter:description" content="Find, book and manage your child's activities across Australia. 400+ parents already on the waitlist.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      /* Backgrounds */
+      --bg:          #F6F7FF;
+      --surface:     #FFFFFF;
+      --surface-2:   #EEF0FE;
+
+      /* Brand – deep indigo/blue */
+      --brand:       #4338CA;
+      --brand-dk:    #3730A3;
+      --brand-xdk:   #1E1B4B;
+      --brand-lt:    #EEF2FF;
+      --brand-mid:   #818CF8;
+
+      /* Accent */
+      --orange:      #F97316;
+      --coral:       #EF4444;
+
+      /* Text – slate scale */
+      --txt:         #0F172A;
+      --txt-sub:     #334155;
+      --txt-muted:   #64748B;
+
+      /* UI chrome */
+      --border:      #DDE3F5;
+      --shadow:      rgba(30, 27, 75, 0.07);
+      --shadow-lg:   rgba(30, 27, 75, 0.18);
+
+      /* Semantic */
+      --green:       #059669;
+      --green-bg:    #ECFDF5;
+      --green-br:    #6EE7B7;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ───────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,247,255,0.93);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 68px; display: flex; align-items: center; padding: 0 52px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+
+    /* compass-o wordmark: Outfit 800 */
+    .wm {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1;
+      display: inline-flex; align-items: baseline; white-space: nowrap;
+      font-size: 1.5rem; color: var(--brand-xdk);
+    }
+    .wm svg.compass {
+      display: inline-block; height: 0.76em; width: 0.76em; flex-shrink: 0;
+      vertical-align: baseline; position: relative; top: 0.07em;
+    }
+    .wm .ih { display: inline-block; position: relative; line-height: inherit; }
+    .wm .ih svg.heart {
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%) translateY(130%);
+      width: 0.32em; height: 0.28em; overflow: visible; display: block;
+    }
+
+    .nav-links { display: flex; gap: 2px; align-items: center; margin-left: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--txt-sub);
+      text-decoration: none; padding: 7px 14px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover { color: var(--brand); background: var(--brand-lt); }
+    .nav-spacer { flex: 1; }
+    .nav-cta {
+      display: inline-flex; align-items: center;
+      padding: 10px 24px; border-radius: 50px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem;
+      background: var(--brand); color: #fff; text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.15s;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+    .nav-cta:hover { background: var(--brand-dk); transform: translateY(-1px); box-shadow: 0 8px 24px var(--shadow-lg); }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      min-height: calc(100vh - 68px);
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding: 0 52px;
+      background: linear-gradient(140deg, #EBEBFF 0%, #F6F7FF 50%, #EEF0FF 100%);
+      position: relative; overflow: hidden; align-items: center;
+      max-height: 820px;
+    }
+    .glow { position: absolute; pointer-events: none; border-radius: 50%; }
+    .glow-1 { top: -120px; right: -120px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(129,140,248,0.28) 0%, transparent 70%); }
+    .glow-2 { bottom: -80px; left: -80px; width: 360px; height: 360px; background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%); }
+
+    /* ── FLOATING ACTIVITY ICONS ────────────────────────── */
+    .float-icons { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .fi {
+      position: absolute; bottom: -30px; left: var(--x, 50%);
+      font-size: var(--sz, 1.05rem); opacity: 0; user-select: none;
+      animation: floatUp var(--dur, 11s) var(--delay, 0s) infinite ease-in;
+      will-change: transform, opacity;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 0;    transform: translateY(0)      translateX(0)               rotate(0deg); }
+      8%   { opacity: 0.42; }
+      78%  { opacity: 0.28; }
+      100% { opacity: 0;    transform: translateY(-940px) translateX(var(--sway, 18px)) rotate(var(--rot, 18deg)); }
+    }
+
+    /* Left column */
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 48px 40px 48px 0; position: relative; z-index: 1;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); color: var(--brand);
+      font-size: 0.71rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 28px; width: fit-content;
+      border: 1px solid var(--border); box-shadow: 0 2px 8px var(--shadow);
+    }
+    .pulse-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity:1; transform:scale(1); box-shadow:0 0 0 0 rgba(249,115,22,0.4); }
+      50%       { opacity:.8; transform:scale(.8); box-shadow:0 0 0 6px rgba(249,115,22,0); }
+    }
+
+    .hero-h1 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.06; letter-spacing: -0.03em;
+      color: var(--brand-xdk); margin-bottom: 20px;
+    }
+    .hero-h1 .accent { color: var(--brand); display: block; }
+
+    .hero-sub {
+      font-size: 1.05rem; color: var(--txt-sub);
+      line-height: 1.72; max-width: 440px; margin-bottom: 36px;
+    }
+
+    .wl-inputs {
+      display: flex; align-items: center;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 18px; padding: 6px 6px 6px 14px;
+      box-shadow: 0 4px 20px var(--shadow); transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .wl-inputs:focus-within { border-color: var(--brand); box-shadow: 0 6px 28px rgba(67,56,202,0.18); }
+    .wl-inp {
+      flex: 1; border: none; outline: none; font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: var(--txt); background: transparent; padding: 8px 4px; min-width: 0;
+    }
+    .wl-inp::placeholder { color: var(--txt-muted); }
+    .wl-inp + .wl-inp { border-left: 1.5px solid var(--border); padding-left: 12px; }
+    .s-btn {
+      flex-shrink: 0; background: var(--brand); color: #fff; border: none;
+      border-radius: 12px; padding: 12px 22px;
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; white-space: nowrap; transition: background 0.15s, transform 0.12s;
+    }
+    .s-btn:hover { background: var(--brand-dk); transform: scale(1.02); }
+    .wl-note { font-size: 0.77rem; color: var(--txt-muted); margin: 10px 0 40px; padding-left: 2px; }
+    .wl-done {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--brand-lt); border: 1.5px solid rgba(67,56,202,0.2);
+      border-radius: 14px; padding: 14px 18px; max-width: 500px;
+      margin-bottom: 40px; font-size: 0.9rem; color: var(--brand-xdk); font-weight: 500;
+    }
+
+    .social-proof { display: flex; align-items: center; gap: 14px; }
+    .av-stack { display: flex; }
+    .av-stack .av {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 2.5px solid var(--surface); overflow: hidden; flex-shrink: 0; margin-left: -9px;
+    }
+    .av-stack .av:first-child { margin-left: 0; }
+    .av-stack .av img { width: 100%; height: 100%; object-fit: cover; }
+    .proof-txt { font-size: 0.83rem; color: var(--txt-sub); font-weight: 500; }
+    .proof-txt strong { color: var(--brand); font-weight: 700; }
+
+    /* Right column */
+    .hero-right {
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 32px 0 32px 36px; position: relative; z-index: 1;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       iPHONE APP MOCKUP
+    ════════════════════════════════════════════════════════════ */
+    .iphone-outer {
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+    }
+    .iphone-frame {
+      position: relative; width: 270px; height: 574px;
+      background: #1a1a1a;
+      border-radius: 50px;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.14),
+        0 0 0 5px rgba(0,0,0,0.55),
+        0 0 0 7px rgba(255,255,255,0.07),
+        0 44px 100px rgba(0,0,0,0.52),
+        0 16px 40px rgba(67,56,202,0.18);
+    }
+    .iphone-island {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      width: 90px; height: 28px; background: #0a0a0a; border-radius: 20px; z-index: 20;
+    }
+    .iphone-screen {
+      position: absolute; inset: 5px; border-radius: 45px;
+      background: var(--bg); overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    /* Status bar */
+    .iphone-status {
+      height: 50px; background: var(--bg);
+      display: flex; align-items: flex-end; padding: 0 20px 8px;
+      justify-content: space-between; flex-shrink: 0;
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--txt);
+    }
+    .iphone-status-icons { display: flex; gap: 5px; align-items: center; color: var(--txt); }
+    .battery-ico {
+      width: 22px; height: 11px; border-radius: 2.5px; border: 1.5px solid currentColor;
+      position: relative; display: flex; align-items: center; padding: 1.5px;
+    }
+    .battery-ico::after { content: ''; position: absolute; right: -4px; width: 2px; height: 5px; background: currentColor; border-radius: 0 1px 1px 0; }
+    .battery-fill { background: currentColor; height: 100%; width: 75%; border-radius: 1px; }
+    /* iPhone bottom nav */
+    .iphone-nav {
+      height: 60px; background: white; border-top: 1px solid #E2E8F0;
+      display: flex; align-items: center; justify-content: space-around; padding: 0 4px;
+      flex-shrink: 0;
+    }
+    .iphone-nav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      font-family: 'Inter', sans-serif; font-size: 0.53rem; font-weight: 600; color: #94A3B8;
+      cursor: pointer; min-width: 46px; transition: color 0.15s; user-select: none;
+    }
+    .iphone-nav-item.on { color: var(--brand); }
+    .iphone-nav-item svg { flex-shrink: 0; }
+    .nav-plus-btn {
+      width: 36px; height: 36px; background: var(--brand); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.3rem; font-weight: 400; line-height: 1;
+      margin-top: -12px; box-shadow: 0 4px 14px rgba(67,56,202,0.45);
+    }
+    .iphone-home-bar {
+      height: 22px; background: white;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .iphone-home-bar::after {
+      content: ''; width: 110px; height: 4px; background: #1a1a1a; border-radius: 3px; opacity: 0.18;
+    }
+    .iphone-progress { width: 200px; }
+
+    /* Slide container — fills phone screen height */
+    .ld-body {
+      background: var(--bg); flex: 1;
+      position: relative; overflow: hidden;
+    }
+
+    /* ── iPhone screen content overrides: tighter sizing for ~240px viewport ── */
+    .iphone-screen .ld-slide     { padding: 8px 10px 6px; gap: 6px; }
+    .iphone-screen .slide-lbl    { font-size: 0.57rem; }
+    /* Search slide */
+    .iphone-screen .ld-bar-search       { padding: 6px 9px; border-radius: 9px; gap: 6px; }
+    .iphone-screen .ld-bar-search .typed{ font-size: 0.7rem; }
+    .iphone-screen .chip-row            { gap: 4px; }
+    .iphone-screen .chip                { font-size: 0.58rem; padding: 3px 8px; }
+    .iphone-screen .found-txt           { font-size: 0.6rem; }
+    .iphone-screen .res-card            { padding: 6px 8px; gap: 7px; border-radius: 10px; }
+    .iphone-screen .res-img             { width: 36px; height: 36px; border-radius: 7px; }
+    .iphone-screen .res-name            { font-size: 0.69rem; }
+    .iphone-screen .res-meta            { font-size: 0.59rem; }
+    .iphone-screen .res-price           { font-size: 0.62rem; }
+    .iphone-screen .res-book            { padding: 4px 9px; font-size: 0.62rem; border-radius: 7px; }
+    /* Booking slide */
+    .iphone-screen .big-img             { height: 70px; }
+    .iphone-screen .big-body            { padding: 7px 10px 8px; }
+    .iphone-screen .big-title           { font-size: 0.75rem; }
+    .iphone-screen .big-price           { font-size: 0.7rem; margin: 2px 0; }
+    .iphone-screen .big-meta            { font-size: 0.59rem; }
+    .iphone-screen .enrol-btn           { height: 34px; font-size: 0.76rem; border-radius: 9px; }
+    .iphone-screen .c-rows              { gap: 5px; }
+    .iphone-screen .c-row               { font-size: 0.63rem; padding: 5px 8px; border-radius: 8px; gap: 6px; }
+    /* Dashboard slide */
+    .iphone-screen .dash-hi             { font-size: 0.78rem; }
+    .iphone-screen .dash-sub            { font-size: 0.58rem; }
+    .iphone-screen .dash-avatar         { width: 28px; height: 28px; }
+    .iphone-screen .act-rows            { gap: 4px; }
+    .iphone-screen .act-row             { padding: 5px 7px; gap: 5px; border-radius: 9px; }
+    .iphone-screen .act-day             { font-size: 0.54rem; width: 20px; }
+    .iphone-screen .act-dot             { width: 6px; height: 6px; }
+    .iphone-screen .act-name            { font-size: 0.67rem; }
+    .iphone-screen .act-time            { font-size: 0.57rem; }
+    .iphone-screen .kid-tag             { font-size: 0.54rem; padding: 1px 6px; }
+    .iphone-screen .spend-box           { padding: 6px 9px; border-radius: 9px; gap: 9px; }
+    .iphone-screen .spend-val           { font-size: 0.74rem; }
+    .iphone-screen .spend-sub           { font-size: 0.6rem; }
+    .iphone-screen .spend-lbl           { font-size: 0.57rem; }
+    /* Notification slide */
+    .iphone-screen .notif-card          { padding: 14px 12px; border-radius: 14px; gap: 7px; }
+    .iphone-screen .notif-icon          { width: 38px; height: 38px; font-size: 1rem; }
+    .iphone-screen .notif-h             { font-size: 0.86rem; }
+    .iphone-screen .notif-p             { font-size: 0.65rem; line-height: 1.45; }
+    .iphone-screen .notif-perks li      { font-size: 0.63rem; padding: 4px 8px; gap: 5px; border-radius: 7px; }
+    .iphone-screen .notif-btn           { padding: 8px 18px; font-size: 0.76rem; border-radius: 9px; }
+
+    .ld-slide {
+      position: absolute; inset: 0;
+      opacity: 0; pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.38s ease, transform 0.38s ease;
+      padding: 14px 14px 10px;
+      display: flex; flex-direction: column; gap: 9px;
+      overflow: hidden;
+    }
+    .ld-slide.on {
+      opacity: 1; pointer-events: all; transform: translateY(0);
+    }
+
+    /* Shared inner components */
+    .slide-lbl {
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--txt-muted);
+    }
+
+    /* ── Search slide ── */
+    .ld-bar-search {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 9px 14px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .ld-bar-search .typed { font-size: 0.82rem; font-weight: 500; color: var(--txt); flex: 1; }
+    .cursor-blink {
+      display: inline-block; width: 2px; height: 13px;
+      background: var(--brand); margin-left: 2px; vertical-align: middle;
+      animation: blink-c 1s step-end infinite;
+    }
+    @keyframes blink-c { 50% { opacity: 0; } }
+
+    .chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      font-size: 0.69rem; font-weight: 600; padding: 4px 11px; border-radius: 50px;
+      background: var(--surface); color: var(--txt-sub); border: 1.5px solid var(--border);
+    }
+    .chip.on { background: var(--brand-lt); color: var(--brand); border-color: var(--brand-mid); }
+
+    .found-txt { font-size: 0.69rem; font-weight: 600; color: var(--brand); }
+
+    .res-card {
+      display: flex; gap: 10px; align-items: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 9px 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .res-img { width: 44px; height: 44px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+    .res-img img { width: 100%; height: 100%; object-fit: cover; }
+    .res-info { flex: 1; min-width: 0; }
+    .res-name { font-weight: 700; font-size: 0.8rem; color: var(--txt); }
+    .res-meta { font-size: 0.69rem; color: var(--txt-muted); margin-top: 1px; }
+    .res-price { font-size: 0.73rem; font-weight: 700; color: var(--orange); margin-top: 2px; }
+    .res-stars { color: #FBBF24; }
+    .res-book {
+      flex-shrink: 0; background: var(--brand); color: #fff; border: none;
+      border-radius: 9px; padding: 6px 13px;
+      font-family: 'Inter', sans-serif; font-size: 0.73rem; font-weight: 700; cursor: default;
+    }
+
+    /* ── Booking slide ── */
+    .big-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; box-shadow: 0 4px 16px var(--shadow); flex-shrink: 0;
+    }
+    .big-img { width: 100%; height: 96px; overflow: hidden; }
+    .big-img img { width: 100%; height: 100%; object-fit: cover; }
+    .big-body { padding: 10px 14px 12px; }
+    .big-title { font-family:'Outfit',sans-serif; font-weight: 800; font-size: 0.88rem; color: var(--txt); }
+    .big-price { font-size: 0.82rem; font-weight: 700; color: var(--orange); margin: 3px 0; }
+    .big-meta  { font-size: 0.68rem; color: var(--txt-muted); }
+
+    .enrol-btn {
+      width: 100%; height: 42px; flex-shrink: 0;
+      background: var(--brand); color: #fff; border: none; border-radius: 12px;
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.88rem;
+      cursor: default; display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+    }
+    .enrol-btn.booked { background: var(--green); animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+    @keyframes pop { 0%{transform:scale(.9)} 100%{transform:scale(1)} }
+
+    .c-rows { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+    .c-row {
+      display: flex; align-items: center; gap: 9px;
+      background: var(--green-bg); border: 1px solid var(--green-br);
+      border-radius: 10px; padding: 7px 11px;
+      font-size: 0.74rem; font-weight: 600; color: #065F46;
+      animation: fu 0.35s ease both;
+    }
+    .c-row:nth-child(2) { animation-delay: 0.1s; }
+    .c-row:nth-child(3) { animation-delay: 0.2s; }
+    @keyframes fu { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── Dashboard slide ── */
+    .dash-hdr {
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .dash-hi { font-family:'Outfit',sans-serif; font-weight: 800; font-size: 0.9rem; color: var(--txt); }
+    .dash-sub { font-size: 0.68rem; color: var(--txt-muted); margin-top: 1px; }
+    .dash-avatar { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); flex-shrink: 0; }
+
+    .act-rows { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+    .act-row {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 11px; padding: 7px 10px;
+      animation: fu 0.4s ease both;
+    }
+    .act-row:nth-child(1){animation-delay:.04s} .act-row:nth-child(2){animation-delay:.1s}
+    .act-row:nth-child(3){animation-delay:.16s} .act-row:nth-child(4){animation-delay:.22s}
+
+    .act-day {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--txt-muted); width: 26px; flex-shrink: 0;
+    }
+    .act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .act-info { flex: 1; min-width: 0; }
+    .act-name { font-size: 0.77rem; font-weight: 700; color: var(--txt); }
+    .act-time { font-size: 0.66rem; color: var(--txt-muted); }
+    .kid-tag { font-size: 0.62rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; flex-shrink: 0; }
+    .t-indigo { background: var(--brand-lt); color: var(--brand); }
+    .t-orange  { background: #FFF7ED; color: var(--orange); }
+    .t-green   { background: var(--green-bg); color: #059669; }
+
+    .spend-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 11px; padding: 9px 12px;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      flex-shrink: 0;
+    }
+    .spend-lbl { font-size: 0.66rem; color: var(--txt-muted); }
+    .spend-val { font-size: 0.84rem; font-weight: 700; color: var(--txt); }
+    .spend-sub { font-size: 0.69rem; font-weight: 400; color: var(--txt-muted); }
+    .spend-bar-wrap { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .spend-bar { height: 100%; width: 78%; background: var(--brand); border-radius: 3px; }
+
+    /* ── Notification slide ── */
+    .notif-wrap {
+      flex: 1; display: flex;
+    }
+    .notif-card {
+      background: var(--brand-xdk); border-radius: 18px; padding: 22px 18px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      text-align: center; flex: 1;
+    }
+    .notif-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    .notif-h { font-family:'Outfit',sans-serif; font-weight:900; font-size:1.05rem; color:#fff; letter-spacing:-0.02em; }
+    .notif-p { font-size:0.77rem; color:rgba(255,255,255,.58); line-height:1.5; }
+    .notif-perks { list-style:none; display:flex; flex-direction:column; gap:5px; width:100%; }
+    .notif-perks li {
+      display:flex; align-items:center; gap:8px;
+      font-size:0.75rem; font-weight:600; color:rgba(255,255,255,.85);
+      background:rgba(255,255,255,.08); border-radius:9px; padding:6px 11px;
+    }
+    .tick {
+      width:15px; height:15px; border-radius:50%; background:var(--green);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .notif-btn {
+      background:var(--orange); color:#fff; border:none;
+      border-radius:12px; padding:10px 28px;
+      font-family:'Inter',sans-serif; font-weight:700; font-size:0.86rem;
+      cursor:pointer; width:100%; transition:background 0.15s;
+    }
+    .notif-btn:hover { background:#EA6C06; }
+
+    /* Progress indicator below phone */
+    .ld-prog { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .ld-prog-bar { height: 100%; width: 0; background: var(--brand); border-radius: 2px; }
+    .ld-prog-bar.fill { animation: fillbar 6s linear forwards; }
+    @keyframes fillbar { from{width:0} to{width:100%} }
+
+    .ld-dots-row { display: flex; justify-content: center; gap: 6px; }
+    .ld-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border); cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .ld-dot.on { background: var(--brand); transform: scale(1.45); }
+
+    /* ── FEATURES ─────────────────────────────────────────────── */
+    .feat-section { padding: 64px 52px; max-width: 1240px; margin: 0 auto; }
+    .sec-header { text-align: center; margin-bottom: 44px; }
+    .sec-pill {
+      display: inline-block; background: var(--brand-lt); color: var(--brand);
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+      border: 1px solid rgba(67,56,202,0.2);
+    }
+    .sec-h2 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(1.85rem, 3vw, 2.6rem);
+      line-height: 1.12; letter-spacing: -0.025em;
+      color: var(--brand-xdk); max-width: 580px; margin: 0 auto 16px;
+    }
+    .sec-sub { font-size: 1.02rem; color: var(--txt-sub); max-width: 500px; margin: 0 auto; line-height: 1.65; }
+
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .feat-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 22px; overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .feat-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px var(--shadow-lg); }
+    .feat-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+    .feat-body { padding: 26px 28px 30px; }
+    .feat-ico {
+      width: 40px; height: 40px; border-radius: 12px; background: var(--brand-lt);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+    }
+    .feat-title {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.15rem;
+      color: var(--brand-xdk); letter-spacing: -0.01em; margin-bottom: 10px;
+    }
+    .feat-desc { font-size: 0.88rem; color: var(--txt-sub); line-height: 1.68; margin-bottom: 18px; }
+    .feat-pill {
+      display: inline-block; background: var(--brand-lt); color: var(--brand);
+      font-size: 0.72rem; font-weight: 700; padding: 5px 13px; border-radius: 50px;
+    }
+
+    /* ── TRUST BAR – bottom of page ───────────────────────────── */
+    .trust-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 24px 52px;
+      display: flex; align-items: center; justify-content: center; gap: 64px;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 0.78rem; font-weight: 700; color: var(--txt-muted);
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer { background: var(--brand-xdk); padding: 52px 52px 32px; }
+    .foot-top {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .foot-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.42); max-width: 240px; line-height: 1.55; margin-top: 10px; }
+    .foot-links { display: flex; gap: 52px; }
+    .foot-col-lbl { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+    .foot-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.48); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+    .foot-col a:hover { color: white; }
+    .foot-bottom { padding-top: 24px; font-size: 0.75rem; color: rgba(255,255,255,0.28); display: flex; justify-content: space-between; align-items: center; }
+    .socials { display:flex; gap:10px; margin-top:12px; }
+    .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
+    .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+    .socials a:hover svg { transform:translateY(-2px); opacity:1; }
+
+    /* ── MODAL ────────────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(15,23,42,0.78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      z-index: 500; display: flex; align-items: center; justify-content: center;
+      padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.28s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal-box {
+      background: var(--surface); border-radius: 24px; padding: 48px 44px;
+      max-width: 460px; width: 100%; text-align: center;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.28);
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1); position: relative;
+    }
+    .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+    .modal-x {
+      position: absolute; top: 16px; right: 16px; width: 30px; height: 30px; border-radius: 50%;
+      background: var(--brand-lt); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background 0.15s;
+    }
+    .modal-x:hover { background: var(--border); }
+    .modal-emoji { font-size: 3rem; display: block; margin-bottom: 14px; }
+    .modal-title { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.55rem; color: var(--brand-xdk); letter-spacing: -0.02em; margin-bottom: 12px; }
+    .modal-body { font-size: 0.93rem; color: var(--txt-sub); line-height: 1.68; margin-bottom: 28px; }
+    .modal-body strong { color: var(--brand); font-weight: 700; }
+    .m-row { display: flex; gap: 8px; margin-bottom: 14px; }
+    .m-inp {
+      flex: 1; min-width: 0; border: 1.5px solid var(--border); border-radius: 12px;
+      padding: 12px 16px; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      color: var(--txt); outline: none; transition: border-color 0.15s;
+    }
+    .m-inp:focus { border-color: var(--brand); }
+    .m-inp::placeholder { color: var(--txt-muted); }
+    .m-inp.err { border-color: var(--coral); }
+    .m-btn {
+      flex-shrink: 0; background: var(--brand); color: #fff; border: none;
+      border-radius: 12px; padding: 12px 22px;
+      font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.88rem;
+      cursor: pointer; white-space: nowrap; transition: background 0.15s, transform 0.12s;
+    }
+    .m-btn:hover { background: var(--brand-dk); transform: scale(1.02); }
+    .m-btn.full { width: 100%; padding: 14px; font-size: 0.95rem; }
+    .m-skip { background: none; border: none; font-size: 0.8rem; color: var(--txt-muted); cursor: pointer; text-decoration: underline; font-family: 'Inter', sans-serif; transition: color 0.15s; }
+    .m-skip:hover { color: var(--txt-sub); }
+
+    /* Page entrance */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-left > * { animation: slideUp 0.6s ease both; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.35s; }
+    .hero-left > *:nth-child(5) { animation-delay: 0.42s; }
+    .hero-left > *:nth-child(6) { animation-delay: 0.48s; }
+    .hero-right { animation: slideUp 0.7s ease 0.3s both; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav>
+  <a href="#" class="nav-logo" aria-label="Kidsplor home">
+    <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
+  </a>
+
+  <ul class="nav-links" role="navigation" aria-label="Main navigation">
+    <li><a href="kidsplor-discover.html">Discover</a></li>
+    <li><a href="#features">Features</a></li>
+    <!-- Community removed from nav -->
+    <li><a href="kidsplor-about.html">About Us</a></li>
+  </ul>
+  <div class="nav-spacer"></div>
+  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="glow glow-1" aria-hidden="true"></div>
+  <div class="glow glow-2" aria-hidden="true"></div>
+
+  <!-- Floating activity icons (decorative) -->
+  <div class="float-icons" aria-hidden="true">
+    <span class="fi" style="--x:6%;   --dur:12s;   --delay:0s;   --sway:18px;  --rot:20deg;  --sz:1rem;">⚽</span>
+    <span class="fi" style="--x:15%;  --dur:9s;    --delay:2.5s; --sway:-22px; --rot:-15deg; --sz:1.1rem;">🎾</span>
+    <span class="fi" style="--x:25%;  --dur:14s;   --delay:1s;   --sway:25px;  --rot:25deg;  --sz:0.95rem;">🎨</span>
+    <span class="fi" style="--x:37%;  --dur:10s;   --delay:4.2s; --sway:-18px; --rot:-20deg; --sz:1rem;">🏊</span>
+    <span class="fi" style="--x:49%;  --dur:11s;   --delay:0.8s; --sway:20px;  --rot:15deg;  --sz:1.05rem;">🎭</span>
+    <span class="fi" style="--x:61%;  --dur:8.5s;  --delay:3.3s; --sway:-25px; --rot:-18deg; --sz:0.9rem;">🎸</span>
+    <span class="fi" style="--x:73%;  --dur:13s;   --delay:1.7s; --sway:15px;  --rot:22deg;  --sz:1.1rem;">🤸</span>
+    <span class="fi" style="--x:83%;  --dur:10s;   --delay:5.5s; --sway:-18px; --rot:-12deg; --sz:1rem;">🏀</span>
+    <span class="fi" style="--x:11%;  --dur:11s;   --delay:7s;   --sway:22px;  --rot:18deg;  --sz:0.95rem;">🎯</span>
+    <span class="fi" style="--x:88%;  --dur:9.5s;  --delay:2.2s; --sway:-20px; --rot:-25deg; --sz:1.05rem;">🎪</span>
+    <span class="fi" style="--x:32%;  --dur:12.5s; --delay:8s;   --sway:16px;  --rot:20deg;  --sz:0.9rem;">⚽</span>
+    <span class="fi" style="--x:55%;  --dur:10.5s; --delay:3.8s; --sway:-22px; --rot:-16deg; --sz:1rem;">🎾</span>
+    <span class="fi" style="--x:43%;  --dur:13.5s; --delay:6s;   --sway:20px;  --rot:12deg;  --sz:0.95rem;">🎨</span>
+    <span class="fi" style="--x:78%;  --dur:9s;    --delay:4.5s; --sway:-15px; --rot:-22deg; --sz:1.05rem;">🎯</span>
+  </div>
+
+  <!-- LEFT: Headline + search -->
+  <div class="hero-left">
+    <div class="badge"><span class="pulse-dot"></span>Coming Spring 2026 &nbsp;·&nbsp; Australia</div>
+
+    <h1 class="hero-h1" id="hero-h">
+      Discover your<span class="accent">child's potential.</span>
+    </h1>
+
+    <p class="hero-sub">
+      The all-in-one platform to find, book and manage your child's activities — from swimming to coding to soccer, all in one beautifully simple dashboard.
+    </p>
+
+    <div id="wlForm">
+      <div class="wl-inputs">
+        <input type="text" class="wl-inp" id="wl-name" placeholder="First name" aria-label="Your first name" onkeydown="if(event.key==='Enter')submitHeroWl()">
+        <input type="email" class="wl-inp" id="wl-email" placeholder="your@email.com" aria-label="Your email address" onkeydown="if(event.key==='Enter')submitHeroWl()">
+        <button class="s-btn" onclick="submitHeroWl()">Join Waitlist →</button>
+      </div>
+      <p class="wl-note">Free · No spam · Be the first to know when we launch</p>
+    </div>
+    <div class="wl-done" id="wlDone" style="display:none">
+      <span style="font-size:1.5rem">🎉</span>
+      <div><strong>You're on the list!</strong> We'll reach out when Kidsplor goes live this Spring.</div>
+    </div>
+
+    <div class="social-proof" aria-label="Social proof">
+      <div class="av-stack" aria-hidden="true">
+        <div class="av"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=64&h=64&fit=crop&crop=face&auto=format" alt=""></div>
+        <div class="av"><img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=64&h=64&fit=crop&crop=face&auto=format" alt=""></div>
+        <div class="av"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=64&h=64&fit=crop&crop=face&auto=format" alt=""></div>
+        <div class="av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face&auto=format" alt=""></div>
+      </div>
+      <p class="proof-txt"><strong>400+ Australian parents</strong> already on the waitlist</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: Interactive Live Demo -->
+  <div class="hero-right">
+    <div class="iphone-outer" aria-label="Kidsplor app tour">
+
+      <!-- iPhone 14 Pro style frame -->
+      <div class="iphone-frame">
+        <!-- Dynamic island -->
+        <div class="iphone-island"></div>
+
+        <!-- Screen -->
+        <div class="iphone-screen">
+
+          <!-- Status bar -->
+          <div class="iphone-status">
+            <span>9:41</span>
+            <div class="iphone-status-icons">
+              <svg width="13" height="10" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true"><rect x="0" y="10" width="4" height="10" rx="1"/><rect x="5.5" y="6" width="4" height="14" rx="1"/><rect x="11" y="2" width="4" height="18" rx="1"/><rect x="16.5" y="0" width="4" height="20" rx="1"/></svg>
+              <svg width="14" height="10" viewBox="0 0 24 18" fill="currentColor" aria-hidden="true"><path d="M12 2C7.2 2 2.8 4 0 7.5L12 18 24 7.5C21.2 4 16.8 2 12 2z" opacity="0.3"/><path d="M12 6.5C8.5 6.5 5.5 8 3.5 10.5L12 18l8.5-7.5C18.5 8 15.5 6.5 12 6.5z" opacity="0.6"/><path d="M12 11C10.2 11 8.6 11.8 7.5 13L12 18l4.5-5C15.4 11.8 13.8 11 12 11z"/></svg>
+              <div class="battery-ico"><div class="battery-fill"></div></div>
+            </div>
+          </div>
+
+          <!-- ── Slides ── -->
+          <div class="ld-body">
+
+        <!-- SLIDE 0 — Smart Search -->
+        <div class="ld-slide on" id="ls0">
+          <div class="slide-lbl">AI Smart Search &nbsp;·&nbsp; 12 activities found</div>
+
+          <div class="ld-bar-search">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <span class="typed">Dance for Mia, age 3, near Bondi<span class="cursor-blink"></span></span>
+          </div>
+
+          <div class="chip-row">
+            <span class="chip on">Near me</span>
+            <span class="chip on">Ages 2–4</span>
+            <span class="chip">Under $30</span>
+            <span class="chip">Weekdays</span>
+          </div>
+
+          <div class="found-txt">12 activities found nearby</div>
+
+          <div class="res-card">
+            <div class="res-img">
+              <img src="https://images.unsplash.com/photo-1545224144-b38cd309ef69?w=100&h=100&fit=crop&auto=format" alt="Kids doing ballet class">
+            </div>
+            <div class="res-info">
+              <div class="res-name">Little Ballerinas</div>
+              <div class="res-meta">Tue &amp; Thu · 9:00am · Bondi</div>
+              <div class="res-price">$250/term &nbsp;·&nbsp; <span class="res-stars">★ 4.9</span> <span style="color:var(--txt-muted);font-weight:400">(48)</span></div>
+            </div>
+            <button class="res-book" tabindex="-1">Book</button>
+          </div>
+
+          <div class="res-card">
+            <div class="res-img">
+              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=100&h=100&fit=crop&auto=format" alt="Tiny Twirlers kids dance class">
+            </div>
+            <div class="res-info">
+              <div class="res-name">Tiny Twirlers</div>
+              <div class="res-meta">Sat · 10:00am · Coogee</div>
+              <div class="res-price">$28/class &nbsp;·&nbsp; <span class="res-stars">★ 4.8</span> <span style="color:var(--txt-muted);font-weight:400">(31)</span></div>
+            </div>
+            <button class="res-book" tabindex="-1">Book</button>
+          </div>
+        </div><!-- /slide 0 -->
+
+
+        <!-- SLIDE 1 — Instant Booking -->
+        <div class="ld-slide" id="ls1">
+          <div class="slide-lbl">Instant Booking &nbsp;·&nbsp; one tap to enrol</div>
+
+          <div class="big-card">
+            <div class="big-img">
+              <img src="https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=432&h=96&fit=crop&auto=format" alt="Kids maths class">
+            </div>
+            <div class="big-body">
+              <div class="big-title">Junior Maths Club &nbsp;·&nbsp; Brainwave Learning</div>
+              <div class="big-price">$35 / class &nbsp;·&nbsp; or $280 / 10-week term</div>
+              <div class="big-meta">Mon · 4:00–4:45pm · Ages 5–8 · Surry Hills</div>
+            </div>
+          </div>
+
+          <button class="enrol-btn" id="enrolBtn">Enrol Now &nbsp;→</button>
+
+          <div class="c-rows" id="cRows" style="display:none;">
+            <div class="c-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Booking confirmed! See you Tuesday.
+            </div>
+            <div class="c-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+              Added to your Google Calendar
+            </div>
+            <div class="c-row">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              $280 secured · Brainwave Learning
+            </div>
+          </div>
+        </div><!-- /slide 1 -->
+
+
+        <!-- SLIDE 2 — Parents Dashboard -->
+        <div class="ld-slide" id="ls2">
+          <div class="dash-hdr">
+            <div>
+              <div class="dash-hi">Hi Sarah 👋</div>
+              <div class="dash-sub">Liam (6) &amp; Mia (3) · 4 activities this week</div>
+            </div>
+            <img class="dash-avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=70&h=70&fit=crop&crop=face&auto=format" alt="Sarah's profile">
+          </div>
+
+          <div class="act-rows">
+            <div class="act-row">
+              <span class="act-day">MON</span>
+              <span class="act-dot" style="background:#4338CA;"></span>
+              <div class="act-info"><div class="act-name">Soccer Kicks</div><div class="act-time">4:00 pm · Centennial Park</div></div>
+              <span class="kid-tag t-indigo">Liam</span>
+            </div>
+            <div class="act-row">
+              <span class="act-day">TUE</span>
+              <span class="act-dot" style="background:#F97316;"></span>
+              <div class="act-info"><div class="act-name">Little Ballerinas</div><div class="act-time">9:00 am · Bondi Studio</div></div>
+              <span class="kid-tag t-orange">Mia</span>
+            </div>
+            <div class="act-row">
+              <span class="act-day">THU</span>
+              <span class="act-dot" style="background:#F97316;"></span>
+              <div class="act-info"><div class="act-name">Little Ballerinas</div><div class="act-time">9:00 am · Bondi Studio</div></div>
+              <span class="kid-tag t-orange">Mia</span>
+            </div>
+            <div class="act-row">
+              <span class="act-day">FRI</span>
+              <span class="act-dot" style="background:#059669;"></span>
+              <div class="act-info"><div class="act-name">Little Coders</div><div class="act-time">10:00 am · Online</div></div>
+              <span class="kid-tag t-green">Liam</span>
+            </div>
+          </div>
+
+          <div class="spend-box">
+            <div>
+              <div class="spend-lbl">Monthly budget</div>
+              <div class="spend-val">$468 <span class="spend-sub">of $600</span></div>
+            </div>
+            <div class="spend-bar-wrap"><div class="spend-bar"></div></div>
+          </div>
+        </div><!-- /slide 2 -->
+
+
+        <!-- SLIDE 3 — Waitlist Approved -->
+        <div class="ld-slide" id="ls3">
+          <div class="slide-lbl">Notification &nbsp;·&nbsp; Waitlist approved</div>
+          <div class="notif-wrap">
+            <div class="notif-card">
+              <div class="notif-icon">�</div>
+              <div class="notif-h">Liam's spot is confirmed!</div>
+              <p class="notif-p">Liam's waitlist for <strong style="color:rgba(255,255,255,.88)">swim lessons</strong> has been approved.<br>Term starts <strong style="color:rgba(255,255,255,.88)">23 June 2026</strong>.</p>
+              <ul class="notif-perks">
+                <li>
+                  <span class="tick"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  Free 30-day trial, no credit card needed
+                </li>
+                <li>
+                  <span class="tick"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  Priority access to new activities near you
+                </li>
+                <li>
+                  <span class="tick"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  20% off your first term's bookings
+                </li>
+              </ul>
+              <button class="notif-btn" onclick="openModal(event)">Get Early Access →</button>
+            </div>
+          </div>
+        </div><!-- /slide 3 -->
+
+      </div><!-- /ld-body -->
+
+          <!-- iPhone bottom navigation -->
+          <div class="iphone-nav">
+            <div class="iphone-nav-item on" id="inav0" onclick="jumpSlide(0)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              <span>Discover</span>
+            </div>
+            <div class="iphone-nav-item" id="inav1" onclick="jumpSlide(1)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/></svg>
+              <span>Book</span>
+            </div>
+            <div class="iphone-nav-item" onclick="openModal(event)">
+              <div class="nav-plus-btn">+</div>
+              <span>Add</span>
+            </div>
+            <div class="iphone-nav-item" id="inav2" onclick="jumpSlide(2)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span>Schedule</span>
+            </div>
+            <div class="iphone-nav-item" id="inav3" onclick="jumpSlide(3)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span>Alerts</span>
+            </div>
+          </div>
+          <!-- Home bar indicator -->
+          <div class="iphone-home-bar"></div>
+
+        </div><!-- /iphone-screen -->
+      </div><!-- /iphone-frame -->
+
+      <!-- Progress bar + dots below phone -->
+      <div class="iphone-progress">
+        <div class="ld-prog"><div class="ld-prog-bar" id="ldBar"></div></div>
+      </div>
+      <div class="ld-dots-row" id="ldDots">
+        <span class="ld-dot on" onclick="jumpSlide(0)"></span>
+        <span class="ld-dot"    onclick="jumpSlide(1)"></span>
+        <span class="ld-dot"    onclick="jumpSlide(2)"></span>
+        <span class="ld-dot"    onclick="jumpSlide(3)"></span>
+      </div>
+
+    </div><!-- /iphone-outer -->
+  </div><!-- /hero-right -->
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     FEATURES
+══════════════════════════════════════════ -->
+<section id="features" aria-labelledby="feat-h">
+  <div class="feat-section">
+    <div class="sec-header">
+      <div class="sec-pill">Built for busy parents</div>
+      <h2 class="sec-h2" id="feat-h">Less chaos. More moments that matter.</h2>
+      <p class="sec-sub">Between school, work and everything in between — finding, booking and tracking your kids' activities shouldn't be a second job. Kidsplor puts it all in one place so you can get back to the good stuff.</p>
+    </div>
+
+    <div class="feat-grid">
+
+      <!-- Smart Search: parent using phone with child -->
+      <div class="feat-card">
+        <img class="feat-img"
+          src="https://images.unsplash.com/photo-1607705703571-c5a8695f18f6?w=700&h=280&fit=crop&auto=format"
+          alt="Parent and child searching on a smartphone together"
+          loading="lazy">
+        <div class="feat-body">
+          <div class="feat-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          </div>
+          <h3 class="feat-title">Smart Search</h3>
+          <p class="feat-desc">AI-powered search with deep filters for age, price, location, schedule and neurodiversity support. Find the perfect activity in seconds — not hours of scrolling through Facebook groups.</p>
+          <span class="feat-pill">Nothing else does this</span>
+        </div>
+      </div>
+
+      <!-- Secure Transactions -->
+      <div class="feat-card">
+        <img class="feat-img"
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&h=280&fit=crop&auto=format"
+          alt="Secure contactless digital payment"
+          loading="lazy">
+        <div class="feat-body">
+          <div class="feat-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="feat-title">Secure Transactions</h3>
+          <p class="feat-desc">Enrol with one tap. Payments, auto-renewals and instant confirmation go directly to your child's coach or studio. No cash, no bank transfers, no chasing anyone for a receipt.</p>
+          <span class="feat-pill">Zero payment friction</span>
+        </div>
+      </div>
+
+      <!-- Parents Dashboard: parent with child and tablet -->
+      <div class="feat-card">
+        <img class="feat-img"
+          src="https://images.unsplash.com/photo-1476703993599-0035a21b17a9?w=700&h=280&fit=crop&auto=format"
+          alt="Parent and child browsing activities together"
+          loading="lazy">
+        <div class="feat-body">
+          <div class="feat-ico" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <h3 class="feat-title">Parents Dashboard</h3>
+          <p class="feat-desc">A complete snapshot of your kids' schedule, spending and activity mix — all in one place. Never miss a session, renewal or enrolment deadline again. Finally, family life simplified.</p>
+          <span class="feat-pill">Total family visibility</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     TRUST BAR — bottom of page, before footer
+══════════════════════════════════════════ -->
+<div class="trust-bar" aria-label="Trust indicators">
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    SecurePay
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    Trustpilot
+  </div>
+  <div class="trust-item">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    ParentGuide
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer id="about">
+  <div class="foot-top">
+    <div>
+      <!-- compass-o wordmark in white on dark -->
+      <span style="display:inline-flex;align-items:baseline;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;line-height:1;color:white;letter-spacing:-0.025em;white-space:nowrap;">
+        k<span style="position:relative;display:inline-block;line-height:inherit;">&#305;<svg style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(130%);width:0.32em;height:0.28em;overflow:visible;" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg style="display:inline-block;height:0.76em;width:0.76em;flex-shrink:0;vertical-align:baseline;position:relative;top:0.07em;" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="rgba(255,255,255,0.15)"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="rgba(30,27,75,.9)"/></svg>r
+      </span>
+      <p class="foot-tagline">Helping Australian families discover their child's potential — one activity at a time.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/kidsplor" id="fb-link" aria-label="Facebook (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.1c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kidsplor" id="ig-link" aria-label="Instagram (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm8 3.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="foot-links">
+      <div class="foot-col">
+        <div class="foot-col-lbl">Platform</div>
+        <a href="index.html">For Parents</a>
+        <a href="kidsplor-parents-faq.html">Parents FAQ</a>
+        <a href="kidsplor-for-business.html">For Providers</a>
+        <a href="kidsplor-pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col" id="community">
+        <div class="foot-col-lbl">Community</div>
+        <a href="kidsplor-parent-stories.html">Parent Stories</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Legal</div>
+        <a href="kidsplor-privacy.html">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Kidsplor Pty Ltd &nbsp;·&nbsp; Australia</span>
+    <span>We acknowledge the Traditional Owners of the land — the Wurundjeri people of the Kulin Nation — and pay our respects to their Elders past and present.</span>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     FAKE-DOOR MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="m-heading" onclick="handleBackdropClick(event)">
+  <div class="modal-box">
+    <button class="modal-x" onclick="closeModal()" aria-label="Close dialog">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round"><line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/></svg>
+    </button>
+
+    <!-- Form state -->
+    <div id="m-form">
+      <span class="modal-emoji" aria-hidden="true">🚧</span>
+      <h2 class="modal-title" id="m-heading">Oops, still under construction!</h2>
+      <p class="modal-body">
+        Looks like you found us a little early — we're putting the finishing bricks in place and will be live very soon. Good things come to those who wait, and your kids will absolutely thank you for it.
+        <br><br>
+        Drop your email and be the <strong>first to know</strong> when Kidsplor goes live.
+      </p>
+      <div class="m-row">
+        <input type="email" class="m-inp" id="m-email" placeholder="your@email.com" aria-label="Your email address" onkeydown="if(event.key==='Enter')submitWaitlist()">
+        <button class="m-btn" onclick="submitWaitlist()">Notify Me</button>
+      </div>
+      <button class="m-skip" onclick="closeModal()">No thanks, I'll check back later</button>
+    </div>
+
+    <!-- Success state -->
+    <div id="m-success" style="display:none;">
+      <span class="modal-emoji" aria-hidden="true">🎉</span>
+      <h2 class="modal-title">You're on the list!</h2>
+      <p class="modal-body">We'll reach out the moment we go live. One quick question while you're here — it genuinely shapes what we build first:</p>
+      <div id="m-survey">
+        <label style="display:block;font-size:0.84rem;font-weight:600;color:var(--brand-xdk);margin-bottom:8px;">What’s the #1 activity you wish was easier to find for your child?</label>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input type="text" id="m-survey-inp" placeholder="e.g. swimming, coding, dance..." style="flex:1;min-width:0;border:1.5px solid var(--border);border-radius:10px;padding:10px 14px;font-size:0.86rem;font-family:'Inter',sans-serif;outline:none;color:var(--txt);background:#fff;" onkeydown="if(event.key==='Enter')submitSurvey()">
+          <button onclick="submitSurvey()" style="background:var(--brand);color:#fff;border:none;border-radius:10px;padding:10px 16px;font-size:0.84rem;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0;">Send →</button>
+        </div>
+        <p style="font-size:0.73rem;color:var(--txt-muted);margin-top:6px;">Optional · takes 5 seconds · helps us loads</p>
+      </div>
+      <button class="m-btn full" onclick="closeModal()" style="margin-top:16px;background:transparent;color:var(--txt-muted);border:1.5px solid var(--border);font-weight:500;">Skip and close</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  /* ── Confetti burst ────────────────────────────────────────────────────── */
+  (function () {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;display:none;';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const COLORS = ['#4338CA','#F97316','#818CF8','#059669','#FBBF24','#A855F7','#EC4899','#38BDF8'];
+    let pieces = [], animId = null;
+    function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    window.addEventListener('resize', resize);
+    window.fireConfetti = function () {
+      resize(); canvas.style.display = 'block';
+      const ox = innerWidth * 0.38, oy = innerHeight * 0.42;
+      pieces = Array.from({ length: 120 }, () => ({
+        x: ox + (Math.random() - 0.5) * 80, y: oy + (Math.random() - 0.5) * 40,
+        w: 7 + Math.random() * 8, h: 4 + Math.random() * 5,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        vx: (Math.random() - 0.5) * 16, vy: -(8 + Math.random() * 13),
+        gravity: 0.28, drag: 0.985,
+        rotation: Math.random() * Math.PI * 2, rotSpeed: (Math.random() - 0.5) * 0.28,
+        life: 1, decay: 0.01 + Math.random() * 0.008,
+        shape: Math.random() < 0.3 ? 'circle' : 'rect'
+      }));
+      if (animId) cancelAnimationFrame(animId);
+      (function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces = pieces.filter(p => p.life > 0.02);
+        if (!pieces.length) { canvas.style.display = 'none'; animId = null; return; }
+        pieces.forEach(p => {
+          p.x += p.vx; p.y += p.vy; p.vy += p.gravity; p.vx *= p.drag;
+          p.rotation += p.rotSpeed; p.life -= p.decay;
+          ctx.save(); ctx.globalAlpha = Math.min(1, p.life * 1.5);
+          ctx.translate(p.x, p.y); ctx.rotate(p.rotation); ctx.fillStyle = p.color;
+          if (p.shape === 'circle') { ctx.beginPath(); ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2); ctx.fill(); }
+          else { ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h); }
+          ctx.restore();
+        });
+        animId = requestAnimationFrame(loop);
+      })();
+    };
+  })();
+
+  /* ── Hero waitlist form ─────────────────────────── */
+  // ── Replace PARENTS_FORM_ID with your Formspree form ID (e.g. 'xyzabcde') ──
+  const FORMSPREE_PARENTS = 'xgoqabla';
+
+  function submitHeroWl() {
+    const email = (document.getElementById('wl-email').value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      const inp = document.getElementById('wl-email');
+      inp.style.outline = '2px solid #F97316'; inp.focus();
+      setTimeout(() => { inp.style.outline = ''; }, 2000); return;
+    }
+    fetch('https://formspree.io/f/' + FORMSPREE_PARENTS, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email, source: 'hero-form', _subject: 'New parent waitlist signup — Kidsplor' })
+    }).finally(() => {
+      fireConfetti();
+      document.getElementById('wlForm').style.display = 'none';
+      document.getElementById('wlDone').style.display = 'flex';
+    });
+  }
+
+  /* ── Modal ───────────────────────────────────────── */
+  function openModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const i = document.getElementById('m-email');
+      if (i && document.getElementById('m-form').style.display !== 'none') i.focus();
+    }, 280);
+  }
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleBackdropClick(e) { if (e.target === e.currentTarget) closeModal(); }
+  function submitWaitlist() {
+    const inp = document.getElementById('m-email');
+    const email = inp.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      inp.classList.add('err'); inp.focus();
+      setTimeout(() => inp.classList.remove('err'), 1800); return;
+    }
+    fetch('https://formspree.io/f/' + FORMSPREE_PARENTS, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email, source: 'modal', _subject: 'New parent waitlist signup — Kidsplor' })
+    }).finally(() => {
+      fireConfetti();
+      document.getElementById('m-form').style.display = 'none';
+      document.getElementById('m-success').style.display = 'block';
+    });
+  }
+  function submitSurvey() {
+    const val = (document.getElementById('m-survey-inp').value || '').trim();
+    const el  = document.getElementById('m-survey');
+    if (val) {
+      fetch('https://formspree.io/f/' + FORMSPREE_PARENTS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ source: 'survey', activity: val, _subject: 'Survey: activity interest — Kidsplor' })
+      });
+    }
+    el.innerHTML = '<p style="font-size:0.88rem;font-weight:600;color:#059669;padding:12px 0;">💚 Thank you — that\'s really helpful!</p>';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ── Live Demo auto-cycling ──────────────────────── */
+  const SLIDES = ['ls0', 'ls1', 'ls2', 'ls3'];
+  const TABS   = [
+    document.getElementById('inav0'),
+    document.getElementById('inav1'),
+    document.getElementById('inav2'),
+    document.getElementById('inav3')
+  ];
+  const DOTS   = document.querySelectorAll('.ld-dot');
+  const BAR    = document.getElementById('ldBar');
+  const DELAY  = 6000; // ms per slide
+
+  let cur = 0, timer;
+
+  function startBar() {
+    BAR.classList.remove('fill');
+    void BAR.offsetWidth; // force reflow to restart animation
+    BAR.classList.add('fill');
+  }
+
+  function activateSlide(n) {
+    // Deactivate current
+    document.getElementById(SLIDES[cur]).classList.remove('on');
+    TABS[cur].classList.remove('on');
+    DOTS[cur].classList.remove('on');
+    cur = n;
+    // Activate new
+    document.getElementById(SLIDES[cur]).classList.add('on');
+    TABS[cur].classList.add('on');
+    DOTS[cur].classList.add('on');
+    // Run booking animation when entering slide 1
+    if (cur === 1) runBookingAnim();
+    startBar();
+  }
+
+  function nextSlide() { activateSlide((cur + 1) % SLIDES.length); }
+
+  function jumpSlide(n) {
+    clearInterval(timer);
+    activateSlide(n);
+    timer = setInterval(nextSlide, DELAY);
+  }
+
+  function runBookingAnim() {
+    const btn  = document.getElementById('enrolBtn');
+    const rows = document.getElementById('cRows');
+    if (!btn || !rows) return;
+    // Reset to initial state
+    btn.textContent = 'Enrol Now \u00a0\u2192';
+    btn.classList.remove('booked');
+    rows.style.display = 'none';
+    // After 1.4s: show booked state + confirmation rows
+    setTimeout(() => {
+      btn.innerHTML = '&#10003;&nbsp; Booked!';
+      btn.classList.add('booked');
+      rows.style.display = 'flex';
+    }, 1400);
+  }
+
+  // Start auto-cycle on page load
+  startBar();
+  timer = setInterval(nextSlide, DELAY);
+</script>
+
+</body>
+</html>

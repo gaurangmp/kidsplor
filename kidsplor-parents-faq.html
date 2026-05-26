@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parents FAQ — Kidsplor</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- ── Analytics ── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+<script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","CLARITY_PROJECT_ID");</script>
+<!-- ── Open Graph ── -->
+<meta name="description" content="Everything you need to know about finding, booking and managing your child's activities on Kidsplor. Free for families.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kidsplor">
+<meta property="og:title" content="Parents FAQ — Kidsplor">
+<meta property="og:description" content="Everything you need to know about finding, booking and managing your child's activities on Kidsplor. Free for families.">
+<meta property="og:image" content="https://kidsplor.com.au/og-image.png">
+<meta property="og:url" content="https://kidsplor.com.au/faq">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Parents FAQ — Kidsplor">
+<meta name="twitter:description" content="Everything you need to know about finding, booking and managing your child's activities on Kidsplor.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F6F7FF; --surface: #FFFFFF; --brand: #4338CA; --brand-dk: #3730A3;
+    --brand-xdk: #1E1B4B; --brand-lt: #EEF2FF; --brand-mid: #818CF8;
+    --orange: #F97316; --txt: #0F172A; --txt-sub: #334155; --txt-muted: #64748B;
+    --border: #DDE3F5; --shadow: rgba(30,27,75,0.07); --shadow-lg: rgba(30,27,75,0.18);
+  }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--txt); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; gap: 24px; padding: 0 44px; height: 66px;
+    background: rgba(246,247,255,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { text-decoration: none; flex-shrink: 0; }
+  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.28rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .ih { position: relative; display: inline-block; line-height: inherit; }
+  .heart { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(130%); width: .32em; height: .28em; overflow: visible; }
+  .compass { display: inline-block; height: .76em; width: .76em; flex-shrink: 0; vertical-align: baseline; position: relative; top: .07em; }
+  .nav-links { list-style: none; display: flex; gap: 6px; margin-left: 8px; }
+  .nav-links a { color: var(--txt-sub); text-decoration: none; font-size: 0.9rem; font-weight: 500; padding: 6px 12px; border-radius: 9px; transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--brand-lt); color: var(--brand); }
+  .nav-links a.active { color: var(--brand); font-weight: 600; background: var(--brand-lt); }
+  .nav-spacer { flex: 1; }
+  .nav-cta { background: var(--brand-xdk); color: #fff; text-decoration: none; font-size: 0.86rem; font-weight: 700; padding: 9px 18px; border-radius: 50px; transition: background 0.15s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--brand); }
+
+  /* PAGE HERO */
+  .page-hero {
+    background: var(--brand-xdk); padding: 80px 24px 72px; text-align: center; position: relative; overflow: hidden;
+  }
+  .page-hero::before { content: ''; position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(129,140,248,0.16) 0%, transparent 70%); top: -200px; left: 50%; transform: translateX(-50%); pointer-events: none; }
+  .page-pill { display: inline-block; background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.82); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.16); margin-bottom: 20px; }
+  .page-h1 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: clamp(2rem, 4vw, 2.9rem); color: #fff; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
+  .page-sub { font-size: 1.02rem; color: rgba(255,255,255,0.58); max-width: 460px; margin: 0 auto; line-height: 1.65; }
+
+  /* FAQ SECTION */
+  .faq-section { max-width: 800px; margin: 0 auto; padding: 64px 24px 96px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 10px; overflow: hidden; transition: box-shadow 0.2s, border-color 0.2s; box-shadow: 0 2px 8px var(--shadow); }
+  .faq-item.open { box-shadow: 0 8px 32px var(--shadow-lg); border-color: var(--brand-mid); }
+  .faq-q { width: 100%; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 20px 24px; text-align: left; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.98rem; color: var(--brand-xdk); line-height: 1.4; transition: color 0.15s; }
+  .faq-q:hover { color: var(--brand); }
+  .faq-item.open .faq-q { color: var(--brand); }
+  .faq-num { width: 26px; height: 26px; border-radius: 8px; background: var(--brand-lt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.68rem; font-weight: 800; color: var(--brand); font-family: 'Inter', sans-serif; transition: background 0.2s, color 0.2s; }
+  .faq-item.open .faq-num { background: var(--brand); color: white; }
+  .faq-q-text { flex: 1; }
+  .faq-ico { width: 28px; height: 28px; border-radius: 50%; background: var(--brand-lt); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.32s cubic-bezier(0.4,0,0.2,1), background 0.2s; }
+  .faq-item.open .faq-ico { background: var(--brand); transform: rotate(45deg); }
+  .faq-ico svg { stroke: var(--brand); transition: stroke 0.2s; }
+  .faq-item.open .faq-ico svg { stroke: white; }
+  .faq-body { height: 0; overflow: hidden; transition: height 0.34s cubic-bezier(0.4,0,0.2,1); }
+  .faq-inner { padding: 0 24px 24px 64px; font-size: 0.93rem; color: var(--txt-sub); line-height: 1.74; }
+  .faq-inner a { color: var(--brand); text-decoration: none; font-weight: 600; }
+  .faq-inner a:hover { text-decoration: underline; }
+
+  /* CTA strip */
+  .faq-cta { background: var(--brand-lt); border: 1px solid rgba(67,56,202,0.16); border-radius: 20px; padding: 44px 40px; text-align: center; margin-top: 48px; }
+  .faq-cta-h { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--brand-xdk); margin-bottom: 10px; letter-spacing: -0.02em; }
+  .faq-cta-p { font-size: 0.93rem; color: var(--txt-sub); margin-bottom: 24px; line-height: 1.65; }
+  .faq-cta-btn { display: inline-block; background: var(--brand); color: white; text-decoration: none; font-weight: 700; font-size: 0.95rem; padding: 13px 32px; border-radius: 50px; transition: background 0.15s, transform 0.12s; }
+  .faq-cta-btn:hover { background: var(--brand-dk); transform: scale(1.02); }
+
+  /* FOOTER */
+  footer { background: var(--brand-xdk); padding: 52px 52px 32px; }
+  .foot-top { display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .foot-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.42); max-width: 240px; line-height: 1.55; margin-top: 10px; }
+  .foot-links { display: flex; gap: 52px; }
+  .foot-col-lbl { font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+  .foot-col a { display: block; font-size: 0.83rem; color: rgba(255,255,255,0.48); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+  .foot-col a:hover { color: white; }
+  .foot-bottom { padding-top: 24px; font-size: 0.75rem; color: rgba(255,255,255,0.28); display: flex; justify-content: space-between; align-items: center; }
+  .socials { display:flex; gap:10px; margin-top:12px; }
+  .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
+  .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="Kidsplor home">
+    <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
+  </a>
+  <ul class="nav-links" role="navigation" aria-label="Main navigation">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="kidsplor-parents-faq.html" class="active">FAQ</a></li>
+    <li><a href="kidsplor-pricing.html">Pricing</a></li>
+    <li><a href="kidsplor-about.html">About Us</a></li>
+  </ul>
+  <div class="nav-spacer"></div>
+  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-pill">Parents FAQ</div>
+  <h1 class="page-h1">Questions, answered.<br>No runaround.</h1>
+  <p class="page-sub">We know you've got about 90 seconds between drop-off and your next meeting. Let's make this quick.</p>
+</div>
+
+<section class="faq-section">
+
+  <div class="faq-item open" id="faq1">
+    <button class="faq-q" onclick="toggleFaq('faq1')" aria-expanded="true">
+      <span class="faq-num">1</span>
+      <span class="faq-q-text">Will I actually know if there are spots left — or am I just phoning strangers at 7am again?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq1-body">
+      <div class="faq-inner">
+        Real-time availability is basically our whole thing. You'll see exactly how many spots remain in any given class, whether an activity is on a waitlist (and your position if you join one), and when new spots typically open up. No more calling the local swim school on a Tuesday morning, being put on hold for seven minutes, and then discovering they stopped doing beginner lessons back in 2023.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq2">
+    <button class="faq-q" onclick="toggleFaq('faq2')" aria-expanded="false">
+      <span class="faq-num">2</span>
+      <span class="faq-q-text">"Free for parents." Be honest — what's the actual catch?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq2-body">
+      <div class="faq-inner">
+        No catch. Searching, browsing, booking, and managing your family calendar — all free, forever. Think of us like Airbnb: guests browse for free, hosts pay to list. We make money from the activity providers who join Kidsplor. You pay the provider directly for the activity at whatever price they set. That's the whole model, and we're not hiding anything in the fine print.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq3">
+    <button class="faq-q" onclick="toggleFaq('faq3')" aria-expanded="false">
+      <span class="faq-num">3</span>
+      <span class="faq-q-text">How does Kidsplor actually find activities near me?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq3-body">
+      <div class="faq-inner">
+        Think of us as your very organised neighbour who somehow knows about every dance studio, coding club, and Saturday soccer comp within 10km of your house. You tell us your child's age, what they're into (or what you'd like them to try), and your rough location — we surface the best matches. Filter by suburb, age group, day of week, price, and category. The more you use Kidsplor, the smarter the suggestions get.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq4">
+    <button class="faq-q" onclick="toggleFaq('faq4')" aria-expanded="false">
+      <span class="faq-num">4</span>
+      <span class="faq-q-text">What kinds of activities are actually on here?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq4-body">
+      <div class="faq-inner">
+        Everything your child might want to try — and a few things they definitely didn't ask for but you're trying anyway. Dance, swimming, gymnastics, soccer, cricket, coding, robotics, Mandarin, art classes, drama, music, yoga for kids, nature play, chess, and yes — there will almost certainly be a circus skills class. If kids do it in Australia, we want to list it.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq5">
+    <button class="faq-q" onclick="toggleFaq('faq5')" aria-expanded="false">
+      <span class="faq-num">5</span>
+      <span class="faq-q-text">How does booking work? Is it really just one tap?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq5-body">
+      <div class="faq-inner">
+        Pretty close. Find an activity, check availability, hit Book, confirm your details — done. Booking confirmation lands in your inbox and syncs to your calendar. No back-and-forth emails, no downloading PDF enrolment forms, and absolutely no faxing anything to anyone (yes, some providers still ask for this; we are saving you from that future).
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq6">
+    <button class="faq-q" onclick="toggleFaq('faq6')" aria-expanded="false">
+      <span class="faq-num">6</span>
+      <span class="faq-q-text">Which cities and suburbs does Kidsplor cover?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq6-body">
+      <div class="faq-inner">
+        We're launching in Sydney first — across Greater Sydney, from the Northern Beaches to Sutherland and the Hills District. Melbourne and Brisbane follow shortly after. If you're in a different city and want us there sooner, the best thing you can do is join the waitlist and tell your friends. Demand shapes our expansion map.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq7">
+    <button class="faq-q" onclick="toggleFaq('faq7')" aria-expanded="false">
+      <span class="faq-num">7</span>
+      <span class="faq-q-text">How do you vet providers? I'm not just handing my kid to anyone.</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq7-body">
+      <div class="faq-inner">
+        Completely fair, and we take this seriously. Every provider on Kidsplor goes through a verification process before going live: valid ABN, appropriate public liability insurance, and current Working With Children checks for all instructors. We monitor reviews actively and have a clear process for handling complaints. Providers who don't maintain standards don't stay on the platform.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq8">
+    <button class="faq-q" onclick="toggleFaq('faq8')" aria-expanded="false">
+      <span class="faq-num">8</span>
+      <span class="faq-q-text">Can I manage activities for more than one child?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq8-body">
+      <div class="faq-inner">
+        Yes — and this is one of the things we're most proud of. Add as many kids as you have (or are willing to admit to). Each child gets their own profile, their own colour-coded activity schedule, and age-appropriate activity suggestions. Your family calendar shows all their activities in one view, highlights schedule clashes, and reminds you before you accidentally double-book a Saturday morning.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq9">
+    <button class="faq-q" onclick="toggleFaq('faq9')" aria-expanded="false">
+      <span class="faq-num">9</span>
+      <span class="faq-q-text">Will I get reminders? What if a class is cancelled last minute?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq9-body">
+      <div class="faq-inner">
+        Push notifications, email reminders, and calendar sync — you'll know about upcoming sessions well in advance. If a provider cancels, you'll find out before you're standing in a car park at 9am with a confused six-year-old in a leotard. Providers are required to give notice via the platform, and repeated late cancellations affect their listing status. We're on your side here.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-item" id="faq10">
+    <button class="faq-q" onclick="toggleFaq('faq10')" aria-expanded="false">
+      <span class="faq-num">10</span>
+      <span class="faq-q-text">I'm not keen on apps collecting my kids' data. What's your privacy stance?</span>
+      <div class="faq-ico"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg></div>
+    </button>
+    <div class="faq-body" id="faq10-body">
+      <div class="faq-inner">
+        Solid question, and we're glad you asked it. We collect only what's necessary to make the service work. We do not sell your data or your children's data to third parties. We don't use children's information for profiling or advertising. Full details are in our <a href="kidsplor-privacy.html">Privacy Policy</a>, written in actual English rather than 14-point legalese designed to make your eyes glaze over.
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="faq-cta">
+    <div class="faq-cta-h">Still got questions?</div>
+    <p class="faq-cta-p">We're humans. Reach us at <strong>hello@kidsplor.com.au</strong> and we'll get back to you within 24 hours — usually much faster.</p>
+    <a href="index.html" class="faq-cta-btn">Join the Waitlist →</a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <span style="display:inline-flex;align-items:baseline;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;line-height:1;color:white;letter-spacing:-0.025em;white-space:nowrap;">k<span style="position:relative;display:inline-block;line-height:inherit;">&#305;<svg style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(130%);width:0.32em;height:0.28em;overflow:visible;" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg style="display:inline-block;height:0.76em;width:0.76em;flex-shrink:0;vertical-align:baseline;position:relative;top:0.07em;" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="rgba(255,255,255,0.15)"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="rgba(30,27,75,.9)"/></svg>r</span>
+      <p class="foot-tagline">Helping Australian families discover their child's potential — one activity at a time.</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/kidsplor" id="fb-link" aria-label="Facebook (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.1c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>s
+        <a href="https://www.instagram.com/kidsplor" id="ig-link" aria-label="Instagram (link placeholder)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm8 3.2a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2.2a2.8 2.8 0 1 1 0 5.6 2.8 2.8 0 0 1 0-5.6z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col">
+        <div class="foot-col-lbl">Platform</div>
+        <a href="index.html">For Parents</a>
+        <a href="kidsplor-parents-faq.html">Parents FAQ</a>
+        <a href="kidsplor-for-business.html">For Providers</a>
+        <a href="kidsplor-pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Community</div>
+        <a href="kidsplor-parent-stories.html">Parent Stories</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-lbl">Legal</div>
+        <a href="kidsplor-privacy.html">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Kidsplor Pty Ltd &nbsp;·&nbsp; Australia</span>
+    <span>Built with care for Australian families</span>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(id) {
+    const item  = document.getElementById(id);
+    const body  = document.getElementById(id + '-body');
+    const btn   = item.querySelector('.faq-q');
+    const isOpen = item.classList.contains('open');
+
+    // Close all open items
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      const b = document.getElementById(el.id + '-body');
+      b.style.height = b.scrollHeight + 'px'; // Set explicit height before animating to 0
+      requestAnimationFrame(() => { b.style.height = '0'; });
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      body.style.height = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', () => {
+        if (item.classList.contains('open')) body.style.height = 'auto';
+      }, { once: true });
+    }
+  }
+
+  // Initialise heights
+  document.querySelectorAll('.faq-body').forEach(b => {
+    const item = b.closest('.faq-item');
+    if (item.classList.contains('open')) {
+      b.style.height = 'auto';
+    } else {
+      b.style.height = '0';
+    }
+  });
+</script>
+</body>
+</html>
