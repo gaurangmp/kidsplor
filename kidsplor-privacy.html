@@ -33,7 +33,7 @@
   /* NAV */
   nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 24px; padding: 0 44px; height: 66px; background: rgba(246,247,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
   .nav-logo { text-decoration: none; flex-shrink: 0; }
-  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.28rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.92rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
   .ih { position: relative; display: inline-block; line-height: inherit; }
   .heart { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(130%); width: .32em; height: .28em; overflow: visible; }
   .compass { display: inline-block; height: .76em; width: .76em; flex-shrink: 0; vertical-align: baseline; position: relative; top: .07em; }
@@ -88,7 +88,23 @@
   .socials { display:flex; gap:10px; margin-top:12px; }
   .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
   .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .legal-wrap { padding: 40px 20px 72px; }
+    .legal-toc  { padding: 22px 24px; }
+    .disclaimer-box { padding: 20px 22px; }
+    .defined-terms dd { padding-left: 12px; }
+  }
+  @media (max-width: 480px) {
+    .legal-wrap { padding: 32px 14px 56px; }
+    .legal-toc  { padding: 18px 18px; }
+    .disclaimer-box { padding: 16px 18px; }
+    .legal-section h2 { font-size: 1.05rem; }
+    .legal-section p, .legal-section li { font-size: 0.88rem; }
+  }
 </style>
+  <link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 
@@ -104,6 +120,10 @@
   </ul>
   <div class="nav-spacer"></div>
   <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
+    onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="page-hero">

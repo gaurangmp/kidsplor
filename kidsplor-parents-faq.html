@@ -38,7 +38,7 @@
     border-bottom: 1px solid var(--border);
   }
   .nav-logo { text-decoration: none; flex-shrink: 0; }
-  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.28rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.92rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
   .ih { position: relative; display: inline-block; line-height: inherit; }
   .heart { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(130%); width: .32em; height: .28em; overflow: visible; }
   .compass { display: inline-block; height: .76em; width: .76em; flex-shrink: 0; vertical-align: baseline; position: relative; top: .07em; }
@@ -97,7 +97,24 @@
   .socials { display:flex; gap:10px; margin-top:12px; }
   .socials a { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:rgba(255,255,255,0.04); text-decoration:none; }
   .socials a svg { width:20px; height:20px; display:block; fill:rgba(255,255,255,0.92); transition:transform 0.12s, opacity 0.12s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .faq-section { padding: 48px 20px 72px; }
+    .faq-q { padding: 16px 18px; font-size: 0.92rem; }
+    .faq-inner { padding: 0 18px 20px 48px; }
+    .faq-cta { padding: 36px 24px; }
+    .faq-cta-h { font-size: 1.3rem; }
+  }
+  @media (max-width: 480px) {
+    .faq-section { padding: 36px 14px 56px; }
+    .faq-q { padding: 14px 14px; gap: 10px; }
+    .faq-inner { padding: 0 14px 18px 40px; font-size: 0.88rem; }
+    .faq-num { width: 22px; height: 22px; font-size: 0.62rem; }
+    .faq-cta { padding: 28px 18px; }
+  }
 </style>
+  <link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 
@@ -113,6 +130,10 @@
   </ul>
   <div class="nav-spacer"></div>
   <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
+    onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="page-hero">

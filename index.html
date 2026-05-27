@@ -87,7 +87,7 @@
       font-family: 'Outfit', sans-serif; font-weight: 800;
       letter-spacing: -0.025em; line-height: 1;
       display: inline-flex; align-items: baseline; white-space: nowrap;
-      font-size: 1.5rem; color: var(--brand-xdk);
+      font-size: 1.92rem; color: var(--brand-xdk);
     }
     .wm svg.compass {
       display: inline-block; height: 0.76em; width: 0.76em; flex-shrink: 0;
@@ -666,7 +666,44 @@
     .hero-left > *:nth-child(5) { animation-delay: 0.42s; }
     .hero-left > *:nth-child(6) { animation-delay: 0.48s; }
     .hero-right { animation: slideUp 0.7s ease 0.3s both; }
+
+    /* ── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        max-height: none; min-height: auto;
+        padding: 40px 28px 48px; gap: 32px;
+      }
+      .hero-left  { padding: 0; }
+      .hero-right { padding: 0; justify-content: center; align-items: center; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding: 28px 16px 40px; }
+      .hero-h1  { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .hero-sub { font-size: 0.97rem; }
+      .wl-inputs {
+        flex-direction: column; align-items: stretch;
+        padding: 10px; border-radius: 14px; gap: 6px;
+      }
+      .wl-inp + .wl-inp {
+        border-left: none; border-top: 1.5px solid var(--border);
+        padding-left: 4px;
+      }
+      .s-btn { width: 100%; border-radius: 10px; padding: 13px; margin-top: 2px; }
+      .feat-section { padding: 36px 16px 48px; }
+      .feat-grid    { grid-template-columns: 1fr; gap: 16px; }
+      .iphone-frame { width: 230px; height: 490px; border-radius: 42px; }
+      .modal-box    { padding: 32px 22px; }
+      .social-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .m-row        { flex-direction: column; gap: 8px; }
+      .m-btn        { width: 100%; padding: 13px; }
+    }
+    @media (max-width: 400px) {
+      .iphone-frame { width: 200px; height: 426px; border-radius: 36px; }
+      .wm           { font-size: 1.54rem; }
+    }
   </style>
+  <link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 
@@ -686,6 +723,10 @@
   </ul>
   <div class="nav-spacer"></div>
   <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
+    onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 
@@ -729,9 +770,12 @@
     <div id="wlForm">
       <div class="wl-inputs">
         <input type="text" class="wl-inp" id="wl-name" placeholder="First name" aria-label="Your first name" onkeydown="if(event.key==='Enter')submitHeroWl()">
-        <input type="email" class="wl-inp" id="wl-email" placeholder="your@email.com" aria-label="Your email address" onkeydown="if(event.key==='Enter')submitHeroWl()">
+        <input type="email" class="wl-inp" id="wl-email" placeholder="your@email.com" aria-label="Your email address"
+          onkeydown="if(event.key==='Enter')submitHeroWl()"
+          oninput="this.style.outline='';document.getElementById('wl-email-err').classList.remove('visible')">
         <button class="s-btn" onclick="submitHeroWl()">Join Waitlist →</button>
       </div>
+      <p class="email-err" id="wl-email-err" role="alert">Please enter a valid email address</p>
       <p class="wl-note">Free · No spam · Be the first to know when we launch</p>
     </div>
     <div class="wl-done" id="wlDone" style="display:none">
@@ -1125,9 +1169,12 @@
         Drop your email and be the <strong>first to know</strong> when Kidsplor goes live.
       </p>
       <div class="m-row">
-        <input type="email" class="m-inp" id="m-email" placeholder="your@email.com" aria-label="Your email address" onkeydown="if(event.key==='Enter')submitWaitlist()">
+        <input type="email" class="m-inp" id="m-email" placeholder="your@email.com" aria-label="Your email address"
+          onkeydown="if(event.key==='Enter')submitWaitlist()"
+          oninput="this.classList.remove('err');document.getElementById('m-email-err').classList.remove('visible')">
         <button class="m-btn" onclick="submitWaitlist()">Notify Me</button>
       </div>
+      <p class="email-err" id="m-email-err" role="alert">Please enter a valid email address</p>
       <button class="m-skip" onclick="closeModal()">No thanks, I'll check back later</button>
     </div>
 
@@ -1199,11 +1246,15 @@
 
   function submitHeroWl() {
     const email = (document.getElementById('wl-email').value || '').trim();
+    const inp = document.getElementById('wl-email');
+    const err = document.getElementById('wl-email-err');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      const inp = document.getElementById('wl-email');
       inp.style.outline = '2px solid #F97316'; inp.focus();
-      setTimeout(() => { inp.style.outline = ''; }, 2000); return;
+      err.classList.add('visible');
+      setTimeout(() => { inp.style.outline = ''; err.classList.remove('visible'); }, 3000);
+      return;
     }
+    err.classList.remove('visible');
     fetch('https://formspree.io/f/' + FORMSPREE_PARENTS, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -1233,10 +1284,14 @@
   function submitWaitlist() {
     const inp = document.getElementById('m-email');
     const email = inp.value.trim();
+    const err = document.getElementById('m-email-err');
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       inp.classList.add('err'); inp.focus();
-      setTimeout(() => inp.classList.remove('err'), 1800); return;
+      err.classList.add('visible');
+      setTimeout(() => { inp.classList.remove('err'); err.classList.remove('visible'); }, 3000);
+      return;
     }
+    err.classList.remove('visible');
     fetch('https://formspree.io/f/' + FORMSPREE_PARENTS, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },

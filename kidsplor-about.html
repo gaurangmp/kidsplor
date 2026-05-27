@@ -80,7 +80,7 @@
       font-family: 'Outfit', sans-serif; font-weight: 800;
       letter-spacing: -0.025em; line-height: 1;
       display: inline-flex; align-items: baseline; white-space: nowrap;
-      font-size: 1.5rem; color: var(--brand-xdk);
+      font-size: 1.92rem; color: var(--brand-xdk);
     }
     .wm svg.compass {
       display: inline-block; height: 0.76em; width: 0.76em; flex-shrink: 0;
@@ -302,15 +302,21 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .about-hero, .story-band, .team-section, .values-strip { padding-left: 20px; padding-right: 20px; }
-      footer { padding: 40px 20px 32px; }
-      .foot-top { flex-direction: column; gap: 28px; }
-      .foot-links { flex-wrap: wrap; gap: 24px; }
-      .team-grid { grid-template-columns: 1fr; }
+      .about-hero  { padding: 60px 20px 48px; }
+      .story-band  { padding: 52px 20px; }
+      .team-section { padding: 64px 20px 52px; }
+      .values-strip { padding: 48px 20px; }
+      .team-grid   { grid-template-columns: 1fr; }
       .story-compass { display: none; }
+      .story-inner { flex-direction: column; gap: 24px; }
+      .founder-card { padding: 32px 24px 28px; }
+    }
+    @media (max-width: 480px) {
+      .about-hero h1 { font-size: clamp(2rem, 8vw, 2.8rem); }
+      .values-grid   { grid-template-columns: 1fr 1fr; }
     }
   </style>
+  <link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 
@@ -326,6 +332,10 @@
   </ul>
   <div class="nav-spacer"></div>
   <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+  <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
+    onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 
