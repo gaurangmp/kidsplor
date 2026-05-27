@@ -33,7 +33,7 @@
   /* NAV */
   nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; gap: 24px; padding: 0 44px; height: 66px; background: rgba(246,247,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
   .nav-logo { text-decoration: none; flex-shrink: 0; }
-  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.92rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .wm { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.28rem; line-height: 1; letter-spacing: -0.025em; color: var(--brand-xdk); display: inline-flex; align-items: baseline; white-space: nowrap; }
   .ih { position: relative; display: inline-block; line-height: inherit; }
   .heart { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%) translateY(130%); width: .32em; height: .28em; overflow: visible; }
   .compass { display: inline-block; height: .76em; width: .76em; flex-shrink: 0; vertical-align: baseline; position: relative; top: .07em; }
@@ -158,10 +158,6 @@
   </ul>
   <div class="nav-spacer"></div>
   <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
-  <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
-    onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <div class="page-hero">
@@ -322,7 +318,6 @@
       <div class="foot-col">
         <div class="foot-col-lbl">Community</div>
         <a href="kidsplor-parent-stories.html">Parent Stories</a>
-        <a href="#">Blog</a>
       </div>
       <div class="foot-col">
         <div class="foot-col-lbl">Legal</div>
