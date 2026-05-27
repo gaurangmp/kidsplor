@@ -150,6 +150,7 @@
     .hero-left {
       display: flex; flex-direction: column; justify-content: center;
       padding: 48px 40px 48px 0; position: relative; z-index: 1;
+      min-width: 0; /* prevent grid column from expanding beyond 1fr */
     }
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -224,6 +225,7 @@
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
       padding: 32px 0 32px 36px; position: relative; z-index: 1;
+      min-width: 0; /* prevent grid column from expanding beyond 1fr */
     }
 
     /* ════════════════════════════════════════════════════════════
@@ -332,7 +334,7 @@
     .iphone-screen .act-row             { padding: 5px 7px; gap: 5px; border-radius: 9px; }
     .iphone-screen .act-day             { font-size: 0.54rem; width: 20px; }
     .iphone-screen .act-dot             { width: 6px; height: 6px; }
-    .iphone-screen .act-name            { font-size: 0.67rem; }
+    .iphone-screen .act-name            { font-size: 0.67rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .iphone-screen .act-time            { font-size: 0.57rem; }
     .iphone-screen .kid-tag             { font-size: 0.54rem; padding: 1px 6px; }
     .iphone-screen .spend-box           { padding: 6px 9px; border-radius: 9px; gap: 9px; }
@@ -692,15 +694,18 @@
       .s-btn { width: 100%; border-radius: 10px; padding: 13px; margin-top: 2px; }
       .feat-section { padding: 36px 16px 48px; }
       .feat-grid    { grid-template-columns: 1fr; gap: 16px; }
-      .iphone-frame { width: 230px; height: 490px; border-radius: 42px; }
+      .iphone-frame { width: 270px; height: 574px; border-radius: 48px; }
       .modal-box    { padding: 32px 22px; }
       .social-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
       .m-row        { flex-direction: column; gap: 8px; }
       .m-btn        { width: 100%; padding: 13px; }
     }
     @media (max-width: 400px) {
-      .iphone-frame { width: 200px; height: 426px; border-radius: 36px; }
+      .iphone-frame { width: 250px; height: 532px; border-radius: 46px; }
       .wm           { font-size: 1.54rem; }
+      .iphone-nav-item { min-width: 40px; font-size: 0.49rem; }
+      .iphone-nav-item svg { width: 16px; height: 16px; }
+      .nav-plus-btn { width: 32px; height: 32px; font-size: 1.1rem; }
     }
   </style>
   <link rel="stylesheet" href="assets/responsive.css">
