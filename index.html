@@ -244,7 +244,9 @@
         0 0 0 7px rgba(255,255,255,0.07),
         0 44px 100px rgba(0,0,0,0.52),
         0 16px 40px rgba(67,56,202,0.18);
+      cursor: grab;
     }
+    .iphone-frame:active { cursor: grabbing; }
     .iphone-island {
       position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
       width: 90px; height: 28px; background: #0a0a0a; border-radius: 20px; z-index: 20;
@@ -352,15 +354,17 @@
     .ld-slide {
       position: absolute; inset: 0;
       opacity: 0; pointer-events: none;
-      transform: translateY(10px);
-      transition: opacity 0.38s ease, transform 0.38s ease;
+      transform: translateX(22px);          /* default: enter from right */
+      transition: opacity 0.34s ease, transform 0.34s ease;
       padding: 14px 14px 10px;
       display: flex; flex-direction: column; gap: 9px;
       overflow: hidden;
     }
+    .ld-slide.from-left { transform: translateX(-22px); } /* enter from left */
     .ld-slide.on {
-      opacity: 1; pointer-events: all; transform: translateY(0);
+      opacity: 1; pointer-events: all; transform: translateX(0);
     }
+    .ld-body { user-select: none; }
 
     /* Shared inner components */
     .slide-lbl {
@@ -699,12 +703,19 @@
       .social-proof { flex-direction: column; align-items: flex-start; gap: 8px; }
       .m-row        { flex-direction: column; gap: 8px; }
       .m-btn        { width: 100%; padding: 13px; }
+      /* Trust bar — keep all 3 items in one row */
+      .trust-bar  { gap: 24px; padding: 18px 20px; flex-wrap: nowrap; }
+      .trust-item { font-size: 0.72rem; }
     }
     @media (max-width: 400px) {
       .iphone-frame { width: 250px; height: 532px; border-radius: 46px; }
       .wm           { font-size: 1.54rem; }
       .iphone-nav-item { min-width: 40px; font-size: 0.49rem; }
       .iphone-nav-item svg { width: 16px; height: 16px; }
+      /* Trust bar — tighter on very small screens */
+      .trust-bar  { gap: 10px; padding: 14px 10px; justify-content: space-evenly; }
+      .trust-item { font-size: 0.62rem; letter-spacing: 0.05em; gap: 5px; }
+      .trust-item svg { width: 13px; height: 13px; }
       .nav-plus-btn { width: 32px; height: 32px; font-size: 1.1rem; }
     }
   </style>
@@ -1063,7 +1074,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4338CA" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
           <h3 class="feat-title">Secure Transactions</h3>
-          <p class="feat-desc">Enrol with one tap. Payments, auto-renewals and instant confirmation go directly to your child's coach or studio. No cash, no bank transfers, no chasing anyone for a receipt.</p>
+          <p class="feat-desc">Enrol with one tap. Payments, auto-renewals and instant confirmation of your booking. No cash, no bank transfers, no chasing anyone for a receipt.</p>
           <span class="feat-pill">Zero payment friction</span>
         </div>
       </div>
@@ -1341,14 +1352,21 @@
     BAR.classList.add('fill');
   }
 
-  function activateSlide(n) {
+  function activateSlide(n, dir) {
+    const incoming = document.getElementById(SLIDES[n]);
     // Deactivate current
     document.getElementById(SLIDES[cur]).classList.remove('on');
     TABS[cur].classList.remove('on');
     DOTS[cur].classList.remove('on');
     cur = n;
-    // Activate new
-    document.getElementById(SLIDES[cur]).classList.add('on');
+    // Position incoming slide on correct side before transition
+    if (dir === 'back') {
+      incoming.classList.add('from-left');
+      void incoming.offsetWidth; // force reflow so start position registers
+    }
+    // Activate — transition plays from off-screen to translateX(0)
+    incoming.classList.add('on');
+    incoming.classList.remove('from-left');
     TABS[cur].classList.add('on');
     DOTS[cur].classList.add('on');
     // Run booking animation when entering slide 1
@@ -1356,11 +1374,12 @@
     startBar();
   }
 
-  function nextSlide() { activateSlide((cur + 1) % SLIDES.length); }
+  function nextSlide() { activateSlide((cur + 1) % SLIDES.length, 'fwd'); }
 
-  function jumpSlide(n) {
+  function jumpSlide(n, dir) {
+    if (dir === undefined) dir = (n > cur) ? 'fwd' : 'back';
     clearInterval(timer);
-    activateSlide(n);
+    activateSlide(n, dir);
     timer = setInterval(nextSlide, DELAY);
   }
 
@@ -1379,6 +1398,59 @@
       rows.style.display = 'flex';
     }, 1400);
   }
+
+  /* ── Swipe / drag to change slides ─────────────────────────────────── */
+  (function () {
+    const frame = document.querySelector('.iphone-frame');
+    if (!frame) return;
+    let sx = 0, sy = 0, live = false;
+
+    function evalSwipe(dx, dy) {
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        const dir = dx < 0 ? 'fwd' : 'back';
+        const n   = dx < 0
+          ? (cur + 1) % SLIDES.length
+          : (cur - 1 + SLIDES.length) % SLIDES.length;
+        jumpSlide(n, dir);
+      }
+    }
+
+    /* Touch — prevent page scroll only when horizontal swipe is dominant */
+    frame.addEventListener('touchstart', e => {
+      sx = e.touches[0].clientX;
+      sy = e.touches[0].clientY;
+      live = true;
+    }, { passive: true });
+
+    frame.addEventListener('touchmove', e => {
+      if (!live) return;
+      const dx = e.touches[0].clientX - sx;
+      const dy = e.touches[0].clientY - sy;
+      if (Math.abs(dx) > Math.abs(dy)) e.preventDefault();
+    }, { passive: false });
+
+    frame.addEventListener('touchend', e => {
+      if (!live) return;
+      live = false;
+      evalSwipe(
+        e.changedTouches[0].clientX - sx,
+        e.changedTouches[0].clientY - sy
+      );
+    }, { passive: true });
+
+    frame.addEventListener('touchcancel', () => { live = false; });
+
+    /* Mouse drag (desktop — lets users "swipe" the demo with a mouse) */
+    frame.addEventListener('mousedown', e => {
+      sx = e.clientX; sy = e.clientY; live = true;
+    });
+
+    window.addEventListener('mouseup', e => {
+      if (!live) return;
+      live = false;
+      evalSwipe(e.clientX - sx, e.clientY - sy);
+    });
+  })();
 
   // Start auto-cycle on page load
   startBar();
