@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Kidsplor — Discover Your Child's Potential">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#EEF2FF" />
+      <stop offset="55%" stop-color="#F6F7FF" />
+      <stop offset="100%" stop-color="#EDEFFE" />
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&display=swap');
+      .wm { font-family: 'Outfit', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-weight:800; fill:#1E1B4B; font-size:112px; }
+      .tag { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; font-weight:600; fill:#334155; font-size:36px; }
+      .heart { fill: #F97316; }
+      .compass { fill: rgba(30,27,75,0.12); stroke: #1E1B4B; stroke-width:0.8; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Left decorative circle -->
+  <g opacity="0.12">
+    <circle cx="1040" cy="140" r="140" fill="#4338CA" />
+  </g>
+
+  <!-- Wordmark centered -->
+  <g transform="translate(100,210)">
+    <text class="wm">k
+      <tspan class="wm" dx="-8">&#305;</tspan>
+      dspl
+    </text>
+    <!-- Compass as 'o' replacement -->
+    <g transform="translate(520, -28) scale(0.66)">
+      <circle cx="22" cy="22" r="21" class="compass" />
+      <g transform="translate(8,6)" fill="#fff">
+        <polygon points="14,1 11,22 18,22" opacity="1" />
+        <polygon points="14,43 11,22 18,22" opacity="0.28" />
+        <polygon points="1,22 22,18 22,26" />
+        <polygon points="43,22 22,18 22,26" opacity="0.28" />
+      </g>
+      <circle cx="22" cy="22" r="3" fill="#1E1B4B" />
+    </g>
+    <text class="wm" x="690" y="0">r</text>
+
+    <!-- Heart above dotless i -->
+    <g transform="translate(70,-48) scale(0.9)">
+      <path class="heart" d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" />
+    </g>
+
+    <!-- Tagline -->
+    <text class="tag" x="0" y="120">Helping Australian families discover their child's potential — one activity at a time.</text>
+  </g>
+
+  <!-- Small footer url -->
+  <text x="24" y="600" font-family="Inter,Arial" font-size="18" fill="#64748B">kidsplor.com.au</text>
+</svg>
