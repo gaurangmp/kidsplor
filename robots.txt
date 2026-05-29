@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block old/duplicate pages
+Disallow: /kidsplor_old_index.html
+
+Sitemap: https://kidsplor.com.au/sitemap.xml
