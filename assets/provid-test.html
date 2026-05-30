@@ -483,17 +483,8 @@
     }
     .sec-sub { font-size: 1rem; color: var(--txt-sub); max-width: 520px; margin: 0 auto; line-height: 1.68; }
 
-    /* ── FEATURES SECTION — dark background ─────────────────── */
-    section#features {
-      background: linear-gradient(160deg, #1e1b4b 0%, #121028 55%, #1a1840 100%);
-    }
-    section#features .sec-pill {
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.72);
-      border-color: rgba(255,255,255,0.14);
-    }
-    section#features .sec-h2 { color: #ffffff; }
-    section#features .sec-sub { color: rgba(255,255,255,0.56); }
+    /* ── FEATURES SECTION ───────────────────────────────────── */
+    section#features { background: #eef2ff; }
 
     /* Feature grid — 3 cols × 2 rows */
     .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
@@ -536,53 +527,71 @@
 
     /* ── ORBIT FEATURES ──────────────────────────────────────── */
     .orbit-scale-wrap { display: flex; justify-content: center; }
-    .orbit-wrap {
-      position: relative; width: 840px; height: 840px; flex-shrink: 0;
-      border: 1.5px solid transparent; border-radius: 28px;
-      transition: border-color 0.7s ease;
-    }
-    .orbit-wrap.framed { border-color: rgba(255,255,255,0.14); }
+    .orbit-wrap { position: relative; width: 1008px; height: 1008px; flex-shrink: 0; }
     .orbit-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
-    .o-line { stroke: rgba(255,255,255,0.15); stroke-width: 1.5; stroke-dasharray: 315; stroke-dashoffset: 315; transition: stroke-dashoffset 0.5s ease-out; }
-    .orbit-wrap.revealed .o-line:nth-child(1) { stroke-dashoffset: 0; transition-delay: 0.00s; }
-    .orbit-wrap.revealed .o-line:nth-child(2) { stroke-dashoffset: 0; transition-delay: 0.07s; }
-    .orbit-wrap.revealed .o-line:nth-child(3) { stroke-dashoffset: 0; transition-delay: 0.14s; }
-    .orbit-wrap.revealed .o-line:nth-child(4) { stroke-dashoffset: 0; transition-delay: 0.21s; }
-    .orbit-wrap.revealed .o-line:nth-child(5) { stroke-dashoffset: 0; transition-delay: 0.28s; }
-    .orbit-wrap.revealed .o-line:nth-child(6) { stroke-dashoffset: 0; transition-delay: 0.35s; }
+    .o-line { stroke: rgba(67,56,202,0.2); stroke-width: 1.5; stroke-dasharray: 378; stroke-dashoffset: 378; transition: stroke-dashoffset 0.5s ease-out; }
+    .orbit-wrap.revealed .o-line:nth-child(2) { stroke-dashoffset: 0; transition-delay: 0.00s; }
+    .orbit-wrap.revealed .o-line:nth-child(3) { stroke-dashoffset: 0; transition-delay: 0.07s; }
+    .orbit-wrap.revealed .o-line:nth-child(4) { stroke-dashoffset: 0; transition-delay: 0.14s; }
+    .orbit-wrap.revealed .o-line:nth-child(5) { stroke-dashoffset: 0; transition-delay: 0.21s; }
+    .orbit-wrap.revealed .o-line:nth-child(6) { stroke-dashoffset: 0; transition-delay: 0.28s; }
+    .orbit-wrap.revealed .o-line:nth-child(7) { stroke-dashoffset: 0; transition-delay: 0.35s; }
+    /* Circular orbit ring */
+    .orbit-ring {
+      fill: none; stroke: rgba(67,56,202,0.16); stroke-width: 1.5;
+      opacity: 0; transition: opacity 0.7s ease 0.5s;
+    }
+    .orbit-wrap.revealed .orbit-ring { opacity: 1; }
+    /* Shimmer comet travelling the ring */
+    .orbit-shimmer {
+      fill: none; stroke: rgba(99,102,241,0.92); stroke-width: 3.5;
+      stroke-dasharray: 90 2286; stroke-linecap: round;
+      opacity: 0; filter: url(#orbit-glow);
+    }
+    .orbit-wrap.shimmer-on .orbit-shimmer { opacity: 1; animation: orbit-shimmer 4s linear infinite; }
+    @keyframes orbit-shimmer {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -2376; }
+    }
     .orbit-center {
       position: absolute; left: 50%; top: 50%;
-      width: 210px; height: 210px; border-radius: 50%;
+      width: 252px; height: 252px; border-radius: 50%;
       background: #ffffff;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 2px rgba(67,56,202,0.14), 0 0 0 18px rgba(67,56,202,0.06), 0 0 0 36px rgba(67,56,202,0.03), 0 8px 40px rgba(30,27,75,0.14);
+      box-shadow: 0 0 0 2px rgba(67,56,202,0.14), 0 0 0 20px rgba(67,56,202,0.06), 0 0 0 40px rgba(67,56,202,0.03), 0 8px 40px rgba(30,27,75,0.14);
       z-index: 2;
       transform: translate(-50%,-50%) scale(1);
       transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
     }
     .orbit-center.orbit-center-hidden { opacity: 0; transform: translate(-50%,-50%) scale(0); }
-    .orbit-center-logo { width: 152px; height: auto; display: block; }
+    .orbit-center-logo { width: 182px; height: auto; display: block; }
     .orbit-item {
       position: absolute;
       left: calc(50% + var(--ox)); top: calc(50% + var(--oy));
-      width: 132px;
+      width: 158px;
       transform: translate(-50%,-50%) scale(1); opacity: 1;
-      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
       transition: opacity 0.48s cubic-bezier(0.22,1,0.36,1), transform 0.48s cubic-bezier(0.22,1,0.36,1);
       z-index: 3;
     }
     .orbit-item.orbit-hidden { opacity: 0; transform: translate(calc(-50% - var(--ox)), calc(-50% - var(--oy))) scale(0.1); }
     .orbit-ico {
-      width: 96px; height: 96px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 2.4rem;
-      box-shadow: 0 6px 20px rgba(30,27,75,0.12);
+      width: 116px; height: 116px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 2.9rem;
+      box-shadow: 0 6px 24px rgba(30,27,75,0.12);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .orbit-item:hover .orbit-ico { transform: scale(1.1); box-shadow: 0 10px 28px rgba(30,27,75,0.2); }
-    .orbit-label { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1rem; color: rgba(255,255,255,0.92); text-align: center; line-height: 1.3; }
+    .orbit-ico.ico-indigo { background: #c7d2fe; }
+    .orbit-ico.ico-orange  { background: #fdba74; }
+    .orbit-ico.ico-green   { background: #6ee7b7; }
+    .orbit-ico.ico-purple  { background: #c4b5fd; }
+    .orbit-ico.ico-blue    { background: #93c5fd; }
+    .orbit-ico.ico-amber   { background: #fcd34d; }
+    .orbit-item:hover .orbit-ico { transform: scale(1.1); box-shadow: 0 10px 32px rgba(30,27,75,0.2); }
+    .orbit-label { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--brand-xdk); text-align: center; line-height: 1.3; }
     /* Hover tooltips */
     .orbit-tip {
-      position: absolute; width: 170px;
+      position: absolute; width: 200px;
       background: var(--brand-xdk); color: rgba(255,255,255,0.88);
       font-family: 'Inter', sans-serif; font-size: 0.72rem; line-height: 1.55;
       padding: 9px 13px; border-radius: 11px;
@@ -598,14 +607,16 @@
     .orbit-item[data-pos="bottom"] .orbit-tip { bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); }
     .orbit-item[data-pos="bl"]     .orbit-tip { left: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
     .orbit-item[data-pos="tl"]     .orbit-tip { left: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
-    @media (max-width: 920px) {
+    @media (max-width: 1100px) {
       .feat-section { overflow: hidden; }
-      .orbit-wrap { transform: scale(0.7); transform-origin: center top; margin-bottom: -220px; }
+      .orbit-wrap { transform: scale(0.75); transform-origin: center top; margin-bottom: -222px; }
     }
-    @media (max-width: 620px) { .orbit-wrap { transform: scale(0.5); margin-bottom: -388px; } }
-    @media (max-width: 400px) { .orbit-wrap { transform: scale(0.4); margin-bottom: -472px; } }
+    @media (max-width: 700px) { .orbit-wrap { transform: scale(0.55); margin-bottom: -424px; } }
+    @media (max-width: 460px) { .orbit-wrap { transform: scale(0.42); margin-bottom: -555px; } }
     @media (prefers-reduced-motion: reduce) {
       .o-line { transition: none; stroke-dashoffset: 0 !important; }
+      .orbit-ring { transition: none; opacity: 1 !important; }
+      .orbit-shimmer { display: none !important; }
       .orbit-center, .orbit-item { transition: opacity 0.3s ease !important; }
       .orbit-center.orbit-center-hidden { transform: translate(-50%,-50%) !important; }
       .orbit-item.orbit-hidden { transform: translate(-50%,-50%) !important; }
@@ -1064,14 +1075,28 @@
     <div class="orbit-scale-wrap">
       <div class="orbit-wrap">
 
-        <!-- Spokes (840×840, center 420,420, radius 315) -->
-        <svg class="orbit-lines" viewBox="0 0 840 840" aria-hidden="true">
-          <line class="o-line" x1="420" y1="420" x2="420" y2="105"/>
-          <line class="o-line" x1="420" y1="420" x2="693" y2="263"/>
-          <line class="o-line" x1="420" y1="420" x2="693" y2="577"/>
-          <line class="o-line" x1="420" y1="420" x2="420" y2="735"/>
-          <line class="o-line" x1="420" y1="420" x2="147" y2="577"/>
-          <line class="o-line" x1="420" y1="420" x2="147" y2="263"/>
+        <!-- Orbit ring, shimmer & spokes -->
+        <svg class="orbit-lines" viewBox="0 0 1008 1008" aria-hidden="true">
+          <defs>
+            <filter id="orbit-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Spokes (behind ring) -->
+          <line class="o-line" x1="504" y1="504" x2="504" y2="126"/>
+          <line class="o-line" x1="504" y1="504" x2="832" y2="316"/>
+          <line class="o-line" x1="504" y1="504" x2="832" y2="692"/>
+          <line class="o-line" x1="504" y1="504" x2="504" y2="882"/>
+          <line class="o-line" x1="504" y1="504" x2="176" y2="692"/>
+          <line class="o-line" x1="504" y1="504" x2="176" y2="316"/>
+          <!-- Ring connecting all 6 features -->
+          <circle class="orbit-ring"    cx="504" cy="504" r="378"/>
+          <!-- Shimmer comet starts at 12 o'clock (rotate -90°) -->
+          <circle class="orbit-shimmer" cx="504" cy="504" r="378" transform="rotate(-90, 504, 504)"/>
         </svg>
 
         <!-- Centre logo -->
@@ -1080,32 +1105,32 @@
         </div>
 
         <!-- Features — clockwise from 12 o'clock -->
-        <div class="orbit-item orbit-hidden" data-pos="top"    style="--ox:0px;   --oy:-315px">
+        <div class="orbit-item orbit-hidden" data-pos="top"    style="--ox:0px;    --oy:-378px">
           <div class="orbit-ico ico-indigo">🔍</div>
           <div class="orbit-label">Get Found</div>
           <div class="orbit-tip">Your classes show up when Melbourne parents search by suburb, age or activity — no ads needed.</div>
         </div>
-        <div class="orbit-item orbit-hidden" data-pos="tr"     style="--ox:273px; --oy:-157px">
+        <div class="orbit-item orbit-hidden" data-pos="tr"     style="--ox:328px;  --oy:-188px">
           <div class="orbit-ico ico-orange">📅</div>
           <div class="orbit-label">Your Timetable</div>
           <div class="orbit-tip">Add classes, set how many spots, and you're done. Families see live availability — no back-and-forth.</div>
         </div>
-        <div class="orbit-item orbit-hidden" data-pos="br"     style="--ox:273px; --oy:157px">
+        <div class="orbit-item orbit-hidden" data-pos="br"     style="--ox:328px;  --oy:188px">
           <div class="orbit-ico ico-purple">💳</div>
           <div class="orbit-label">Get Paid</div>
           <div class="orbit-tip">Families pay when they book. New term? Payments go out automatically. No invoices, no chasing.</div>
         </div>
-        <div class="orbit-item orbit-hidden" data-pos="bottom" style="--ox:0px;   --oy:315px">
+        <div class="orbit-item orbit-hidden" data-pos="bottom" style="--ox:0px;    --oy:378px">
           <div class="orbit-ico ico-green">👥</div>
           <div class="orbit-label">Bookings &amp;<br>Waitlists</div>
           <div class="orbit-tip">Parents enrol in seconds. When a class fills, they join a waitlist and get notified automatically.</div>
         </div>
-        <div class="orbit-item orbit-hidden" data-pos="bl"     style="--ox:-273px; --oy:157px">
+        <div class="orbit-item orbit-hidden" data-pos="bl"     style="--ox:-328px; --oy:188px">
           <div class="orbit-ico ico-amber">📊</div>
           <div class="orbit-label">Know Your<br>Numbers</div>
           <div class="orbit-tip">See what you earned this term, which classes are filling, and what's coming next — at a glance.</div>
         </div>
-        <div class="orbit-item orbit-hidden" data-pos="tl"     style="--ox:-273px; --oy:-157px">
+        <div class="orbit-item orbit-hidden" data-pos="tl"     style="--ox:-328px; --oy:-188px">
           <div class="orbit-ico ico-blue">💬</div>
           <div class="orbit-label">Parent Inbox</div>
           <div class="orbit-tip">Send class reminders, updates or notices in one click — no more WhatsApp groups or emails to spam.</div>
@@ -1372,8 +1397,8 @@
       items.forEach(function (item, i) {
         setTimeout(function () { item.classList.remove('orbit-hidden'); }, 440 + i * 80);
       });
-      // 4. Outline box fades in after last item lands (440 + 5×80ms burst + 480ms transition)
-      setTimeout(function () { wrap.classList.add('framed'); }, 1360);
+      // 4. Shimmer starts after last item fully settles (last burst + 520ms transition)
+      setTimeout(function () { wrap.classList.add('shimmer-on'); }, 440 + (items.length - 1) * 80 + 520);
     }, { threshold: 0.25 });
     observer.observe(wrap);
   })();
