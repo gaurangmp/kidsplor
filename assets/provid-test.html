@@ -525,101 +525,126 @@
       font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 50px;
     }
 
-    /* ── ORBIT FEATURES ──────────────────────────────────────── */
-    .orbit-scale-wrap { display: flex; justify-content: center; }
-    .orbit-wrap { position: relative; width: 1008px; height: 1008px; flex-shrink: 0; }
-    .orbit-lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
-    .o-line { stroke: rgba(67,56,202,0.2); stroke-width: 1.5; stroke-dasharray: 378; stroke-dashoffset: 378; transition: stroke-dashoffset 0.5s ease-out; }
-    .orbit-wrap.revealed .o-line:nth-child(2) { stroke-dashoffset: 0; transition-delay: 0.00s; }
-    .orbit-wrap.revealed .o-line:nth-child(3) { stroke-dashoffset: 0; transition-delay: 0.07s; }
-    .orbit-wrap.revealed .o-line:nth-child(4) { stroke-dashoffset: 0; transition-delay: 0.14s; }
-    .orbit-wrap.revealed .o-line:nth-child(5) { stroke-dashoffset: 0; transition-delay: 0.21s; }
-    .orbit-wrap.revealed .o-line:nth-child(6) { stroke-dashoffset: 0; transition-delay: 0.28s; }
-    .orbit-wrap.revealed .o-line:nth-child(7) { stroke-dashoffset: 0; transition-delay: 0.35s; }
-    /* Circular orbit ring */
-    .orbit-ring {
-      fill: none; stroke: rgba(67,56,202,0.16); stroke-width: 1.5;
-      opacity: 0; transition: opacity 0.7s ease 0.5s;
+    /* ── FEATURE GRID ──────────────────────────────────────────── */
+    .feat-grid-wrap {
+      display: grid;
+      grid-template-columns: 1fr 180px 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 8px 0 32px;
+      position: relative;
+      isolation: isolate;
     }
-    .orbit-wrap.revealed .orbit-ring { opacity: 1; }
-    /* Shimmer comet travelling the ring */
-    .orbit-shimmer {
-      fill: none; stroke: rgba(99,102,241,0.92); stroke-width: 3.5;
-      stroke-dasharray: 90 2286; stroke-linecap: round;
-      opacity: 0; filter: url(#orbit-glow);
+    .feat-grid-col { display: flex; flex-direction: column; gap: 14px; }
+
+    /* SVG spoke overlay — sits below cards */
+    .feat-grid-svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; overflow: visible;
+      z-index: 0;
     }
-    .orbit-wrap.shimmer-on .orbit-shimmer { opacity: 1; animation: orbit-shimmer 4s linear infinite; }
-    @keyframes orbit-shimmer {
-      from { stroke-dashoffset: 0; }
-      to   { stroke-dashoffset: -2376; }
+
+    /* Centre hub */
+    .feat-grid-hub {
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 0; position: relative; z-index: 1;
     }
-    .orbit-center {
-      position: absolute; left: 50%; top: 50%;
-      width: 252px; height: 252px; border-radius: 50%;
+    .feat-grid-hub-inner {
+      width: 152px; height: 152px; border-radius: 50%;
       background: #ffffff;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 0 0 2px rgba(67,56,202,0.14), 0 0 0 20px rgba(67,56,202,0.06), 0 0 0 40px rgba(67,56,202,0.03), 0 8px 40px rgba(30,27,75,0.14);
-      z-index: 2;
-      transform: translate(-50%,-50%) scale(1);
-      transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow:
+        0 0 0 2px rgba(67,56,202,0.14),
+        0 0 0 18px rgba(67,56,202,0.06),
+        0 0 0 36px rgba(67,56,202,0.03),
+        0 8px 40px rgba(30,27,75,0.18);
+      opacity: 0; transform: scale(0.55);
+      transition: opacity 0.55s cubic-bezier(0.34,1.56,0.64,1),
+                  transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .orbit-center.orbit-center-hidden { opacity: 0; transform: translate(-50%,-50%) scale(0); }
-    .orbit-center-logo { width: 182px; height: auto; display: block; }
-    .orbit-item {
-      position: absolute;
-      left: calc(50% + var(--ox)); top: calc(50% + var(--oy));
-      width: 158px;
-      transform: translate(-50%,-50%) scale(1); opacity: 1;
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      transition: opacity 0.48s cubic-bezier(0.22,1,0.36,1), transform 0.48s cubic-bezier(0.22,1,0.36,1);
-      z-index: 3;
+    .feat-grid-hub-inner.revealed { opacity: 1; transform: scale(1); }
+    .feat-grid-hub-logo { width: 110px; height: auto; display: block; }
+
+    /* Feature card */
+    .feat-grid-card {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 18px 20px;
+      cursor: default; opacity: 0;
+      transition: opacity 0.48s ease, transform 0.22s ease,
+                  box-shadow 0.22s ease, border-color 0.22s ease;
     }
-    .orbit-item.orbit-hidden { opacity: 0; transform: translate(calc(-50% - var(--ox)), calc(-50% - var(--oy))) scale(0.1); }
-    .orbit-ico {
-      width: 116px; height: 116px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 2.9rem;
-      box-shadow: 0 6px 24px rgba(30,27,75,0.12);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .feat-grid-card.revealed { opacity: 1; }
+    .feat-grid-card.revealed:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(30,27,75,0.14);
+      border-color: rgba(129,140,248,0.5);
+      z-index: 5;
     }
-    .orbit-ico.ico-indigo { background: #c7d2fe; }
-    .orbit-ico.ico-orange  { background: #fdba74; }
-    .orbit-ico.ico-green   { background: #6ee7b7; }
-    .orbit-ico.ico-purple  { background: #c4b5fd; }
-    .orbit-ico.ico-blue    { background: #93c5fd; }
-    .orbit-ico.ico-amber   { background: #fcd34d; }
-    .orbit-item:hover .orbit-ico { transform: scale(1.1); box-shadow: 0 10px 32px rgba(30,27,75,0.2); }
-    .orbit-label { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--brand-xdk); text-align: center; line-height: 1.3; }
-    /* Hover tooltips */
-    .orbit-tip {
-      position: absolute; width: 200px;
-      background: var(--brand-xdk); color: rgba(255,255,255,0.88);
-      font-family: 'Inter', sans-serif; font-size: 0.72rem; line-height: 1.55;
-      padding: 9px 13px; border-radius: 11px;
+    .feat-grid-ico {
+      width: 54px; height: 54px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.65rem; flex-shrink: 0;
+    }
+    .feat-grid-body { flex: 1; min-width: 0; }
+    .feat-grid-label {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: 0.97rem; color: var(--brand-xdk);
+      letter-spacing: -0.01em; line-height: 1.25;
+    }
+    .feat-grid-sub {
+      font-size: 0.76rem; color: var(--txt-muted);
+      margin-top: 3px; line-height: 1.4;
+    }
+
+    /* Desktop hover tooltip */
+    .feat-grid-tip {
+      position: absolute; z-index: 30; top: 50%;
+      width: 340px;
+      background: var(--brand-xdk); color: rgba(255,255,255,0.92);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem; line-height: 1.68;
+      padding: 20px 24px; border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
       opacity: 0; pointer-events: none;
-      transition: opacity 0.18s ease;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.22);
-      z-index: 10;
+      transition: opacity 0.18s ease, transform 0.18s ease;
     }
-    .orbit-item:hover .orbit-tip { opacity: 1; }
-    .orbit-item[data-pos="top"]    .orbit-tip { top: calc(100% + 10px); left: 50%; transform: translateX(-50%); }
-    .orbit-item[data-pos="tr"]     .orbit-tip { right: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
-    .orbit-item[data-pos="br"]     .orbit-tip { right: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
-    .orbit-item[data-pos="bottom"] .orbit-tip { bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); }
-    .orbit-item[data-pos="bl"]     .orbit-tip { left: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
-    .orbit-item[data-pos="tl"]     .orbit-tip { left: calc(100% + 10px); top: 50%; transform: translateY(-50%); }
-    @media (max-width: 1100px) {
-      .feat-section { overflow: hidden; }
-      .orbit-wrap { transform: scale(0.75); transform-origin: center top; margin-bottom: -222px; }
+    .feat-grid-col:first-child .feat-grid-tip {
+      left: calc(100% + 14px);
+      transform: translateY(-50%) translateX(-8px);
     }
-    @media (max-width: 700px) { .orbit-wrap { transform: scale(0.55); margin-bottom: -424px; } }
-    @media (max-width: 460px) { .orbit-wrap { transform: scale(0.42); margin-bottom: -555px; } }
+    .feat-grid-col:first-child .feat-grid-card:hover .feat-grid-tip {
+      opacity: 1; transform: translateY(-50%) translateX(0);
+    }
+    .feat-grid-col:last-child .feat-grid-tip {
+      right: calc(100% + 14px);
+      transform: translateY(-50%) translateX(8px);
+    }
+    .feat-grid-col:last-child .feat-grid-card:hover .feat-grid-tip {
+      opacity: 1; transform: translateY(-50%) translateX(0);
+    }
+
+    /* Mobile: single column, icon + heading + short description, no tooltip */
+    @media (max-width: 960px) {
+      .feat-grid-wrap { grid-template-columns: 1fr; gap: 10px; padding-bottom: 8px; }
+      .feat-grid-hub  { display: none; }
+      .feat-grid-svg  { display: none; }
+      .feat-grid-card { align-items: center; padding: 14px 18px; gap: 14px; }
+      .feat-grid-sub  { display: block; font-size: 0.8rem; }
+      .feat-grid-col:first-child .feat-grid-tip,
+      .feat-grid-col:last-child  .feat-grid-tip { display: none; }
+    }
+    @media (max-width: 440px) {
+      .feat-grid-card  { padding: 12px 16px; gap: 12px; }
+      .feat-grid-ico   { width: 46px; height: 46px; border-radius: 12px; font-size: 1.4rem; }
+      .feat-grid-label { font-size: 0.92rem; }
+    }
     @media (prefers-reduced-motion: reduce) {
-      .o-line { transition: none; stroke-dashoffset: 0 !important; }
-      .orbit-ring { transition: none; opacity: 1 !important; }
-      .orbit-shimmer { display: none !important; }
-      .orbit-center, .orbit-item { transition: opacity 0.3s ease !important; }
-      .orbit-center.orbit-center-hidden { transform: translate(-50%,-50%) !important; }
-      .orbit-item.orbit-hidden { transform: translate(-50%,-50%) !important; }
+      .feat-grid-card, .feat-grid-hub-inner, .feat-grid-tip { transition: none !important; }
+      .feat-grid-card { opacity: 1; }
+      .feat-grid-hub-inner { opacity: 1; transform: scale(1); }
     }
 
     /* ── SIGN UP SECTION ──────────────────────────────────────── */
@@ -828,21 +853,21 @@
 ═══════════════════════════════════ -->
 <nav>
   <div class="nav-brand">
-    <a href="index.html" class="nav-logo" aria-label="Kidsplor home">
+    <a href="kidsplor-for-business.html" class="nav-logo" aria-label="Kidsplor home">
       <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
     </a>
     <span class="nav-sub">For Business</span>
   </div>
 
   <div class="nav-links">
-    <a href="index.html">Discover</a>
-    <a href="index.html#features">Features</a>
+    <a href="#signup">Sign Up</a>
+    <a href="#features">Features</a>
     <!-- Community removed from nav -->
     <a href="kidsplor-about.html">About Us</a>
   </div>
 
   <div class="nav-spacer"></div>
-  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+  <a href="index.html" class="nav-cta">For Parents</a>
   <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
     onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
     <span></span><span></span><span></span>
@@ -1072,72 +1097,80 @@
       <p class="sec-sub">Kidsplor was built by Melbourne parents who were frustrated searching for local kids' activities. We know what families need — and we built the tools that make it easy for you to reach them.</p>
     </div>
 
-    <div class="orbit-scale-wrap">
-      <div class="orbit-wrap">
+    <div class="feat-grid-wrap" id="feat-grid">
 
-        <!-- Orbit ring, shimmer & spokes -->
-        <svg class="orbit-lines" viewBox="0 0 1008 1008" aria-hidden="true">
-          <defs>
-            <filter id="orbit-glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          <!-- Spokes (behind ring) -->
-          <line class="o-line" x1="504" y1="504" x2="504" y2="126"/>
-          <line class="o-line" x1="504" y1="504" x2="832" y2="316"/>
-          <line class="o-line" x1="504" y1="504" x2="832" y2="692"/>
-          <line class="o-line" x1="504" y1="504" x2="504" y2="882"/>
-          <line class="o-line" x1="504" y1="504" x2="176" y2="692"/>
-          <line class="o-line" x1="504" y1="504" x2="176" y2="316"/>
-          <!-- Ring connecting all 6 features -->
-          <circle class="orbit-ring"    cx="504" cy="504" r="378"/>
-          <!-- Shimmer comet starts at 12 o'clock (rotate -90°) -->
-          <circle class="orbit-shimmer" cx="504" cy="504" r="378" transform="rotate(-90, 504, 504)"/>
-        </svg>
+      <!-- Left column -->
+      <div class="feat-grid-col">
 
-        <!-- Centre logo -->
-        <div class="orbit-center orbit-center-hidden" aria-label="Kidsplor">
-          <img src="https://kidsplor.com.au/kidsplor-transparent.png" alt="Kidsplor" class="orbit-center-logo">
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-indigo">🔍</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Get Found</div>
+            <div class="feat-grid-sub">Appear in local parent searches</div>
+          </div>
+          <div class="feat-grid-tip">Your classes show up when Melbourne parents search by suburb, age or activity — no ads needed.</div>
         </div>
 
-        <!-- Features — clockwise from 12 o'clock -->
-        <div class="orbit-item orbit-hidden" data-pos="top"    style="--ox:0px;    --oy:-378px">
-          <div class="orbit-ico ico-indigo">🔍</div>
-          <div class="orbit-label">Get Found</div>
-          <div class="orbit-tip">Your classes show up when Melbourne parents search by suburb, age or activity — no ads needed.</div>
-        </div>
-        <div class="orbit-item orbit-hidden" data-pos="tr"     style="--ox:328px;  --oy:-188px">
-          <div class="orbit-ico ico-orange">📅</div>
-          <div class="orbit-label">Your Timetable</div>
-          <div class="orbit-tip">Add classes, set how many spots, and you're done. Families see live availability — no back-and-forth.</div>
-        </div>
-        <div class="orbit-item orbit-hidden" data-pos="br"     style="--ox:328px;  --oy:188px">
-          <div class="orbit-ico ico-purple">💳</div>
-          <div class="orbit-label">Get Paid</div>
-          <div class="orbit-tip">Families pay when they book. New term? Payments go out automatically. No invoices, no chasing.</div>
-        </div>
-        <div class="orbit-item orbit-hidden" data-pos="bottom" style="--ox:0px;    --oy:378px">
-          <div class="orbit-ico ico-green">👥</div>
-          <div class="orbit-label">Bookings &amp;<br>Waitlists</div>
-          <div class="orbit-tip">Parents enrol in seconds. When a class fills, they join a waitlist and get notified automatically.</div>
-        </div>
-        <div class="orbit-item orbit-hidden" data-pos="bl"     style="--ox:-328px; --oy:188px">
-          <div class="orbit-ico ico-amber">📊</div>
-          <div class="orbit-label">Know Your<br>Numbers</div>
-          <div class="orbit-tip">See what you earned this term, which classes are filling, and what's coming next — at a glance.</div>
-        </div>
-        <div class="orbit-item orbit-hidden" data-pos="tl"     style="--ox:-328px; --oy:-188px">
-          <div class="orbit-ico ico-blue">💬</div>
-          <div class="orbit-label">Parent Inbox</div>
-          <div class="orbit-tip">Send class reminders, updates or notices in one click — no more WhatsApp groups or emails to spam.</div>
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-orange">📅</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Your Timetable</div>
+            <div class="feat-grid-sub">Set spots, show live availability</div>
+          </div>
+          <div class="feat-grid-tip">Add classes, set how many spots, and you're done. Families see live availability — no back-and-forth.</div>
         </div>
 
-      </div><!-- /orbit-wrap -->
-    </div><!-- /orbit-scale-wrap -->
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-blue">💬</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Parent Inbox</div>
+            <div class="feat-grid-sub">Messages without the WhatsApp chaos</div>
+          </div>
+          <div class="feat-grid-tip">Send class reminders, updates or notices in one click — no more WhatsApp groups or email chains.</div>
+        </div>
+
+      </div><!-- /left col -->
+
+      <!-- Centre hub -->
+      <div class="feat-grid-hub">
+        <div class="feat-grid-hub-inner" id="feat-hub-inner">
+          <img src="https://kidsplor.com.au/kidsplor-transparent.png" alt="Kidsplor" class="feat-grid-hub-logo">
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="feat-grid-col">
+
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-purple">💳</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Get Paid</div>
+            <div class="feat-grid-sub">Payments on booking, auto payouts</div>
+          </div>
+          <div class="feat-grid-tip">Families pay when they book. New term? Payments go out automatically. No invoices, no chasing.</div>
+        </div>
+
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-green">👥</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Bookings &amp; Waitlists</div>
+            <div class="feat-grid-sub">Auto-managed, zero back-and-forth</div>
+          </div>
+          <div class="feat-grid-tip">Parents enrol in seconds. When a class fills, they join a waitlist and get notified automatically.</div>
+        </div>
+
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-amber">📊</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Know Your Numbers</div>
+            <div class="feat-grid-sub">Revenue &amp; fill rates at a glance</div>
+          </div>
+          <div class="feat-grid-tip">See what you earned this term, which classes are filling, and what's coming next — at a glance.</div>
+        </div>
+
+      </div><!-- /right col -->
+
+    </div><!-- /feat-grid-wrap -->
   </div>
 </section>
 
@@ -1380,27 +1413,133 @@
   }
   setTimeout(tick, 600);
 
-  /* ── Orbit breakout animation ──────────────────── */
+  /* ── Feature grid reveal + orbital spokes ──────────────────────── */
   (function () {
-    var wrap = document.querySelector('.orbit-wrap');
-    if (!wrap) return;
-    var center = wrap.querySelector('.orbit-center');
-    var items  = wrap.querySelectorAll('.orbit-item');
+    var grid  = document.getElementById('feat-grid');
+    if (!grid) return;
+    var hub   = document.getElementById('feat-hub-inner');
+    var cards = grid.querySelectorAll('.feat-grid-card');
+
+    /* Reveal animation — hub springs in, cards fade up staggered */
     var observer = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
       observer.disconnect();
-      // 1. Centre springs in
-      center.classList.remove('orbit-center-hidden');
-      // 2. Spokes draw outward
-      setTimeout(function () { wrap.classList.add('revealed'); }, 320);
-      // 3. Features burst out clockwise, 80ms apart
-      items.forEach(function (item, i) {
-        setTimeout(function () { item.classList.remove('orbit-hidden'); }, 440 + i * 80);
+      if (hub) setTimeout(function () { hub.classList.add('revealed'); }, 80);
+      cards.forEach(function (card, i) {
+        setTimeout(function () { card.classList.add('revealed'); }, 160 + i * 70);
       });
-      // 4. Shimmer starts after last item fully settles (last burst + 520ms transition)
-      setTimeout(function () { wrap.classList.add('shimmer-on'); }, 440 + (items.length - 1) * 80 + 520);
-    }, { threshold: 0.25 });
-    observer.observe(wrap);
+      setTimeout(drawSpokes, 600); // draw after cards have settled
+    }, { threshold: 0.15 });
+    observer.observe(grid);
+
+    /* Draw SVG orbital spokes from hub centre to each card centre */
+    function drawSpokes() {
+      if (window.innerWidth <= 960) return;
+      var old = grid.querySelector('.feat-grid-svg');
+      if (old) old.remove();
+      if (!hub) return;
+
+      var ns  = 'http://www.w3.org/2000/svg';
+      var svg = document.createElementNS(ns, 'svg');
+      svg.classList.add('feat-grid-svg');
+      svg.setAttribute('aria-hidden', 'true');
+
+      /* Glow filter for the comet shimmer */
+      var defs = document.createElementNS(ns, 'defs');
+      var flt  = document.createElementNS(ns, 'filter');
+      flt.id   = 'spoke-glow';
+      flt.setAttribute('x', '-120%'); flt.setAttribute('y', '-120%');
+      flt.setAttribute('width', '340%'); flt.setAttribute('height', '340%');
+      var blur = document.createElementNS(ns, 'feGaussianBlur');
+      blur.setAttribute('in', 'SourceGraphic');
+      blur.setAttribute('stdDeviation', '4');
+      blur.setAttribute('result', 'b');
+      var merge = document.createElementNS(ns, 'feMerge');
+      ['b', 'SourceGraphic'].forEach(function (src) {
+        var mn = document.createElementNS(ns, 'feMergeNode');
+        mn.setAttribute('in', src);
+        merge.appendChild(mn);
+      });
+      flt.appendChild(blur);
+      flt.appendChild(merge);
+      defs.appendChild(flt);
+      svg.appendChild(defs);
+
+      var gr = grid.getBoundingClientRect();
+      var hr = hub.getBoundingClientRect();
+      var hx = hr.left - gr.left + hr.width  / 2;
+      var hy = hr.top  - gr.top  + hr.height / 2;
+
+      cards.forEach(function (card, i) {
+        var cr  = card.getBoundingClientRect();
+        var cx  = cr.left - gr.left + cr.width  / 2;
+        var cy  = cr.top  - gr.top  + cr.height / 2;
+        var dx  = cx - hx, dy = cy - hy;
+        var len = Math.sqrt(dx * dx + dy * dy);
+        var seg = 32; // comet length in px
+        /* Vary speed and phase so comets feel independent */
+        var dur = (1.6 + i * 0.22).toFixed(2) + 's';
+        var del = (i * 0.42).toFixed(2) + 's';
+
+        function mkLine(attrs) {
+          var l = document.createElementNS(ns, 'line');
+          Object.keys(attrs).forEach(function (k) { l.setAttribute(k, attrs[k]); });
+          l.setAttribute('x1', hx); l.setAttribute('y1', hy);
+          l.setAttribute('x2', cx); l.setAttribute('y2', cy);
+          return l;
+        }
+        function mkAnim(attr, from, to, duration, begin, values) {
+          var a = document.createElementNS(ns, 'animate');
+          a.setAttribute('attributeName', attr);
+          if (values) { a.setAttribute('values', values); }
+          else { a.setAttribute('from', from); a.setAttribute('to', to); }
+          a.setAttribute('dur', duration);
+          if (begin) a.setAttribute('begin', begin);
+          a.setAttribute('repeatCount', 'indefinite');
+          return a;
+        }
+
+        /* Pulsing base track */
+        var base = mkLine({ stroke: 'rgba(67,56,202,0.22)', 'stroke-width': '1.5' });
+        base.appendChild(mkAnim('stroke-opacity', null, null,
+          (2.4 + i * 0.2).toFixed(2) + 's', null, '0.1;0.3;0.1'));
+        svg.appendChild(base);
+
+        /* Travelling asteroid comet */
+        var comet = mkLine({
+          stroke: 'rgba(99,102,241,0.92)',
+          'stroke-width': '3.5',
+          'stroke-linecap': 'round',
+          'stroke-dasharray': seg + ' ' + (len + seg),
+          filter: 'url(#spoke-glow)'
+        });
+        comet.appendChild(mkAnim('stroke-dashoffset', '0', '-' + (len + seg), dur, del));
+        svg.appendChild(comet);
+      });
+
+      grid.insertBefore(svg, grid.firstChild);
+    }
+
+    /* Redraw spokes on window resize (debounced) */
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(drawSpokes, 220);
+    });
+
+    /* Mobile: tap card to toggle tooltip, tap outside to close */
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var on = card.classList.contains('tip-active');
+        cards.forEach(function (c) { c.classList.remove('tip-active'); });
+        if (!on) card.classList.add('tip-active');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.feat-grid-card')) {
+        cards.forEach(function (c) { c.classList.remove('tip-active'); });
+      }
+    });
   })();
 
   /* ── Provider type toggle ───────────────────────── */
