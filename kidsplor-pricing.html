@@ -131,6 +131,13 @@
     border-radius: 20px; padding: 32px 36px;
     display: flex; align-items: center; gap: 20px;
     color: white;
+    position: relative; overflow: hidden;
+  }
+  .netflix-tv-bg {
+    position: absolute; right: -24px; top: 50%;
+    transform: translateY(-50%) rotate(-8deg);
+    width: 280px; height: auto;
+    opacity: 0.07; pointer-events: none; flex-shrink: 0;
   }
   .netflix-ico { font-size: 2.5rem; flex-shrink: 0; }
   .netflix-text h3 { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.2rem; letter-spacing: -0.02em; margin-bottom: 6px; }
@@ -208,12 +215,7 @@
 
 <section class="pricing-section">
 
-  <div class="analogy-strip">
-    <h2>Think of us as the <em>Airbnb</em><br>of kids' activities.</h2>
-    <p>Guests browse, stay, and review — for free. Hosts list their space and pay a modest fee to be found. Same idea here: parents discover and book activities without paying a cent more than the activity itself costs. The providers handle the rest.</p>
-  </div>
-
-  <div class="pricing-grid">
+    <div class="pricing-grid">
 
     <!-- PARENT CARD -->
     <div class="price-card">
@@ -264,9 +266,9 @@
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           For Providers
         </div>
-        <div class="price-who">Studios, Schools, Instructors</div>
+        <div class="price-who">Tutors, Coaches, Instructors</div>
         <div class="price-headline">Coming soon 🤫</div>
-        <p class="price-tagline">We're still working out the exact numbers, but we can promise you this: running your business on Kidsplor won't cost you more than a streaming subscription.</p>
+        <p class="price-tagline">We're still working out the exact numbers, but we can promise you this; running your business on kidsplor won't cost you more than a streaming subscription.</p>
       </div>
       <div class="price-card-body dark">
         <ul class="price-perks">
@@ -303,6 +305,11 @@
 
   <!-- Netflix callout -->
   <div class="netflix-callout">
+    <svg class="netflix-tv-bg" viewBox="0 0 220 175" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect x="0" y="0" width="220" height="138" rx="14" fill="white"/>
+      <rect x="98" y="138" width="24" height="20" rx="4" fill="white"/>
+      <rect x="60" y="158" width="100" height="14" rx="7" fill="white"/>
+    </svg>
     <div class="netflix-ico">📺</div>
     <div class="netflix-text">
       <h3>Less than the price of a streaming subscription.</h3>
@@ -334,10 +341,10 @@
         <a href="kidsplor-for-business.html">For Providers</a>
         <a href="kidsplor-pricing.html">Pricing</a>
       </div>
-      <div class="foot-col">
+      <!--<div class="foot-col">
         <div class="foot-col-lbl">Community</div>
         <a href="kidsplor-parent-stories.html">Parent Stories</a>
-      </div>
+      </div>-->
       <div class="foot-col">
         <div class="foot-col-lbl">Legal</div>
         <a href="kidsplor-privacy.html">Privacy Policy</a>

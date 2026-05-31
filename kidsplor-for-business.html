@@ -14,7 +14,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kidsplor for Business — Grow Your Enrolments</title>
+  <title>Kidsplor — Simple Bookings & Payments for Coaches, Tutors & Teachers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -24,16 +24,16 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
   <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","CLARITY_PROJECT_ID");</script>
   <!-- ── Open Graph ── -->
-  <meta name="description" content="List your activities, fill your classes and manage bookings from one simple dashboard. Built for Australian activity providers.">
+  <meta name="description" content="A simple way for solo coaches, tutors and teachers to get found by local families, take bookings and get paid. Set up in minutes. Free for 3 months.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kidsplor">
-  <meta property="og:title" content="Kidsplor for Business — Grow Your Enrolments">
-  <meta property="og:description" content="List your activities, fill your classes and manage bookings from one simple dashboard. Built for Australian activity providers.">
+  <meta property="og:title" content="Kidsplor — Simple Bookings & Payments for Coaches, Tutors & Teachers">
+  <meta property="og:description" content="A simple way for solo coaches, tutors and teachers to get found by local families, take bookings and get paid. Set up in minutes.">
   <meta property="og:image" content="https://kidsplor.com.au/og-image.png">
   <meta property="og:url" content="https://kidsplor.com.au/for-business">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Kidsplor for Business — Grow Your Enrolments">
-  <meta name="twitter:description" content="List your activities, fill your classes and manage bookings from one simple dashboard.">
+  <meta name="twitter:title" content="Kidsplor — Simple Bookings & Payments for Coaches, Tutors & Teachers">
+  <meta name="twitter:description" content="Get found by local families, take bookings and get paid. Simple tools for solo coaches, tutors and teachers.">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -186,7 +186,7 @@
     #hero-h .accent { color: #ffffff; display: block; }
 
     .tw-static { color: #ffffff; display: inline-block; white-space: nowrap; }
-    .tw-line { color: var(--brand); display: inline-block; font-weight:900; white-space: nowrap; }
+    .tw-line { color: var(--brand); display: block; font-weight:900; white-space: nowrap; min-height: 1.06em; }
 
     .cursor-blink {
       display: inline-block; width: 2px; height: 18px;
@@ -199,7 +199,7 @@
       font-size: 1.05rem; color: rgba(255,255,255,0.88);
       line-height: 1.72; max-width: 440px; margin-bottom: 36px;
     }
-    .btn-ghost-hero:hover { border-color: rgba(255,255,255,0.6); color: #fff; }
+    .btn-ghost-hero:hover, .btn-ghost-hero:active { border-color: #7b2fbe; color: #7b2fbe; }
     .cta-hook { font-size: 0.76rem; color: rgba(255,255,255,0.75); margin-top: 12px; }
     .cta-hook strong { color: var(--brand-lt); font-weight: 700; }
 
@@ -227,9 +227,9 @@
     .btn-ghost-hero {
       display: inline-flex; align-items: center; gap: 10px;
       background: #fff; color: var(--brand-xdk); padding: 12px 18px; border-radius: 12px;
-      border: none; text-decoration: none; font-weight: 700; box-shadow: 0 8px 28px rgba(12,18,28,0.12);
+      border: 2px solid transparent; text-decoration: none; font-weight: 700; box-shadow: 0 8px 28px rgba(12,18,28,0.12);
     }
-    .btn-ghost-hero:hover { background: #fff; filter: brightness(0.98); transform: translateY(-1px); }
+    .btn-ghost-hero:hover, .btn-ghost-hero:active { background: #fff; color: #7b2fbe; border-color: #7b2fbe; transform: translateY(-1px); }
 
     /* Right — mini dashboard preview */
     .hero-right {
@@ -261,7 +261,8 @@
       .prov-demo  { max-width: 520px; width: 100%; margin: 0 auto; box-shadow: 0 12px 36px rgba(0,0,0,0.22); }
       #hero-h     { font-size: clamp(2rem, 4.5vw, 3rem); }
       /* wrap typewriter text — nowrap causes the grid column to expand beyond viewport */
-      .tw-static, .tw-line { white-space: normal; display: inline; }
+      .tw-static { white-space: normal; display: inline; }
+      .tw-line { white-space: normal; }
       .cursor-blink { display: inline-block; height: 1em; vertical-align: middle; }
       /* sub-text and buttons constrained to column */
       .hero-sub   { max-width: 100%; }
@@ -464,7 +465,7 @@
 
     /* ── FEATURES SECTION ─────────────────────────────────────── */
     .feat-section {
-      padding: 100px 52px;
+      padding: 56px 52px;
       max-width: 1280px; margin: 0 auto;
     }
     .sec-header { text-align: center; margin-bottom: 64px; }
@@ -481,6 +482,9 @@
       color: var(--brand-xdk); max-width: 600px; margin: 0 auto 16px;
     }
     .sec-sub { font-size: 1rem; color: var(--txt-sub); max-width: 520px; margin: 0 auto; line-height: 1.68; }
+
+    /* ── FEATURES SECTION ───────────────────────────────────── */
+    section#features { background: #eef2ff; }
 
     /* Feature grid — 3 cols × 2 rows */
     .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
@@ -519,6 +523,128 @@
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--brand-lt); color: var(--brand);
       font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 50px;
+    }
+
+    /* ── FEATURE GRID ──────────────────────────────────────────── */
+    .feat-grid-wrap {
+      display: grid;
+      grid-template-columns: 1fr 180px 1fr;
+      gap: 20px;
+      align-items: center;
+      padding: 8px 0 32px;
+      position: relative;
+      isolation: isolate;
+    }
+    .feat-grid-col { display: flex; flex-direction: column; gap: 14px; }
+
+    /* SVG spoke overlay — sits below cards */
+    .feat-grid-svg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; overflow: visible;
+      z-index: 0;
+    }
+
+    /* Centre hub */
+    .feat-grid-hub {
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px 0; position: relative; z-index: 1;
+    }
+    .feat-grid-hub-inner {
+      width: 152px; height: 152px; border-radius: 50%;
+      background: #ffffff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow:
+        0 0 0 2px rgba(67,56,202,0.14),
+        0 0 0 18px rgba(67,56,202,0.06),
+        0 0 0 36px rgba(67,56,202,0.03),
+        0 8px 40px rgba(30,27,75,0.18);
+      opacity: 0; transform: scale(0.55);
+      transition: opacity 0.55s cubic-bezier(0.34,1.56,0.64,1),
+                  transform 0.55s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .feat-grid-hub-inner.revealed { opacity: 1; transform: scale(1); }
+    .feat-grid-hub-logo { width: 110px; height: auto; display: block; }
+
+    /* Feature card */
+    .feat-grid-card {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 18px 20px;
+      cursor: default; opacity: 0;
+      transition: opacity 0.48s ease, transform 0.22s ease,
+                  box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+    .feat-grid-card.revealed { opacity: 1; }
+    .feat-grid-card.revealed:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(30,27,75,0.14);
+      border-color: rgba(129,140,248,0.5);
+      z-index: 5;
+    }
+    .feat-grid-ico {
+      width: 54px; height: 54px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.65rem; flex-shrink: 0;
+    }
+    .feat-grid-body { flex: 1; min-width: 0; }
+    .feat-grid-label {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      font-size: 0.97rem; color: var(--brand-xdk);
+      letter-spacing: -0.01em; line-height: 1.25;
+    }
+    .feat-grid-sub {
+      font-size: 0.76rem; color: var(--txt-muted);
+      margin-top: 3px; line-height: 1.4;
+    }
+
+    /* Desktop hover tooltip */
+    .feat-grid-tip {
+      position: absolute; z-index: 30; top: 50%;
+      width: 340px;
+      background: var(--brand-xdk); color: rgba(255,255,255,0.92);
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem; line-height: 1.68;
+      padding: 20px 24px; border-radius: 16px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .feat-grid-col:first-child .feat-grid-tip {
+      left: calc(100% + 14px);
+      transform: translateY(-50%) translateX(-8px);
+    }
+    .feat-grid-col:first-child .feat-grid-card:hover .feat-grid-tip {
+      opacity: 1; transform: translateY(-50%) translateX(0);
+    }
+    .feat-grid-col:last-child .feat-grid-tip {
+      right: calc(100% + 14px);
+      transform: translateY(-50%) translateX(8px);
+    }
+    .feat-grid-col:last-child .feat-grid-card:hover .feat-grid-tip {
+      opacity: 1; transform: translateY(-50%) translateX(0);
+    }
+
+    /* Mobile: single column, icon + heading + short description, no tooltip */
+    @media (max-width: 960px) {
+      .feat-grid-wrap { grid-template-columns: 1fr; gap: 10px; padding-bottom: 8px; }
+      .feat-grid-hub  { display: none; }
+      .feat-grid-svg  { display: none; }
+      .feat-grid-card { align-items: center; padding: 14px 18px; gap: 14px; }
+      .feat-grid-sub  { display: block; font-size: 0.8rem; }
+      .feat-grid-col:first-child .feat-grid-tip,
+      .feat-grid-col:last-child  .feat-grid-tip { display: none; }
+    }
+    @media (max-width: 440px) {
+      .feat-grid-card  { padding: 12px 16px; gap: 12px; }
+      .feat-grid-ico   { width: 46px; height: 46px; border-radius: 12px; font-size: 1.4rem; }
+      .feat-grid-label { font-size: 0.92rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .feat-grid-card, .feat-grid-hub-inner, .feat-grid-tip { transition: none !important; }
+      .feat-grid-card { opacity: 1; }
+      .feat-grid-hub-inner { opacity: 1; transform: scale(1); }
     }
 
     /* ── SIGN UP SECTION ──────────────────────────────────────── */
@@ -727,21 +853,21 @@
 ═══════════════════════════════════ -->
 <nav>
   <div class="nav-brand">
-    <a href="index.html" class="nav-logo" aria-label="Kidsplor home">
+    <a href="kidsplor-for-business.html" class="nav-logo" aria-label="Kidsplor home">
       <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
     </a>
     <span class="nav-sub">For Business</span>
   </div>
 
   <div class="nav-links">
-    <a href="index.html">Discover</a>
-    <a href="index.html#features">Features</a>
+    <a href="#signup">Sign Up</a>
+    <a href="#features">Features</a>
     <!-- Community removed from nav -->
     <a href="kidsplor-about.html">About Us</a>
   </div>
 
   <div class="nav-spacer"></div>
-  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+  <a href="index.html" class="nav-cta">For Parents</a>
   <button class="nav-ham" id="navHam" aria-label="Open menu" aria-expanded="false"
     onclick="this.setAttribute('aria-expanded', !this.closest('nav').classList.contains('nav-open')); this.closest('nav').classList.toggle('nav-open')">
     <span></span><span></span><span></span>
@@ -760,7 +886,7 @@
   <div class="hero-left">
     <div class="hero-eyebrow">
       <span class="hero-badge">Launching Spring 2026</span>
-      <span class="hero-badge">Limited spots per city</span>
+      <span class="hero-badge">Built by parents, for parents &amp; teachers</span>
     </div>
 
     <h1 id="hero-h">
@@ -769,7 +895,7 @@
     </h1>
 
     <p class="hero-sub">
-      Kidsplor connects your classes with thousands of local families actively searching for activities. No more chasing down payments or managing spreadsheets.
+      Whether you run swim lessons, art classes or footy training — Kidsplor makes it easy for local families to find you, book a spot and pay. You focus on teaching.
     </p>
 
     <ul class="vp-list" aria-label="Key benefits">
@@ -783,24 +909,24 @@
         <span class="vp-tick">
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="vp-txt">Online payments, auto-renewals and receipts handled automatically</span>
+        <span class="vp-txt">Families pay online when they book — no more chasing cash or bank transfers</span>
       </li>
       <li class="vp-item">
         <span class="vp-tick">
           <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="vp-txt">Manage schedules, rosters and waitlists from a single dashboard</span>
+        <span class="vp-txt">See who's booked in, who's on your waitlist, and who's paid — all in one place</span>
       </li>
     </ul>
 
     <div class="hero-cta-row">
       <a href="#signup" class="btn-primary-hero">
-        Join the Waitlist
+        Get Started Free
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="#features" class="btn-ghost-hero">See all features</a>
+      <a href="#features" class="btn-ghost-hero">What's Included</a>
     </div>
-    <p class="cta-hook"><strong>✓ Free for 3 months</strong> &nbsp;·&nbsp; no set-up fees when you join now</p>
+    <p class="cta-hook"><strong>✓ Free for 3 months</strong> &nbsp;·&nbsp; no credit card &nbsp;·&nbsp; set up in under 10 minutes</p>
   </div>
 
   <!-- Right — animated provider tour -->
@@ -966,80 +1092,85 @@
 <section id="features" aria-labelledby="feat-h">
   <div class="feat-section">
     <div class="sec-header">
-      <div class="sec-pill">Flexible Features for your business</div>
-      <h2 class="sec-h2" id="feat-h">Everything you need to run and grow your classes</h2>
-      <p class="sec-sub">Built by people who've talked to hundreds of instructors, studios and small businesses. Every feature solves a real problem.</p>
+      <div class="sec-pill">What's included</div>
+      <h2 class="sec-h2" id="feat-h">Everything you need.<br>Nothing you don't.</h2>
+      <p class="sec-sub">Kidsplor was built by Melbourne parents who were frustrated searching for local kids' activities. We know what families need — and we built the tools that make it easy for you to reach them.</p>
     </div>
 
-    <div class="feat-grid">
+    <div class="feat-grid-wrap" id="feat-grid">
 
-      <!-- 1. Smart Listings -->
-      <div class="feat-card">
-        <div class="feat-ico ico-indigo" aria-hidden="true">🔍</div>
-        <h3 class="feat-title">Smart Listings</h3>
-        <p class="feat-desc">Your classes appear in front of the right families at the right time — filtered by age, suburb, schedule and category. No boosted posts, no algorithms to fight. Just organic discovery.</p>
-        <span class="feat-pill">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/></svg>
-          Be found, not buried
-        </span>
+      <!-- Left column -->
+      <div class="feat-grid-col">
+
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-indigo">🔍</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Get Found</div>
+            <div class="feat-grid-sub">Appear in local parent searches</div>
+          </div>
+          <div class="feat-grid-tip">Your classes show up when Melbourne parents search by suburb, age or activity — no ads needed.</div>
+        </div>
+
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-orange">📅</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Your Timetable</div>
+            <div class="feat-grid-sub">Set spots, show live availability</div>
+          </div>
+          <div class="feat-grid-tip">Add classes, set how many spots, and you're done. Families see live availability — no back-and-forth.</div>
+        </div>
+
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-blue">💬</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Parent Inbox</div>
+            <div class="feat-grid-sub">Messages without the WhatsApp chaos</div>
+          </div>
+          <div class="feat-grid-tip">Send class reminders, updates or notices in one click — no more WhatsApp groups or email chains.</div>
+        </div>
+
+      </div><!-- /left col -->
+
+      <!-- Centre hub -->
+      <div class="feat-grid-hub">
+        <div class="feat-grid-hub-inner" id="feat-hub-inner">
+          <img src="https://kidsplor.com.au/kidsplor-transparent.png" alt="Kidsplor" class="feat-grid-hub-logo">
+        </div>
       </div>
 
-      <!-- 2. Class Schedule -->
-      <div class="feat-card">
-        <div class="feat-ico ico-orange" aria-hidden="true">📅</div>
-        <h3 class="feat-title">Class Schedule Manager</h3>
-        <p class="feat-desc">Create recurring classes, set capacity limits, add coaches, and manage timetables visually. Parents see live availability; you see who's coming and when — all in one calendar view.</p>
-        <span class="feat-pill">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/></svg>
-          Replace your spreadsheet
-        </span>
-      </div>
+      <!-- Right column -->
+      <div class="feat-grid-col">
 
-      <!-- 3. Enrolments & Waitlists -->
-      <div class="feat-card">
-        <div class="feat-ico ico-green" aria-hidden="true">👥</div>
-        <h3 class="feat-title">Enrolments &amp; Waitlists</h3>
-        <p class="feat-desc">Parents enrol in seconds. When a class fills up, they join a waitlist automatically and get notified the moment a spot opens. You're always full — without lifting a finger.</p>
-        <span class="feat-pill">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/></svg>
-          Zero empty spots
-        </span>
-      </div>
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-purple">💳</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Get Paid</div>
+            <div class="feat-grid-sub">Payments on booking, auto payouts</div>
+          </div>
+          <div class="feat-grid-tip">Families pay when they book. New term? Payments go out automatically. No invoices, no chasing.</div>
+        </div>
 
-      <!-- 4. Payments & Revenue -->
-      <div class="feat-card">
-        <div class="feat-ico ico-purple" aria-hidden="true">💳</div>
-        <h3 class="feat-title">Payments &amp; Auto-Renewals</h3>
-        <p class="feat-desc">Secure payments via Stripe — terms, casual classes, or custom plans. Auto-renewals mean your cash flow is predictable. No more chasing down bank transfers or handling cash at the door.</p>
-        <span class="feat-pill">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/></svg>
-          Get paid on time, always
-        </span>
-      </div>
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-green">👥</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Bookings &amp; Waitlists</div>
+            <div class="feat-grid-sub">Auto-managed, zero back-and-forth</div>
+          </div>
+          <div class="feat-grid-tip">Parents enrol in seconds. When a class fills, they join a waitlist and get notified automatically.</div>
+        </div>
 
-      <!-- 5. Inbox & Parent Comms -->
-      <div class="feat-card">
-        <div class="feat-ico ico-blue" aria-hidden="true">💬</div>
-        <h3 class="feat-title">Parent Inbox</h3>
-        <p class="feat-desc">Message parents directly from your dashboard. Send class reminders, cancellation notices or term updates in one click. No more Facebook messages, WhatsApp groups or emails going to spam.</p>
-        <span class="feat-pill">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/></svg>
-          One inbox for everything
-        </span>
-      </div>
+        <div class="feat-grid-card">
+          <div class="feat-grid-ico ico-amber">📊</div>
+          <div class="feat-grid-body">
+            <div class="feat-grid-label">Know Your Numbers</div>
+            <div class="feat-grid-sub">Revenue &amp; fill rates at a glance</div>
+          </div>
+          <div class="feat-grid-tip">See what you earned this term, which classes are filling, and what's coming next — at a glance.</div>
+        </div>
 
-      <!-- 6. Revenue Analytics -->
-      <div class="feat-card">
-        <div class="feat-ico ico-amber" aria-hidden="true">📊</div>
-        <h3 class="feat-title">Revenue &amp; Analytics</h3>
-        <p class="feat-desc">See term-on-term growth, enrolment trends, class fill rates and projected revenue at a glance. Works for solo instructors and multi-coach studios alike. Know your numbers without an accountant.</p>
-        <span class="feat-pill">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#4338CA" stroke-width="2" stroke-linecap="round"/></svg>
-          Built for small business
-        </span>
-      </div>
+      </div><!-- /right col -->
 
-    </div>
+    </div><!-- /feat-grid-wrap -->
   </div>
 </section>
 
@@ -1054,9 +1185,9 @@
 
     <!-- Left: copy -->
     <div class="signup-copy">
-      <div class="signup-eyebrow">Early Access · Limited spots per city</div>
-      <h2 class="signup-h2" id="signup-h">Join the waitlist before we launch</h2>
-      <p class="signup-sub">Get priority onboarding, fee-free for your first 3 months, and a direct line to our product team during beta.</p>
+      <div class="signup-eyebrow">Get Early Access · Free for 3 months</div>
+      <h2 class="signup-h2" id="signup-h">Set up in minutes.<br>Teach more. Admin less.</h2>
+      <p class="signup-sub">We're launching with a small group of Melbourne coaches and teachers. Join free and we'll help you get your first listing live personally.</p>
       <ul class="signup-perks" aria-label="Early access benefits">
         <li>
           <span class="sp-tick"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -1064,19 +1195,19 @@
         </li>
         <li>
           <span class="sp-tick"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Direct line to our product team during beta
+          We'll personally help you get your first listing live
         </li>
         <li>
           <span class="sp-tick"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-          Priority listing when we go live in your city
+          Be one of the first coaches Melbourne families see when we launch
         </li>
       </ul>
     </div>
 
     <!-- Right: form card -->
     <div class="signup-card">
-      <div class="sc-title">Join as a Provider</div>
-      <div class="sc-sub">Limited spots available per city. Takes 2 minutes.</div>
+      <div class="sc-title">Get your free listing</div>
+      <div class="sc-sub">Takes about 2 minutes. We'll do the rest.</div>
 
       <form class="signup-form" id="prov-form" onsubmit="submitProvForm(event)" novalidate>
 
@@ -1120,8 +1251,8 @@
         <div class="s-field">
           <div class="s-lbl">I am a *</div>
           <div class="s-type-row" role="group" aria-label="Provider type">
-            <button type="button" class="s-type-btn on" id="t-biz"  onclick="setType('biz')">Provider / Business</button>
-            <button type="button" class="s-type-btn"     id="t-solo" onclick="setType('solo')">Individual Instructor</button>
+            <button type="button" class="s-type-btn on" id="t-biz"  onclick="setType('biz')">Studio / School</button>
+            <button type="button" class="s-type-btn"     id="t-solo" onclick="setType('solo')">Solo Teacher / Coach</button>
           </div>
         </div>
 
@@ -1130,12 +1261,12 @@
           <input class="s-inp" type="text" id="p-challenge" placeholder="e.g. Parents not finding us, chasing payments…">
         </div>
 
-        <button type="submit" class="s-submit">Get Early Access →</button>
+        <button type="submit" class="s-submit">Claim My Free Listing →</button>
 
         <div class="s-success" id="prov-success">
           <div class="s-success-ico">🎉</div>
           <h3>You're on the list!</h3>
-          <p>We'll be in touch shortly with your onboarding details. You're in excellent company — providers across Australia are already excited.</p>
+          <p>We'll be in touch soon to help you get your first listing live. Talk soon!</p>
         </div>
 
         <p class="signup-disclaimer">No credit card needed. Free for 3 months. <a href="kidsplor-privacy.html">Privacy Policy</a> · <a href="#">Terms</a></p>
@@ -1154,7 +1285,7 @@
   <div class="foot-top">
     <div>
       <span style="display:inline-flex;align-items:baseline;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.3rem;line-height:1;color:white;letter-spacing:-0.025em;white-space:nowrap;">k<span style="position:relative;display:inline-block;line-height:inherit;">&#305;<svg style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%) translateY(130%);width:0.32em;height:0.28em;overflow:visible;" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg style="display:inline-block;height:0.76em;width:0.76em;flex-shrink:0;vertical-align:baseline;position:relative;top:0.07em;" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="rgba(255,255,255,0.15)"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="rgba(30,27,75,.9)"/></svg>r</span>
-      <p class="foot-tagline">Helping Australian activity providers reach more families and spend more time doing what they love.</p>
+      <p class="foot-tagline">Helping Melbourne coaches, tutors and teachers spend less time on admin — and more time doing what they love.</p>
       <div class="socials">
         <a href="https://www.facebook.com/kidsplor" id="fb-link" aria-label="Facebook (link placeholder)" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8.5v-2.9h2V9.1c0-2 1.2-3.1 3-3.1.9 0 1.8.2 1.8.2v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
@@ -1172,10 +1303,10 @@
         <a href="kidsplor-for-business.html">For Providers</a>
         <a href="kidsplor-pricing.html">Pricing</a>
       </div>
-      <div class="foot-col">
+      <!--<div class="foot-col">
         <div class="foot-col-lbl">Community</div>
         <a href="kidsplor-parent-stories.html">Parent Stories</a>
-      </div>
+      </div>-->
       <div class="foot-col">
         <div class="foot-col-lbl">Legal</div>
         <a href="kidsplor-privacy.html">Privacy Policy</a>
@@ -1252,10 +1383,10 @@
 
   /* ── Typewriter ─────────────────────────────────── */
   const LINES = [
-    'grow your enrolments.',
-    'fill your schedule.',
+    'fill your classes.',
     'ditch the admin.',
-    'get paid automatically.',
+    'get paid on time.',
+    'spend more time teaching.',
   ];
 
   const el = document.getElementById('tw-line');
@@ -1281,6 +1412,135 @@
     setTimeout(tick, deleting ? SPEED_DEL : SPEED_TYPE);
   }
   setTimeout(tick, 600);
+
+  /* ── Feature grid reveal + orbital spokes ──────────────────────── */
+  (function () {
+    var grid  = document.getElementById('feat-grid');
+    if (!grid) return;
+    var hub   = document.getElementById('feat-hub-inner');
+    var cards = grid.querySelectorAll('.feat-grid-card');
+
+    /* Reveal animation — hub springs in, cards fade up staggered */
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      observer.disconnect();
+      if (hub) setTimeout(function () { hub.classList.add('revealed'); }, 80);
+      cards.forEach(function (card, i) {
+        setTimeout(function () { card.classList.add('revealed'); }, 160 + i * 70);
+      });
+      setTimeout(drawSpokes, 600); // draw after cards have settled
+    }, { threshold: 0.15 });
+    observer.observe(grid);
+
+    /* Draw SVG orbital spokes from hub centre to each card centre */
+    function drawSpokes() {
+      if (window.innerWidth <= 960) return;
+      var old = grid.querySelector('.feat-grid-svg');
+      if (old) old.remove();
+      if (!hub) return;
+
+      var ns  = 'http://www.w3.org/2000/svg';
+      var svg = document.createElementNS(ns, 'svg');
+      svg.classList.add('feat-grid-svg');
+      svg.setAttribute('aria-hidden', 'true');
+
+      /* Glow filter for the comet shimmer */
+      var defs = document.createElementNS(ns, 'defs');
+      var flt  = document.createElementNS(ns, 'filter');
+      flt.id   = 'spoke-glow';
+      flt.setAttribute('x', '-120%'); flt.setAttribute('y', '-120%');
+      flt.setAttribute('width', '340%'); flt.setAttribute('height', '340%');
+      var blur = document.createElementNS(ns, 'feGaussianBlur');
+      blur.setAttribute('in', 'SourceGraphic');
+      blur.setAttribute('stdDeviation', '4');
+      blur.setAttribute('result', 'b');
+      var merge = document.createElementNS(ns, 'feMerge');
+      ['b', 'SourceGraphic'].forEach(function (src) {
+        var mn = document.createElementNS(ns, 'feMergeNode');
+        mn.setAttribute('in', src);
+        merge.appendChild(mn);
+      });
+      flt.appendChild(blur);
+      flt.appendChild(merge);
+      defs.appendChild(flt);
+      svg.appendChild(defs);
+
+      var gr = grid.getBoundingClientRect();
+      var hr = hub.getBoundingClientRect();
+      var hx = hr.left - gr.left + hr.width  / 2;
+      var hy = hr.top  - gr.top  + hr.height / 2;
+
+      cards.forEach(function (card, i) {
+        var cr  = card.getBoundingClientRect();
+        var cx  = cr.left - gr.left + cr.width  / 2;
+        var cy  = cr.top  - gr.top  + cr.height / 2;
+        var dx  = cx - hx, dy = cy - hy;
+        var len = Math.sqrt(dx * dx + dy * dy);
+        var seg = 32; // comet length in px
+        /* Vary speed and phase so comets feel independent */
+        var dur = (1.6 + i * 0.22).toFixed(2) + 's';
+        var del = (i * 0.42).toFixed(2) + 's';
+
+        function mkLine(attrs) {
+          var l = document.createElementNS(ns, 'line');
+          Object.keys(attrs).forEach(function (k) { l.setAttribute(k, attrs[k]); });
+          l.setAttribute('x1', hx); l.setAttribute('y1', hy);
+          l.setAttribute('x2', cx); l.setAttribute('y2', cy);
+          return l;
+        }
+        function mkAnim(attr, from, to, duration, begin, values) {
+          var a = document.createElementNS(ns, 'animate');
+          a.setAttribute('attributeName', attr);
+          if (values) { a.setAttribute('values', values); }
+          else { a.setAttribute('from', from); a.setAttribute('to', to); }
+          a.setAttribute('dur', duration);
+          if (begin) a.setAttribute('begin', begin);
+          a.setAttribute('repeatCount', 'indefinite');
+          return a;
+        }
+
+        /* Pulsing base track */
+        var base = mkLine({ stroke: 'rgba(67,56,202,0.22)', 'stroke-width': '1.5' });
+        base.appendChild(mkAnim('stroke-opacity', null, null,
+          (2.4 + i * 0.2).toFixed(2) + 's', null, '0.1;0.3;0.1'));
+        svg.appendChild(base);
+
+        /* Travelling asteroid comet */
+        var comet = mkLine({
+          stroke: 'rgba(99,102,241,0.92)',
+          'stroke-width': '3.5',
+          'stroke-linecap': 'round',
+          'stroke-dasharray': seg + ' ' + (len + seg),
+          filter: 'url(#spoke-glow)'
+        });
+        comet.appendChild(mkAnim('stroke-dashoffset', '0', '-' + (len + seg), dur, del));
+        svg.appendChild(comet);
+      });
+
+      grid.insertBefore(svg, grid.firstChild);
+    }
+
+    /* Redraw spokes on window resize (debounced) */
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(drawSpokes, 220);
+    });
+
+    /* Mobile: tap card to toggle tooltip, tap outside to close */
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () {
+        var on = card.classList.contains('tip-active');
+        cards.forEach(function (c) { c.classList.remove('tip-active'); });
+        if (!on) card.classList.add('tip-active');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.feat-grid-card')) {
+        cards.forEach(function (c) { c.classList.remove('tip-active'); });
+      }
+    });
+  })();
 
   /* ── Provider type toggle ───────────────────────── */
   function setType(t) {
