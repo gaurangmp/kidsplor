@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8RN7PDVQJS"></script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try It Now — Kidsplor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #F6F7FF;
+      --surface:     #FFFFFF;
+      --brand:       #4338CA;
+      --brand-dk:    #3730A3;
+      --brand-xdk:   #1E1B4B;
+      --brand-lt:    #EEF2FF;
+      --orange:      #F97316;
+      --txt:         #0F172A;
+      --txt-sub:     #334155;
+      --txt-muted:   #64748B;
+      --border:      #DDE3F5;
+      --shadow:      rgba(30, 27, 75, 0.07);
+      --shadow-lg:   rgba(30, 27, 75, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--txt);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(246,247,255,0.93);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: 68px; display: flex; align-items: center; padding: 0 52px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .wm {
+      font-family: 'Outfit', sans-serif; font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1;
+      display: inline-flex; align-items: baseline; white-space: nowrap;
+      font-size: 2.0rem; color: var(--brand-xdk);
+    }
+    .wm svg.compass {
+      display: inline-block; height: 0.76em; width: 0.76em; flex-shrink: 0;
+      vertical-align: baseline; position: relative; top: 0.07em;
+    }
+    .wm .ih { display: inline-block; position: relative; line-height: inherit; }
+    .wm .ih svg.heart {
+      position: absolute; bottom: 100%; left: 50%;
+      transform: translateX(-50%) translateY(130%);
+      width: 0.32em; height: 0.28em; overflow: visible; display: block;
+    }
+    .nav-links { display: flex; gap: 2px; align-items: center; margin-left: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--txt-sub);
+      text-decoration: none; padding: 7px 14px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--brand); background: var(--brand-lt); }
+    .nav-spacer { flex: 1; }
+    .nav-cta {
+      display: inline-flex; align-items: center;
+      padding: 10px 24px; border-radius: 50px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem;
+      background: var(--brand); color: #fff; text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.15s;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+    .nav-cta:hover { background: var(--brand-dk); transform: translateY(-1px); box-shadow: 0 8px 24px var(--shadow-lg); }
+
+    /* ── HERO SECTION ── */
+    .try-hero {
+      background: linear-gradient(140deg, #EBEBFF 0%, #F6F7FF 50%, #EEF0FF 100%);
+      padding: 60px 52px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .try-hero::before {
+      content: ''; position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px; pointer-events: none;
+      background: radial-gradient(circle, rgba(129,140,248,0.22) 0%, transparent 70%);
+    }
+    .try-hero::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 380px; height: 380px; pointer-events: none;
+      background: radial-gradient(circle, rgba(249,115,22,0.06) 0%, transparent 70%);
+    }
+
+    .try-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--surface); color: var(--brand);
+      font-size: 0.71rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 50px; margin-bottom: 22px;
+      border: 1px solid var(--border); box-shadow: 0 2px 8px var(--shadow);
+      position: relative; z-index: 1;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #22C55E; flex-shrink: 0;
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50%       { opacity: 0.8; transform: scale(0.85); box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+
+    .try-h1 {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      line-height: 1.06; letter-spacing: -0.03em;
+      color: var(--brand-xdk); margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+    .try-h1 .accent { color: var(--brand); }
+    .try-sub {
+      font-size: 1.05rem; color: var(--txt-sub);
+      line-height: 1.7; max-width: 520px; margin: 0 auto 52px;
+      position: relative; z-index: 1;
+    }
+
+    /* ══════════════════════════════════════════
+       DEVICE STAGE — iPad + iPhone side by side
+    ══════════════════════════════════════════ */
+    .phone-stage {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 95px;
+      position: relative; z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    /* ── Shared status bar pieces ── */
+    .status-icons { display: flex; gap: 5px; align-items: center; }
+    .battery-ico {
+      width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor;
+      position: relative; display: flex; align-items: center; padding: 1.5px;
+    }
+    .battery-ico::after {
+      content: ''; position: absolute; right: -4px;
+      width: 2px; height: 5px; background: currentColor; border-radius: 0 1px 1px 0;
+    }
+    .battery-fill { background: currentColor; height: 100%; width: 75%; border-radius: 1px; }
+
+    /* ══════════════════════════════════════════
+       iPAD FRAME
+    ══════════════════════════════════════════ */
+    .ipad-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+
+    .ipad-large {
+      position: relative;
+      width: 500px;
+      height: 706px; /* iPad Air 11" portrait ratio ≈ 500/706 */
+      background: #1c1c1e;
+      border-radius: 28px;
+      flex-shrink: 0;
+      box-shadow:
+        0 0 0 1.5px rgba(255,255,255,0.12),
+        0 0 0 4px rgba(0,0,0,0.55),
+        0 0 0 5.5px rgba(255,255,255,0.06),
+        0 50px 120px rgba(0,0,0,0.50),
+        0 16px 50px rgba(67,56,202,0.2);
+    }
+
+    /* Volume buttons on left */
+    .ipad-large::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 120px;
+      width: 4px; height: 52px;
+      background: #2c2c2e; border-radius: 3px 0 0 3px;
+      box-shadow: 0 70px 0 #2c2c2e;
+    }
+    /* Power button on right */
+    .ipad-large::after {
+      content: '';
+      position: absolute;
+      right: -4px; top: 160px;
+      width: 4px; height: 68px;
+      background: #2c2c2e; border-radius: 0 3px 3px 0;
+    }
+
+    /* Front camera dot */
+    .ipad-camera {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      width: 10px; height: 10px;
+      background: #0a0a0a; border-radius: 50%;
+      z-index: 20;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.06);
+    }
+
+    .ipad-screen {
+      position: absolute; inset: 8px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Status bar */
+    .ipad-status {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 46px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.72) 70%, transparent 100%);
+      z-index: 10; pointer-events: none;
+      display: flex; align-items: flex-end; padding: 0 20px 7px;
+      justify-content: space-between;
+      font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; color: #0F172A;
+    }
+
+    /* Home bar at bottom */
+    .ipad-home-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 22px;
+      background: linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.5) 70%, transparent 100%);
+      z-index: 10; pointer-events: none;
+      display: flex; align-items: center; justify-content: center; padding-bottom: 3px;
+    }
+    .ipad-home-bar::after {
+      content: ''; width: 120px; height: 4px; background: #1a1a1a; border-radius: 3px; opacity: 0.18;
+    }
+
+    /* Device label */
+    .device-label {
+      font-size: 0.75rem; font-weight: 600; color: var(--txt-muted);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .device-label svg { flex-shrink: 0; }
+
+    /* ══════════════════════════════════════════
+       iPHONE FRAME
+    ══════════════════════════════════════════ */
+    .iphone-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+
+    .iphone-large {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      background: #1a1a1a;
+      border-radius: 55px;
+      flex-shrink: 0;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.14),
+        0 0 0 6px rgba(0,0,0,0.6),
+        0 0 0 8px rgba(255,255,255,0.07),
+        0 60px 140px rgba(0,0,0,0.55),
+        0 20px 60px rgba(67,56,202,0.22);
+    }
+
+    /* Volume buttons on left */
+    .iphone-large::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 130px;
+      width: 4px; height: 70px;
+      background: #2a2a2a; border-radius: 3px 0 0 3px;
+      box-shadow: 0 90px 0 #2a2a2a, 0 110px 0 #2a2a2a;
+    }
+    /* Power button on right */
+    .iphone-large::after {
+      content: '';
+      position: absolute;
+      right: -4px; top: 170px;
+      width: 4px; height: 90px;
+      background: #2a2a2a; border-radius: 0 3px 3px 0;
+    }
+
+    /* Dynamic island */
+    /*.phone-island {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 34px;
+      background: #0a0a0a; border-radius: 22px;
+      z-index: 20;
+    }*/
+
+    .phone-screen {
+      position: absolute; inset: 6px;
+      border-radius: 49px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    /* Status bar */
+    .phone-status {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 54px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 70%, transparent 100%);
+      z-index: 10; pointer-events: none;
+      display: flex; align-items: flex-end; padding: 0 22px 8px;
+      justify-content: space-between;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; color: #0F172A;
+    }
+
+    /* Home bar */
+    .phone-home-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 28px;
+      background: linear-gradient(to top, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.6) 70%, transparent 100%);
+      z-index: 10; pointer-events: none;
+      display: flex; align-items: center; justify-content: center; padding-bottom: 4px;
+    }
+    .phone-home-bar::after {
+      content: ''; width: 130px; height: 5px; background: #1a1a1a; border-radius: 3px; opacity: 0.2;
+    }
+
+    /* Shared iframe */
+    .device-iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ── BELOW DEVICES ── */
+    .try-footer-note {
+      margin-top: 40px; text-align: center; position: relative; z-index: 1;
+    }
+    .try-footer-note p {
+      font-size: 0.85rem; color: var(--txt-muted); margin-bottom: 16px;
+    }
+    .try-cta-row {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .try-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: 50px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem;
+      color: var(--txt-sub); text-decoration: none;
+      border: 1.5px solid var(--border); background: var(--surface);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .try-back:hover { border-color: var(--brand); color: var(--brand); }
+    .try-wl {
+      display: inline-flex; align-items: center;
+      padding: 10px 24px; border-radius: 50px; border: none; cursor: pointer;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.875rem;
+      background: var(--brand); color: #fff; text-decoration: none;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.15s;
+      box-shadow: 0 4px 16px var(--shadow);
+    }
+    .try-wl:hover { background: var(--brand-dk); transform: translateY(-1px); box-shadow: 0 8px 24px var(--shadow-lg); }
+
+    /* ── RESPONSIVE ── */
+
+    /* Hide iPad on medium screens — not enough width */
+    @media (max-width: 1024px) {
+      .ipad-wrap { display: none; }
+      .phone-stage { gap: 0; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 20px; }
+      .try-hero { padding: 44px 16px 60px; }
+      .iphone-large {
+        width: 320px;
+        height: 693px;
+        border-radius: 46px;
+      }
+      .phone-island { width: 100px; height: 28px; }
+      .phone-screen { border-radius: 40px; }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/responsive.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVBAR
+══════════════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo" aria-label="Kidsplor home">
+    <span class="wm">k<span class="ih">&#305;<svg class="heart" viewBox="0 0 20 18" fill="none"><path d="M10 16C10 16 1 10 1 4.5C1 2.2 2.8 1 5 1C6.8 1 10 4 10 4C10 4 13.2 1 15 1C17.2 1 19 2.2 19 4.5C19 10 10 16 10 16Z" fill="#F97316"/></svg></span>dspl<svg class="compass" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="21" fill="#1E1B4B"/><polygon points="22,1 18,22 26,22" fill="white"/><polygon points="22,43 18,22 26,22" fill="white" opacity="0.28"/><polygon points="1,22 22,18 22,26" fill="white"/><polygon points="43,22 22,18 22,26" fill="white" opacity="0.28"/><circle cx="22" cy="22" r="3" fill="#1E1B4B"/></svg>r</span>
+  </a>
+
+  <ul class="nav-links" role="navigation" aria-label="Main navigation">
+    <li><a href="index.html#features">Features</a></li>
+    <li><a href="kidsplor-try-it-now.html" class="active">Live Preview</a></li>
+    <li><a href="kidsplor-about.html">About Us</a></li>
+  </ul>
+  <div class="nav-spacer"></div>
+  <a href="kidsplor-for-business.html" class="nav-cta">For Providers</a>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     HERO
+══════════════════════════════════ -->
+<section class="try-hero">
+
+  <div class="try-pill">
+    <span class="live-dot"></span>
+    Live Preview
+  </div>
+
+  <h1 class="try-h1">
+    See kidsplor<br><span class="accent">in action.</span>
+  </h1>
+  <p class="try-sub">
+    Explore the real app — search activities, browse listings and see the dashboard that thousands of Australian families will use.
+  </p>
+
+  <!-- Device stage: iPad + iPhone -->
+  <div class="phone-stage">
+
+    <!-- ── iPad ── -->
+    <div class="ipad-wrap">
+      <div class="ipad-large" aria-label="Kidsplor on iPad">
+
+        <!-- Camera dot -->
+        <div class="ipad-camera"></div>
+
+        <!-- Screen -->
+        <div class="ipad-screen">
+
+          <!-- Status bar -->
+          <div class="ipad-status" aria-hidden="true">
+            <span>9:41</span>
+            <div class="status-icons">
+              <svg width="13" height="10" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true"><rect x="0" y="10" width="4" height="10" rx="1"/><rect x="5.5" y="6" width="4" height="14" rx="1"/><rect x="11" y="2" width="4" height="18" rx="1"/><rect x="16.5" y="0" width="4" height="20" rx="1"/></svg>
+              <svg width="14" height="10" viewBox="0 0 24 18" fill="currentColor" aria-hidden="true"><path d="M12 2C7.2 2 2.8 4 0 7.5L12 18 24 7.5C21.2 4 16.8 2 12 2z" opacity="0.3"/><path d="M12 6.5C8.5 6.5 5.5 8 3.5 10.5L12 18l8.5-7.5C18.5 8 15.5 6.5 12 6.5z" opacity="0.6"/><path d="M12 11C10.2 11 8.6 11.8 7.5 13L12 18l4.5-5C15.4 11.8 13.8 11 12 11z"/></svg>
+              <div class="battery-ico"><div class="battery-fill"></div></div>
+            </div>
+          </div>
+
+          <!-- Live app -->
+          <iframe
+            class="device-iframe"
+            src="https://kidsplor.lovable.app/"
+            title="Kidsplor app on iPad"
+            loading="eager"
+            allow="fullscreen"
+          ></iframe>
+
+          <!-- Home indicator -->
+          <div class="ipad-home-bar" aria-hidden="true"></div>
+
+        </div><!-- /ipad-screen -->
+      </div><!-- /ipad-large -->
+
+      <div class="device-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+        Tablet
+      </div>
+    </div><!-- /ipad-wrap -->
+
+    <!-- ── iPhone ── -->
+    <div class="iphone-wrap">
+      <div class="iphone-large" aria-label="Kidsplor on iPhone">
+
+        <!-- Dynamic island -->
+        <div class="phone-island"></div>
+
+        <!-- Screen -->
+        <div class="phone-screen">
+
+          <!-- Status bar -->
+          <div class="phone-status" aria-hidden="true">
+            <span>9:41</span>
+            <div class="status-icons">
+              <svg width="14" height="11" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true"><rect x="0" y="10" width="4" height="10" rx="1"/><rect x="5.5" y="6" width="4" height="14" rx="1"/><rect x="11" y="2" width="4" height="18" rx="1"/><rect x="16.5" y="0" width="4" height="20" rx="1"/></svg>
+              <svg width="15" height="11" viewBox="0 0 24 18" fill="currentColor" aria-hidden="true"><path d="M12 2C7.2 2 2.8 4 0 7.5L12 18 24 7.5C21.2 4 16.8 2 12 2z" opacity="0.3"/><path d="M12 6.5C8.5 6.5 5.5 8 3.5 10.5L12 18l8.5-7.5C18.5 8 15.5 6.5 12 6.5z" opacity="0.6"/><path d="M12 11C10.2 11 8.6 11.8 7.5 13L12 18l4.5-5C15.4 11.8 13.8 11 12 11z"/></svg>
+              <div class="battery-ico"><div class="battery-fill"></div></div>
+            </div>
+          </div>
+
+          <!-- Live app -->
+          <iframe
+            class="device-iframe"
+            src="https://kidsplor.lovable.app/"
+            title="Kidsplor app on iPhone"
+            loading="eager"
+            allow="fullscreen"
+          ></iframe>
+
+          <!-- Home indicator -->
+          <div class="phone-home-bar" aria-hidden="true"></div>
+
+        </div><!-- /phone-screen -->
+      </div><!-- /iphone-large -->
+
+      <div class="device-label">
+        <svg width="12" height="14" viewBox="0 0 20 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="16" height="20" rx="3"/><line x1="10" y1="18" x2="10" y2="18.01"/></svg>
+        Mobile
+      </div>
+    </div><!-- /iphone-wrap -->
+
+  </div><!-- /phone-stage -->
+
+  <!-- Below-device actions -->
+  <div class="try-footer-note">
+    <p>Like what you see? Join hundreds of Australian families already on the waitlist.</p>
+    <div class="try-cta-row">
+      <a href="index.html" class="try-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to home
+      </a>
+      <a href="index.html#wlForm" class="try-wl">Join the Waitlist →</a>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>

@@ -1428,7 +1428,14 @@
       cards.forEach(function (card, i) {
         setTimeout(function () { card.classList.add('revealed'); }, 160 + i * 70);
       });
-      setTimeout(drawSpokes, 600); // draw after cards have settled
+      // Initial draw — use rAF so we read positions after the browser has painted
+      setTimeout(function() { requestAnimationFrame(drawSpokes); }, 600);
+      // Redraw after fonts finish loading; font metrics affect column heights
+      // which shifts middle-card positions under align-items:center
+      setTimeout(drawSpokes, 1400);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() { setTimeout(drawSpokes, 60); });
+      }
     }, { threshold: 0.15 });
     observer.observe(grid);
 
@@ -1470,6 +1477,7 @@
       var hx = hr.left - gr.left + hr.width  / 2;
       var hy = hr.top  - gr.top  + hr.height / 2;
 
+      var kfRules = '';
       cards.forEach(function (card, i) {
         var cr  = card.getBoundingClientRect();
         var cx  = cr.left - gr.left + cr.width  / 2;
@@ -1505,7 +1513,13 @@
           (2.4 + i * 0.2).toFixed(2) + 's', null, '0.1;0.3;0.1'));
         svg.appendChild(base);
 
-        /* Travelling asteroid comet */
+        /* Travelling asteroid comet — CSS animation avoids SMIL document-timeline
+           phase issues: SMIL begin="Xs" is relative to page-load time, so when the
+           SVG is (re)created mid-session each comet starts at a random phase.
+           Negative CSS animation-delay places each comet at the correct staggered
+           phase the instant the SVG is inserted, regardless of when that happens. */
+        kfRules += '@keyframes fgComet' + i +
+          '{from{stroke-dashoffset:0}to{stroke-dashoffset:' + (-(len + seg)) + '}}';
         var comet = mkLine({
           stroke: 'rgba(99,102,241,0.92)',
           'stroke-width': '3.5',
@@ -1513,10 +1527,13 @@
           'stroke-dasharray': seg + ' ' + (len + seg),
           filter: 'url(#spoke-glow)'
         });
-        comet.appendChild(mkAnim('stroke-dashoffset', '0', '-' + (len + seg), dur, del));
+        comet.style.animation = 'fgComet' + i + ' ' + dur + ' linear -' + del + ' infinite';
         svg.appendChild(comet);
       });
 
+      var kfEl = document.createElementNS(ns, 'style');
+      kfEl.textContent = kfRules;
+      svg.insertBefore(kfEl, svg.firstChild);
       grid.insertBefore(svg, grid.firstChild);
     }
 

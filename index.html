@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-  <!-- Google tag (gtag.js) -->
+<Google tag (gtag.js)
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8RN7PDVQJS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -22,23 +22,17 @@
   
   <!-- Clarity → clarity.microsoft.com : New Project > copy Project ID (free heatmaps + session recordings) -->
   <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","CLARITY_PROJECT_ID");</script>
-  <!-- ── Open Graph / Social sharing ── upload og-image.png (1200×630px) to your domain root ── -->
+  <!-- ── Open Graph / Social sharing ── upload og-image.png to your domain root to complete this ── -->
   <meta name="description" content="Find, book and manage your child's activities across Australia. 400+ parents already on the waitlist. Free for families, always.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Kidsplor">
   <meta property="og:title" content="Kidsplor — Discover Your Child's Potential">
   <meta property="og:description" content="Find, book and manage your child's activities across Australia. 400+ parents already on the waitlist. Free for families, always.">
-  <meta property="og:image" content="https://kidsplor.com.au/assets/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:alt" content="Kidsplor — find, book and manage your child's activities across Australia">
+  <meta property="og:image" content="https://kidsplor.com.au/og-image.png">
   <meta property="og:url" content="https://kidsplor.com.au">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Kidsplor — Discover Your Child's Potential">
   <meta name="twitter:description" content="Find, book and manage your child's activities across Australia. 400+ parents already on the waitlist.">
-  <meta name="twitter:image" content="https://kidsplor.com.au/og-image.png">
-  <meta name="twitter:image:alt" content="Kidsplor — find, book and manage your child's activities across Australia">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -597,6 +591,142 @@
       font-size: 0.72rem; font-weight: 700; padding: 5px 13px; border-radius: 50px;
     }
 
+    /* ── PLAY-IT-FORWARD ─────────────────────────────────────── */
+    .pif-section {
+      background: linear-gradient(140deg, #FFF7ED 0%, #FFFBF5 40%, #F0FDF4 100%);
+      padding: 80px 52px;
+      position: relative; overflow: hidden;
+    }
+    .pif-section::before {
+      content: ''; position: absolute; top: -120px; right: -120px;
+      width: 500px; height: 500px; pointer-events: none;
+      background: radial-gradient(circle, rgba(249,115,22,0.07) 0%, transparent 65%);
+    }
+    .pif-section::after {
+      content: ''; position: absolute; bottom: -80px; left: -80px;
+      width: 360px; height: 360px; pointer-events: none;
+      background: radial-gradient(circle, rgba(5,150,105,0.06) 0%, transparent 65%);
+    }
+    .pif-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .pif-header { text-align: center; margin-bottom: 52px; }
+    .pif-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FFF7ED; color: #C2410C;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 18px;
+      border: 1px solid rgba(194,65,12,0.2);
+    }
+    .pif-headline {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      line-height: 1.1; letter-spacing: -0.025em;
+      color: var(--brand-xdk); margin-bottom: 20px;
+    }
+    .pif-body {
+      font-size: 1rem; color: var(--txt-sub); line-height: 1.78;
+      max-width: 680px; margin: 0 auto;
+    }
+
+    .pif-flow-hdr {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 28px;
+    }
+    .pif-flow-hdr::before, .pif-flow-hdr::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .pif-flow-lbl {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--txt-muted); white-space: nowrap;
+    }
+
+    .pif-steps {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: start; gap: 0;
+    }
+    .pif-arrow {
+      display: flex; align-items: flex-start; padding-top: 36px;
+      color: var(--border); margin: 0 8px;
+    }
+    .pif-step {
+      background: var(--surface); border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 28px 22px 26px;
+      box-shadow: 0 2px 10px var(--shadow);
+      text-align: center;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .pif-step:hover { transform: translateY(-5px); box-shadow: 0 14px 44px var(--shadow-lg); }
+    .pif-step-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 1.15rem;
+      margin: 0 auto 14px; color: white; flex-shrink: 0;
+    }
+    .pif-step-num.s1 { background: var(--brand); box-shadow: 0 4px 16px rgba(67,56,202,0.3); }
+    .pif-step-num.s2 { background: var(--orange); box-shadow: 0 4px 16px rgba(249,115,22,0.3); }
+    .pif-step-num.s3 { background: var(--green);  box-shadow: 0 4px 16px rgba(5,150,105,0.3); }
+    .pif-step-icon { font-size: 1.6rem; display: block; margin-bottom: 12px; line-height: 1; }
+    .pif-step-title {
+      font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.05rem;
+      color: var(--brand-xdk); margin-bottom: 8px;
+    }
+    .pif-step-desc { font-size: 0.875rem; color: var(--txt-sub); line-height: 1.68; }
+
+    .pif-impact {
+      margin-top: 48px;
+      background: var(--brand-xdk); border-radius: 24px;
+      padding: 44px 52px;
+      display: flex; align-items: center; justify-content: center; gap: 52px;
+      flex-wrap: wrap;
+    }
+    .pif-impact-stats { display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+    .pif-stat { text-align: center; }
+    .pif-stat-num {
+      font-family: 'Outfit', sans-serif; font-weight: 900;
+      font-size: 4rem; line-height: 1; letter-spacing: -0.04em;
+      color: var(--orange);
+    }
+    .pif-stat-lbl {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.48);
+      margin-top: 4px;
+    }
+    .pif-eq {
+      font-family: 'Outfit', sans-serif; font-size: 2.4rem;
+      color: rgba(255,255,255,0.2); font-weight: 300; line-height: 1;
+    }
+    .pif-impact-divider {
+      width: 1px; height: 80px; background: rgba(255,255,255,0.1); flex-shrink: 0;
+    }
+    .pif-impact-msg {
+      font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.72;
+      max-width: 380px;
+    }
+    .pif-impact-msg strong { color: white; }
+    .pif-gear-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+    .pif-gear-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50px; padding: 4px 12px;
+      font-size: 0.76rem; font-weight: 600; color: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 900px) {
+      .pif-section { padding: 56px 28px; }
+      .pif-steps { grid-template-columns: 1fr; gap: 16px; }
+      .pif-arrow { display: none; }
+      .pif-impact { padding: 32px 28px; gap: 32px; }
+      .pif-impact-divider { width: 100%; height: 1px; }
+    }
+    @media (max-width: 640px) {
+      .pif-section { padding: 40px 16px; }
+      .pif-impact { flex-direction: column; gap: 24px; }
+      .pif-impact-stats { gap: 16px; }
+      .pif-stat-num { font-size: 3rem; }
+      .pif-impact-msg { text-align: center; }
+      .pif-gear-tags { justify-content: center; }
+    }
+
     /* ── TRUST BAR – bottom of page ───────────────────────────── */
     .trust-bar {
       background: var(--surface);
@@ -746,9 +876,9 @@
   </a>
 
   <ul class="nav-links" role="navigation" aria-label="Main navigation">
-    <li><a href="kidsplor-discover.html">Discover</a></li>
     <li><a href="#features">Features</a></li>
     <!-- Community removed from nav -->
+    <li><a href="kidsplor-try-it-now.html">Live Preview</a></li>
     <li><a href="kidsplor-about.html">About Us</a></li>
   </ul>
   <div class="nav-spacer"></div>
@@ -1110,6 +1240,87 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     PLAY-IT-FORWARD INITIATIVE
+══════════════════════════════════════════ -->
+<section class="pif-section" aria-labelledby="pif-h">
+  <div class="pif-inner">
+
+    <div class="pif-header">
+      <div class="pif-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 21C12 21 3 14 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6-9 13-9 13z"/></svg>
+        Play-it-Forward Initiative
+      </div>
+      <h2 class="pif-headline" id="pif-h">Every child deserves to play. ✨</h2>
+      <p class="pif-body">We believe every kid should have the chance to discover their passion — whether that's splashing in a pool, picking up a paint brush, or learning to dance. That's why we created the Play-it-Forward Initiative. Through micro-donations at checkout and community partnerships with our local providers, we turn empty class spaces into life-changing opportunities for under-privileged and foster children in our community. No corporate jargon, just local families helping local kids.</p>
+    </div>
+
+    <div class="pif-flow-hdr">
+      <span class="pif-flow-lbl">How We Turn Play Into Action</span>
+    </div>
+
+    <div class="pif-steps" role="list">
+
+      <div class="pif-step" role="listitem">
+        <div class="pif-step-num s1" aria-hidden="true">1</div>
+        <span class="pif-step-icon" aria-hidden="true">🔍</span>
+        <div class="pif-step-title">Search &amp; Book</div>
+        <p class="pif-step-desc">You find the perfect activity for your family's routine and book with one tap through Kidsplor.</p>
+      </div>
+
+      <div class="pif-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="pif-step" role="listitem">
+        <div class="pif-step-num s2" aria-hidden="true">2</div>
+        <span class="pif-step-icon" aria-hidden="true">🙌</span>
+        <div class="pif-step-title">Round Up</div>
+        <p class="pif-step-desc">Opt-in at checkout to round up your payment and donate a class to a child who needs it most.</p>
+      </div>
+
+      <div class="pif-arrow" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <div class="pif-step" role="listitem">
+        <div class="pif-step-num s3" aria-hidden="true">3</div>
+        <span class="pif-step-icon" aria-hidden="true">🎁</span>
+        <div class="pif-step-title">Play it Forward</div>
+        <p class="pif-step-desc">Activity Providers may also donate unused classes or donate essential activity gear for a local child via our community partners.</p>
+      </div>
+
+    </div>
+
+    <div class="pif-impact" aria-label="Impact breakdown">
+      <div class="pif-impact-stats">
+        <div class="pif-stat">
+          <div class="pif-stat-num">10</div>
+          <div class="pif-stat-lbl">Paid Bookings</div>
+        </div>
+        <div class="pif-eq">=</div>
+        <div class="pif-stat">
+          <div class="pif-stat-num">1</div>
+          <div class="pif-stat-lbl">Child Gets to Play</div>
+        </div>
+      </div>
+
+      <div class="pif-impact-divider" aria-hidden="true"></div>
+
+      <div>
+        <p class="pif-impact-msg">For every <strong>10 fully-paid term bookings</strong> processed through Kidsplor, we directly fund <strong>1 free trial class</strong> or provide essential activity gear to a child in need through our local community partners.</p>
+        <div class="pif-gear-tags" aria-label="Example gear items">
+          <span class="pif-gear-tag">🩰 Ballet tutu</span>
+          <span class="pif-gear-tag">🥽 Swimming goggles</span>
+          <span class="pif-gear-tag">⚽ Soccer kit</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 

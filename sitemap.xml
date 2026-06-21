@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Homepage -->
   <url>
     <loc>https://kidsplor.com.au/</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- Live Preview (Try It Now) -->
   <url>
-    <loc>https://kidsplor.com.au/kidsplor-discover.html</loc>
-    <lastmod>2026-05-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://kidsplor.com.au/kidsplor-try-it-now.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
+  <!-- For Providers -->
   <url>
     <loc>https://kidsplor.com.au/kidsplor-for-business.html</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Pricing -->
   <url>
     <loc>https://kidsplor.com.au/kidsplor-pricing.html</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- About Us -->
   <url>
     <loc>https://kidsplor.com.au/kidsplor-about.html</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- Parents FAQ -->
   <url>
     <loc>https://kidsplor.com.au/kidsplor-parents-faq.html</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- Parent Stories -->
   <url>
     <loc>https://kidsplor.com.au/kidsplor-parent-stories.html</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
 
+  <!-- Discover (unlisted from nav) -->
+  <url>
+    <loc>https://kidsplor.com.au/kidsplor-discover.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Privacy Policy -->
   <url>
     <loc>https://kidsplor.com.au/kidsplor-privacy.html</loc>
-    <lastmod>2026-05-29</lastmod>
+    <lastmod>2026-06-21</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
