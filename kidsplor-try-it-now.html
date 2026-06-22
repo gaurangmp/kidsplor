@@ -367,7 +367,13 @@
 
     /* ── RESPONSIVE ── */
 
-    /* Hide iPad on medium screens — not enough width */
+    /* Desktop: show iPad only */
+    @media (min-width: 1025px) {
+      .iphone-wrap { display: none; }
+      .phone-stage { gap: 0; }
+    }
+
+    /* Tablet/mobile: show iPhone only, hide iPad */
     @media (max-width: 1024px) {
       .ipad-wrap { display: none; }
       .phone-stage { gap: 0; }
@@ -383,6 +389,65 @@
       }
       .phone-island { width: 100px; height: 28px; }
       .phone-screen { border-radius: 40px; }
+    }
+
+    /* ── Device loading overlay ── */
+    .device-loader {
+      position: absolute; inset: 0;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: linear-gradient(145deg, #EEF2FF 0%, #FFF7ED 55%, #F0FDF4 100%);
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .device-loader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .spinner-rainbow {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        #F97316 0deg,
+        #FBBF24 60deg,
+        #22C55E 120deg,
+        #3B82F6 190deg,
+        #8B5CF6 250deg,
+        #EC4899 310deg,
+        #F97316 360deg
+      );
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 9px), black calc(100% - 8px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 9px), black calc(100% - 8px));
+      animation: spin-rainbow 0.9s linear infinite;
+    }
+    @keyframes spin-rainbow {
+      to { transform: rotate(360deg); }
+    }
+    .loader-dots {
+      display: flex; gap: 7px;
+    }
+    .loader-dots span {
+      width: 9px; height: 9px; border-radius: 50%;
+      animation: loader-bounce 1.3s ease-in-out infinite;
+    }
+    .loader-dots span:nth-child(1) { background: #F97316; animation-delay: 0s; }
+    .loader-dots span:nth-child(2) { background: #FBBF24; animation-delay: 0.13s; }
+    .loader-dots span:nth-child(3) { background: #22C55E; animation-delay: 0.26s; }
+    .loader-dots span:nth-child(4) { background: #3B82F6; animation-delay: 0.39s; }
+    .loader-dots span:nth-child(5) { background: #8B5CF6; animation-delay: 0.52s; }
+    @keyframes loader-bounce {
+      0%, 70%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+      35%            { transform: translateY(-7px) scale(1.2); opacity: 1; }
+    }
+    .loader-label {
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+      font-size: 0.82rem; color: var(--brand);
+      letter-spacing: 0.04em;
     }
   </style>
   <link rel="stylesheet" href="assets/responsive.css">
@@ -447,6 +512,15 @@
             </div>
           </div>
 
+          <!-- Loading spinner -->
+          <div class="device-loader" id="ipad-loader">
+            <div class="spinner-rainbow"></div>
+            <div class="loader-dots">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="loader-label">Loading Kidsplor…</div>
+          </div>
+
           <!-- Live app -->
           <iframe
             class="device-iframe"
@@ -488,6 +562,15 @@
             </div>
           </div>
 
+          <!-- Loading spinner -->
+          <div class="device-loader" id="phone-loader">
+            <div class="spinner-rainbow"></div>
+            <div class="loader-dots">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="loader-label">Loading Kidsplor…</div>
+          </div>
+
           <!-- Live app -->
           <iframe
             class="device-iframe"
@@ -524,6 +607,19 @@
   </div>
 
 </section>
+
+<script>
+  document.querySelectorAll('.device-iframe').forEach(function(iframe) {
+    var screen = iframe.closest('.ipad-screen, .phone-screen');
+    var loader = screen ? screen.querySelector('.device-loader') : null;
+    if (!loader) return;
+    iframe.addEventListener('load', function() {
+      loader.classList.add('loaded');
+    });
+    // Fallback: hide after 15 seconds in case load event doesn't fire
+    setTimeout(function() { loader.classList.add('loaded'); }, 15000);
+  });
+</script>
 
 </body>
 </html>
